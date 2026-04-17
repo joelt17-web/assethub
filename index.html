@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Asset Hub — S.Facilities</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0f2f5;--white:#ffffff;--panel:#ffffff;
+  --border:#e5e7eb;--border2:#d1d5db;
+  --text:#111827;--muted:#6b7280;--dim:#9ca3af;
+  --cyan:#0ea5e9;--cyan-d:#0284c7;--cyan-l:#e0f2fe;
+  --violet:#7c3aed;--violet-l:#ede9fe;
+  --red:#ef4444;--red-l:#fee2e2;--red-d:#dc2626;
+  --amber:#f59e0b;--amber-l:#fef3c7;--amber-d:#d97706;
+  --green:#10b981;--green-l:#d1fae5;--green-d:#059669;
+  --blue:#3b82f6;--blue-l:#dbeafe;
+  --orange:#f97316;--orange-l:#ffedd5;
+}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes toastIn{from{transform:translateX(120%)}to{transform:none}}
+.fade{animation:fadeUp .3s ease}
+
+/* ── HEADER ── */
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.logo{display:flex;align-items:center;gap:9px}
+.logo-icon{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.logo-text{font-weight:800;font-size:.9rem;color:var(--text)}
+.logo-text span{color:var(--cyan)}
+.logo-sub{font-size:11px;color:var(--muted);margin-left:4px}
+nav{display:flex;gap:2px}
+.nb{padding:5px 12px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;background:transparent;color:var(--muted);transition:all .15s}
+.nb.on{background:var(--cyan-l);color:var(--cyan-d);font-weight:700}
+.hdr-r{display:flex;align-items:center;gap:.6rem}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;margin-right:4px;box-shadow:0 0 0 2px var(--green-l)}
+.sync-txt{font-size:11px;color:var(--muted)}
+
+/* ── BUTTONS ── */
+.btn{padding:.4rem .9rem;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;transition:all .15s}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.bp{background:var(--cyan);color:#fff}
+.bp:hover{background:var(--cyan-d)}
+.bs{background:var(--green-l);color:var(--green-d);border:1px solid #a7f3d0}
+.bg{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+.br{background:var(--red-l);color:var(--red-d);border:1px solid #fca5a5}
+
+/* ── MAIN ── */
+main{flex:1;padding:1.25rem 1.5rem;max-width:1440px;margin:0 auto;width:100%}
+.pg-title{font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
+.pg-sub{color:var(--muted);font-size:12px;margin-top:2px}
+
+/* ── KPI CARDS ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.75rem;margin-bottom:1.25rem}
+.kpi{background:var(--white);border-radius:12px;padding:1rem 1.1rem;border:1px solid var(--border);transition:all .15s;position:relative;overflow:hidden}
+.kpi.click{cursor:pointer}.kpi.click:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.kpi-stripe{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:12px 0 0 12px}
+.kpi-icon{font-size:1.4rem;margin-bottom:.5rem}
+.kpi-v{font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.kpi-l{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500}
+.kpi-s{font-size:11px;margin-top:3px;font-weight:600}
+.kpi-trend{position:absolute;top:.85rem;right:.85rem;font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px}
+
+/* ── ALERT ── */
+.alert{border-radius:10px;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;margin-bottom:1.25rem;border:1px solid}
+
+/* ── SECTION ── */
+.sl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:.65rem;display:flex;align-items:center;gap:.4rem}
+.sl::after{content:"";flex:1;height:1px;background:var(--border)}
+
+/* ── CARDS ── */
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.7rem;margin-bottom:1.25rem}
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.7rem;margin-bottom:1.25rem}
+.card{background:var(--white);border-radius:10px;padding:.85rem 1rem;cursor:pointer;transition:all .15s;border:1px solid var(--border)}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.card-icon{font-size:1.2rem;margin-bottom:4px}
+.card-name{font-weight:700;font-size:.78rem;margin-bottom:2px}
+.card-n{font-size:18px;font-weight:900;color:var(--text);margin:3px 0;letter-spacing:-.02em}
+.card-s{font-size:11px;color:var(--muted)}
+
+/* ── TABLE ── */
+.tw{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
+.th{padding:.75rem 1.1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;background:#fafafa}
+.th-t{font-weight:700;font-size:.82rem}
+.th-s{font-size:11px;color:var(--muted)}
+.ts{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead tr{background:#f9fafb}
+th{padding:8px 12px;text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid rgba(229,231,235,.6);font-size:13px;white-space:nowrap}
+tbody tr{cursor:pointer;transition:background .1s}
+tbody tr:hover td{background:#f9fafb}
+.mono{font-family:monospace;font-size:12px}
+.bold{font-weight:700}
+
+/* ── FILTERS ── */
+.fb{display:flex;gap:7px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+input[type=text],select{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:.42rem .8rem;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border .15s}
+input[type=text]:focus,select:focus{border-color:var(--cyan)}
+input[type=text]{flex:1;min-width:180px}
+select option{background:var(--white)}
+.cl{font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* ── BADGE ── */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+
+/* ── PROGRESS BAR ── */
+.prog-wrap{background:var(--border);border-radius:4px;height:6px;overflow:hidden;margin-top:4px}
+.prog-bar{height:6px;border-radius:4px;transition:width .4s}
+
+/* ── RECOVERY PANEL ── */
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem;margin-bottom:1.25rem}
+.rec-card{background:var(--white);border-radius:10px;padding:1rem;border:1px solid var(--border);border-left:4px solid}
+.rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem}
+.rec-asset{font-weight:700;font-size:.85rem}
+.rec-person{font-size:12px;color:var(--muted);margin-top:2px}
+.rec-meta{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+
+/* ── CHAT ── */
+.chat{display:flex;flex-direction:column;height:calc(100vh - 190px);background:var(--white);border-radius:12px;border:1px solid var(--border);overflow:hidden}
+.chat-hdr{padding:.8rem 1.1rem;border-bottom:1px solid var(--border);background:#fafafa;display:flex;align-items:center;gap:9px}
+.ai-ico{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.65rem}
+.bubble{max-width:78%;padding:.65rem .9rem;font-size:13px;line-height:1.65;border-radius:12px}
+.bai{align-self:flex-start;background:#f3f4f6;color:var(--text);border-radius:4px 12px 12px 12px}
+.bme{align-self:flex-end;background:var(--cyan);color:#fff;border-radius:12px 12px 4px 12px}
+.quick{padding:0 1rem .45rem;display:flex;gap:5px;flex-wrap:wrap}
+.ci{padding:.65rem 1rem .85rem;border-top:1px solid var(--border);display:flex;gap:7px}
+.ci input{flex:1}
+
+/* ── MODAL ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:500;padding:1rem}
+.mb{background:var(--white);border-radius:14px;padding:1.5rem;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15);animation:fadeUp .2s ease}
+.mr{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border)}
+.mk{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.mv{font-size:13px;font-weight:600}
+
+/* ── SETUP ── */
+.setup{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;text-align:center;padding:2rem}
+.setup-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto;box-shadow:0 8px 24px rgba(14,165,233,.3)}
+.setup-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;max-width:500px;width:100%;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.setup-box label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:5px;font-weight:600}
+.setup-box input{width:100%;margin-bottom:.85rem}
+.code-block{background:#1e293b;border-radius:8px;padding:.75rem 1rem;font-family:monospace;font-size:11px;color:#7dd3fc;word-break:break-all;user-select:all;cursor:text;margin-bottom:.75rem}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:1.4rem;right:1.4rem;background:var(--white);border-radius:10px;padding:.65rem 1rem;font-size:13px;font-weight:600;z-index:999;animation:toastIn .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--border)}
+
+@media(max-width:600px){header{padding:0 1rem}main{padding:1rem}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// ══════════════════════════════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════════════════════════════
+const FILE_DRIVE = "b!V9dAwceI-0OPmealGEMzR4B50HWXtIRMn8Syoo8PV8VIwbClGp58SqQ_G8yZqIIq";
+const FILE_ITEM  = "01XOZAM3JAVRB74B7DTJHI6MKNNN5W2FTY";
+const FILE_NAME  = "Dashboards - KPI.xlsx";
+const RAW_SHEET  = "RAW DATA";
+const BL_SHEET   = "BLACK LIST";
+const AUTO_MIN   = 10;
+
+// ══════════════════════════════════════════════════════════════════════
+// MOCK DATA — estrutura real do ficheiro (DASHBOARDS sheet + RAW DATA)
+// Substitui-se pelos dados reais quando token disponível
+// ══════════════════════════════════════════════════════════════════════
+const MOCK = [
+  {id:"TP.CPT.001",type:"Portátil",serial:"SN001",person:"Ana Costa",dept:"IT",location:"EDIFICIOS",local:"Lisboa HQ",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-01",acq:"2022-03-15",exitDate:""},
+  {id:"TP.CPT.002",type:"Monitor",serial:"SN002",person:"Bruno Silva",dept:"Vendas",location:"EDIFICIOS",local:"Porto",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-02",acq:"2022-05-20",exitDate:""},
+  {id:"TP.CPT.003",type:"Portátil",serial:"SN003",person:"Carlos Mota",dept:"",location:"ARMAZÉM",local:"Armazém Lx",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-01",acq:"2021-01-10",exitDate:"2024-06-30"},
+  {id:"TP.CPT.004",type:"Desktop",serial:"SN004",person:"Diana Ferreira",dept:"",location:"WAHA",local:"WAHA",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-03",acq:"2022-08-01",exitDate:"2024-09-15"},
+  {id:"TP.CPT.005",type:"Portátil",serial:"SN005",person:"Eduardo Santos",dept:"IT",location:"APARTAMENTOS",local:"Google Campus",wahStatus:"Active",retention:"#Google",lifeCycle:"Active",bms:"BMS-04",acq:"2023-01-15",exitDate:""},
+  {id:"TP.CPT.006",type:"Tablets",serial:"SN006",person:"Filipa Rodrigues",dept:"",location:"WAHA",local:"WAHA",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-03",acq:"2023-03-20",exitDate:"2024-11-01"},
+  {id:"TP.CPT.007",type:"Portátil",serial:"SN007",person:"Gonçalo Pinto",dept:"Finanças",location:"STAGING",local:"Staging",wahStatus:"Active",retention:"",lifeCycle:"End of Life",bms:"BMS-05",acq:"2022-11-05",exitDate:""},
+  {id:"TP.CPT.008",type:"Desktop",serial:"SN008",person:"Helena Nunes",dept:"",location:"ARMAZÉM",local:"Armazém",wahStatus:"Terminated",retention:"Recuperado",lifeCycle:"End of Life",bms:"BMS-01",acq:"2020-06-15",exitDate:"2024-10-15"},
+  {id:"TP.CPT.009",type:"Monitor",serial:"SN009",person:"Inês Teixeira",dept:"Marketing",location:"EDIFICIOS",local:"Lisboa HQ",wahStatus:"Active",retention:"#Booking",lifeCycle:"Active",bms:"BMS-06",acq:"2023-06-01",exitDate:""},
+  {id:"TP.CPT.010",type:"Portátil",serial:"SN010",person:"João Oliveira",dept:"",location:"WAREHOUSE",local:"Warehouse",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-07",acq:"2023-09-10",exitDate:"2024-08-30"},
+  {id:"TP.CPT.011",type:"MiniPC",serial:"SN011",person:"Karla Mendes",dept:"RH",location:"EDIFICIOS",local:"Lisboa HQ",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-01",acq:"2023-05-10",exitDate:""},
+  {id:"TP.CPT.012",type:"Thin Client",serial:"SN012",person:"Luís Faria",dept:"",location:"ARMAZÉM",local:"Armazém",wahStatus:"Terminated",retention:"Não encontrado",lifeCycle:"Active",bms:"BMS-01",acq:"2020-08-15",exitDate:"2024-12-01"},
+  {id:"TP.CPT.013",type:"Portátil",serial:"SN013",person:"Maria João",dept:"Ops",location:"AVT",local:"AVT",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-07",acq:"2023-02-14",exitDate:""},
+  {id:"TP.CPT.014",type:"Routers",serial:"SN014",person:"Nuno Carvalho",dept:"",location:"WAHA",local:"WAHA",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-03",acq:"2021-07-30",exitDate:"2024-07-20"},
+  {id:"TP.CPT.015",type:"Monitor",serial:"SN015",person:"Olga Pereira",dept:"IT",location:"EDIFICIOS",local:"Porto",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-02",acq:"2023-11-01",exitDate:""},
+  {id:"TP.CPT.016",type:"Secretária",serial:"SN016",person:"Paulo Ramos",dept:"",location:"STAGING",local:"Staging",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-05",acq:"2022-01-18",exitDate:"2024-05-10"},
+  {id:"TP.CPT.017",type:"Portátil",serial:"SN017",person:"Rita Costa",dept:"Design",location:"WAHA",local:"WAHA",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-03",acq:"2022-06-10",exitDate:""},
+  {id:"TP.CPT.018",type:"Desktop",serial:"SN018",person:"Sérgio Lopes",dept:"",location:"AVT",local:"AVT",wahStatus:"Terminated",retention:"Não encontrado",lifeCycle:"End of Life",bms:"BMS-07",acq:"2022-09-15",exitDate:"2024-09-01"},
+];
+
+const TYPE_M={
+  "Portátil":{i:"💻",c:"#0ea5e9",bg:"#e0f2fe"},
+  "Desktop":{i:"🖥️",c:"#7c3aed",bg:"#ede9fe"},
+  "Monitor":{i:"📺",c:"#ec4899",bg:"#fce7f3"},
+  "Tablets":{i:"📱",c:"#8b5cf6",bg:"#ede9fe"},
+  "MiniPC":{i:"🖱️",c:"#06b6d4",bg:"#cffafe"},
+  "Thin Client":{i:"📦",c:"#64748b",bg:"#f1f5f9"},
+  "Routers":{i:"📡",c:"#f97316",bg:"#ffedd5"},
+  "Secretária":{i:"🪑",c:"#84cc16",bg:"#f7fee7"},
+  "Cadeira":{i:"💺",c:"#a3a3a3",bg:"#f5f5f5"},
+};
+const LOC_M={
+  "EDIFICIOS":{i:"🏢",c:"#0ea5e9"},
+  "ARMAZÉM":{i:"📦",c:"#f59e0b"},
+  "AVT":{i:"🏭",c:"#7c3aed"},
+  "WAHA":{i:"🏠",c:"#10b981"},
+  "STAGING":{i:"🔧",c:"#f97316"},
+  "WAREHOUSE":{i:"🏗️",c:"#3b82f6"},
+  "APARTAMENTOS":{i:"🛋️",c:"#ec4899"},
+};
+const RET_COLOR={
+  "Pendente de recolha":["#fef3c7","#d97706","#fbbf24"],
+  "Recuperado":["#d1fae5","#059669","#10b981"],
+  "Não encontrado":["#fee2e2","#dc2626","#ef4444"],
+  "#Google":["#dbeafe","#1d4ed8","#3b82f6"],
+  "#Booking":["#fef3c7","#92400e","#f59e0b"],
+  "":["#d1fae5","#059669","#10b981"],
+};
+
+// ══════════════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════════════
+const S={
+  screen:"setup",tab:"overview",
+  data:[],lastSync:null,loading:false,token:"",
+  search:"",typeF:"all",locF:"all",wahF:"all",retF:"all",
+  selected:null,toast:null,
+  aiMsgs:[{r:"ai",t:"Olá! Sou o **Asset Hub AI**.\nTenho acesso ao **Dashboards - KPI.xlsx**.\nPergunta-me sobre equipamentos Terminated, pendentes de recolha, localizações ou prioridades de recuperação."}],
+  aiIn:"",aiLoad:false,
+};
+
+function loadToken(){try{const t=localStorage.getItem("ah_tok");if(t)S.token=t;}catch{}}
+function saveToken(t){try{localStorage.setItem("ah_tok",t);}catch{}}
+
+// ══════════════════════════════════════════════════════════════════════
+// GRAPH API
+// ══════════════════════════════════════════════════════════════════════
+async function fetchSheet(sheet){
+  const url=`https://graph.microsoft.com/v1.0/drives/${FILE_DRIVE}/items/${FILE_ITEM}/workbook/worksheets/${encodeURIComponent(sheet)}/usedRange`;
+  const r=await fetch(url,{headers:{Authorization:`Bearer ${S.token}`}});
+  if(r.status===401){showToast("Token expirado — renova",true);return null;}
+  if(!r.ok){showToast("Erro API: "+r.status,true);return null;}
+  return (await r.json()).values;
+}
+
+function parseRaw(vals){
+  if(!vals||vals.length<2) return [];
+  const H=vals[0].map(h=>(h||"").toString().toUpperCase().trim());
+  const gi=k=>H.findIndex(h=>h.includes(k));
+  const iID=gi("ASSET ID"),iTY=gi("ASSET TY"),iSN=gi("SERIAL"),
+        iPER=gi("PERSON")||gi("COLABOR")||gi("ASSIGN"),
+        iDEP=gi("DEPT")||gi("DEPART"),
+        iLOC=gi("LOCATION"),iLOCAL=gi("LOCAL"),
+        iBM=gi("BMS"),iAQ=gi("ACQUIS"),iLF=gi("LIFE"),
+        iWH=gi("WAH"),iRT=gi("RETENT"),
+        iEX=gi("EXIT")||gi("TERMINA")||gi("DATA SA");
+  return vals.slice(1).filter(r=>r[iID]).map(r=>({
+    id:s(r[iID]),type:s(r[iTY]),serial:s(r[iSN]),
+    person:s(r[iPER]),dept:s(r[iDEP]),
+    location:s(r[iLOC]).toUpperCase(),local:s(r[iLOCAL]),
+    bms:s(r[iBM]),acq:s(r[iAQ]),lifeCycle:s(r[iLF]),
+    wahStatus:s(r[iWH]),retention:s(r[iRT]),
+    exitDate:s(r[iEX]),
+  }));
+}
+const s=v=>(v||"").toString().trim();
+
+async function syncData(){
+  set({loading:true});
+  const vals=await fetchSheet(RAW_SHEET);
+  if(vals){
+    const data=parseRaw(vals);
+    set({data,lastSync:new Date(),loading:false});
+    showToast(data.length+" assets carregados ✓");
+  } else set({loading:false});
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// STATS
+// ══════════════════════════════════════════════════════════════════════
+function stats(){
+  const d=S.data;
+  const term=d.filter(x=>x.wahStatus==="Terminated");
+  const pend=d.filter(x=>x.retention==="Pendente de recolha");
+  const rec=d.filter(x=>x.retention==="Recuperado");
+  const nf=d.filter(x=>x.retention==="Não encontrado");
+  const eol=d.filter(x=>x.lifeCycle==="End of Life");
+  // Recovery rate
+  const totalEx=term.length;
+  const recRate=totalEx>0?Math.round(rec.length/totalEx*100):0;
+  return{total:d.length,active:d.filter(x=>x.wahStatus==="Active").length,
+    term:term.length,pend:pend.length,rec:rec.length,nf:nf.length,eol:eol.length,
+    google:d.filter(x=>x.retention==="#Google").length,
+    booking:d.filter(x=>x.retention==="#Booking").length,
+    locs:[...new Set(d.map(x=>x.location).filter(Boolean))].length,
+    recRate,termList:term,pendList:pend,
+  };
+}
+
+function filtered(){
+  return S.data.filter(d=>{
+    if(S.typeF!=="all"&&d.type!==S.typeF) return false;
+    if(S.locF!=="all"&&d.location!==S.locF) return false;
+    if(S.wahF!=="all"&&d.wahStatus!==S.wahF) return false;
+    if(S.retF!=="all"&&d.retention!==S.retF) return false;
+    const q=S.search.toLowerCase();
+    return!q||[d.id,d.type,d.serial,d.person,d.local,d.location,d.wahStatus,d.retention].some(x=>(x||"").toLowerCase().includes(q));
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// AI
+// ══════════════════════════════════════════════════════════════════════
+async function askAI(q){
+  const st=stats();
+  const sample=S.data.filter(x=>x.wahStatus==="Terminated").slice(0,40)
+    .map(a=>`${a.id}|${a.type}|${a.person}|${a.location}|${a.retention||"OK"}|saiu:${a.exitDate||"?"}`)
+    .join("\n");
+  const r=await fetch("https://api.anthropic.com/v1/messages",{
+    method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      model:"claude-sonnet-4-20250514",max_tokens:900,
+      system:`És o Asset Hub AI da Teleperformance S.Facilities. Especialista em recuperação de equipamentos TI.
+Stats atuais: Total=${st.total}, Ativos=${st.active}, Terminated=${st.term}, Pendentes=${st.pend}, Recuperados=${st.rec}, Não encontrados=${st.nf}, Taxa recuperação=${st.recRate}%.
+Localizações: EDIFICIOS, ARMAZÉM, AVT, WAHA, STAGING, WAREHOUSE, APARTAMENTOS.
+Terminated com equipamentos:\n${sample}
+Responde em português europeu. Foca em ajudar a priorizar e planear recuperações.`,
+      messages:[{role:"user",content:q}]
+    })
+  });
+  const d=await r.json();
+  return d.content?.[0]?.text||"Erro.";
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════════════════════════
+function set(p,r=true){Object.assign(S,p);if(r)draw();}
+function showToast(msg,err=false){S.toast={msg,err};draw();setTimeout(()=>{S.toast=null;draw();},3000);}
+function ft(d){if(!d)return"—";try{return new Date(d).toLocaleDateString("pt-PT")}catch{return d}}
+function ts(){return S.lastSync?S.lastSync.toLocaleTimeString("pt-PT"):"—"}
+function daysSince(d){if(!d)return null;const ms=Date.now()-new Date(d).getTime();return Math.floor(ms/86400000);}
+
+function bdg(v,type="wah"){
+  if(type==="wah"){
+    const cfg={Active:["#d1fae5","#059669"],Terminated:["#fee2e2","#dc2626"],Inactive:["#fef3c7","#d97706"]};
+    const [bg,c]=cfg[v]||["#f3f4f6","#6b7280"];
+    return`<span class="badge" style="background:${bg};color:${c}">${v||"—"}</span>`;
+  }
+  const [bg,c]=(RET_COLOR[v]||["#f3f4f6","#6b7280","#9ca3af"]).slice(0,2);
+  return`<span class="badge" style="background:${bg};color:${c}">${v||"—"}</span>`;
+}
+
+function urgencyBadge(days){
+  if(days===null) return"";
+  if(days>90) return`<span class="badge" style="background:#fee2e2;color:#dc2626">⚠️ ${days}d</span>`;
+  if(days>30) return`<span class="badge" style="background:#fef3c7;color:#d97706">⏳ ${days}d</span>`;
+  return`<span class="badge" style="background:#d1fae5;color:#059669">✓ ${days}d</span>`;
+}
+
+function tpill(t){const m=TYPE_M[t]||{i:"📦",c:"#6b7280",bg:"#f3f4f6"};return`<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${t}</span>`;}
+function lpill(l){const m=LOC_M[l]||{i:"📍",c:"#6b7280"};return`<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${l}</span>`;}
+
+// ══════════════════════════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════════════════════════
+function draw(){
+  document.getElementById("root").innerHTML=
+    S.screen==="setup"?rSetup():rDash();
+  const c=document.getElementById("cm");if(c)c.scrollTop=c.scrollHeight;
+}
+
+// ── SETUP ─────────────────────────────────────────────────────────────
+function rSetup(){
+  return`
+<div style="display:flex;flex-direction:column;min-height:100vh;background:var(--bg)">
+<div class="setup fade">
+  <div class="setup-icon">📡</div>
+  <div>
+    <div style="font-size:1.5rem;font-weight:900;letter-spacing:-.03em">Asset<span style="color:var(--cyan)">Hub</span></div>
+    <div style="color:var(--muted);font-size:.85rem;margin-top:4px">S.Facilities · Recuperação de Equipamentos · ${FILE_NAME}</div>
+  </div>
+  <div class="setup-box">
+    <div style="font-weight:700;margin-bottom:.85rem;font-size:.88rem">🔑 Ligar ao SharePoint</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:.85rem;line-height:1.7">
+      <b style="color:var(--text)">Método mais fácil:</b> vai ao
+      <a href="https://developer.microsoft.com/en-us/graph/graph-explorer" target="_blank" style="color:var(--cyan)">Graph Explorer</a>,
+      faz login com a tua conta Teleperformance, e copia o <b>Access Token</b> que aparece no topo.
+    </div>
+    <label>Access Token Microsoft Graph</label>
+    <input type="text" id="tokenInput" placeholder="eyJ0eXAiOiJKV1Q..." style="font-family:monospace;font-size:11px;margin-bottom:.5rem"/>
+    <div style="font-size:10px;color:var(--dim);margin-bottom:.85rem">Guardado localmente. Validade ~1h. Renova quando expirar com o botão 🔑.</div>
+    <div style="display:flex;gap:7px">
+      <button class="btn bp" style="flex:1" onclick="connectToken()">Ligar →</button>
+      <button class="btn bg" onclick="demoMode()">Modo demo</button>
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--dim);max-width:420px;line-height:1.6;text-align:center">
+    O token é usado apenas para ler o ficheiro via Microsoft Graph API.<br>Nunca é enviado para servidores externos.
+  </div>
+</div>
+</div>`;
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────
+function rDash(){
+  const TABS=[["overview","📊 Overview"],["recovery","🚨 Recuperação"],["assets","📦 Assets"],["ai","🤖 AI"]];
+  const st=stats();
+  const subs={
+    overview:`${st.total.toLocaleString()} assets · ${st.term} Terminated · taxa recuperação ${st.recRate}% · ${ts()}`,
+    recovery:`${st.pend} pendentes · ${st.nf} não encontrados · ${st.rec} recuperados`,
+    assets:`${filtered().length} de ${st.total.toLocaleString()} assets`,
+    ai:"Assistente especializado em recuperação de equipamentos",
+  };
+  return`
+<header>
+  <div class="logo">
+    <div class="logo-icon">📡</div>
+    <div class="logo-text">Asset<span>Hub</span></div>
+    <span class="logo-sub">S.Facilities</span>
+  </div>
+  <nav>${TABS.map(([t,l])=>`<button class="nb${S.tab===t?" on":""}" onclick="setTab('${t}')">${l}</button>`).join("")}</nav>
+  <div class="hdr-r">
+    <span class="sync-dot"></span><span class="sync-txt">${ts()}</span>
+    <button class="btn bs" onclick="syncNow()" ${S.loading?"disabled":""}>
+      <span style="${S.loading?"display:inline-block;animation:spin .8s linear infinite":""}">↺</span> Sync
+    </button>
+    <button class="btn bg" onclick="set({screen:'setup'})" title="Token">🔑</button>
+  </div>
+</header>
+<main>
+  <div style="margin-bottom:1.1rem" class="fade">
+    <div class="pg-title">${TABS.find(t=>t[0]===S.tab)?.[1]}</div>
+    <div class="pg-sub">${subs[S.tab]}</div>
+  </div>
+  <div class="fade">
+    ${S.tab==="overview"?rOverview(st):S.tab==="recovery"?rRecovery(st):S.tab==="assets"?rAssets():rAI()}
+  </div>
+</main>
+${S.selected?rModal(S.selected):""}
+${S.toast?`<div class="toast" style="border-color:${S.toast.err?"var(--red)":"var(--green)"}">${S.toast.err?"❌":"✅"} ${S.toast.msg}</div>`:""}`;
+}
+
+// ── OVERVIEW ───────────────────────────────────────────────────────────
+function rOverview(st){
+  const kpis=[
+    {l:"Total Assets",v:st.total.toLocaleString(),c:"var(--cyan)",icon:"📦",stripe:"#0ea5e9"},
+    {l:"Ativos",v:st.active.toLocaleString(),c:"var(--green-d)",icon:"✅",stripe:"#10b981"},
+    {l:"Terminated",v:st.term,c:"var(--red-d)",icon:"🚪",stripe:"#ef4444",click:"setTab('recovery')"},
+    {l:"Pendentes",v:st.pend,c:"var(--amber-d)",icon:"⏳",stripe:"#f59e0b",click:"setTab('recovery')",trend:"URGENTE"},
+    {l:"Recuperados",v:st.rec,c:"var(--green-d)",icon:"✔️",stripe:"#10b981"},
+    {l:"Não encontrados",v:st.nf,c:"var(--red-d)",icon:"❌",stripe:"#ef4444",click:"setTab('recovery')"},
+    {l:"End of Life",v:st.eol,c:"var(--orange)",icon:"⚠️",stripe:"#f97316"},
+    {l:"Taxa Recuperação",v:st.recRate+"%",c:st.recRate>70?"var(--green-d)":st.recRate>40?"var(--amber-d)":"var(--red-d)",icon:"📈",stripe:st.recRate>70?"#10b981":st.recRate>40?"#f59e0b":"#ef4444"},
+  ];
+
+  // Recovery progress bar
+  const recPct=st.term>0?Math.round(st.rec/st.term*100):0;
+  const pendPct=st.term>0?Math.round(st.pend/st.term*100):0;
+  const nfPct=st.term>0?Math.round(st.nf/st.term*100):0;
+
+  // By location
+  const locCards=Object.entries(LOC_M).map(([loc,m])=>{
+    const list=S.data.filter(d=>d.location===loc);if(!list.length)return"";
+    const term=list.filter(d=>d.wahStatus==="Terminated").length;
+    const pend=list.filter(d=>d.retention==="Pendente de recolha").length;
+    return`<div class="card" onclick="setLocF('${loc}')">
+      <div class="card-icon">${m.i}</div>
+      <div class="card-name" style="color:${m.c}">${loc}</div>
+      <div class="card-n">${list.length.toLocaleString()}</div>
+      <div class="card-s">${list.length-term} ativos${term?` · <b style="color:var(--red-d)">${term} term.</b>`:""}${pend?` · <b style="color:var(--amber-d)">${pend} pend.</b>`:""}</div>
+    </div>`;
+  }).join("");
+
+  // By type (top equipment types)
+  const typeData=Object.keys(TYPE_M).map(type=>{
+    const list=S.data.filter(d=>d.type===type);
+    const term=list.filter(d=>d.wahStatus==="Terminated").length;
+    return{type,m:TYPE_M[type],total:list.length,term};
+  }).filter(x=>x.total>0).sort((a,b)=>b.total-a.total).slice(0,8);
+
+  const typeCards=typeData.map(({type,m,total,term})=>
+    `<div class="card" onclick="setTypeF('${type}')">
+      <div class="card-icon">${m.i}</div>
+      <div class="card-name" style="color:${m.c}">${type}</div>
+      <div class="card-n">${total.toLocaleString()}</div>
+      <div class="card-s">${total-term} ativos · <span style="color:${term?"var(--red-d)":"var(--green-d)"}"><b>${term}</b> term.</span></div>
+    </div>`).join("");
+
+  return`
+  <div class="kpi-grid">
+    ${kpis.map(k=>`
+      <div class="kpi${k.click?" click":""}" ${k.click?`onclick="${k.click}"`:""}
+        onmouseover="if('${k.click||""}')this.style.boxShadow='0 4px 12px rgba(0,0,0,.08)'"
+        onmouseout="this.style.boxShadow=''">
+        <div class="kpi-stripe" style="background:${k.stripe}"></div>
+        ${k.trend?`<div class="kpi-trend" style="background:#fee2e2;color:#dc2626">${k.trend}</div>`:""}
+        <div class="kpi-icon">${k.icon}</div>
+        <div class="kpi-v" style="color:${k.c}">${k.v}</div>
+        <div class="kpi-l">${k.l}</div>
+        ${k.click?`<div class="kpi-s" style="color:${k.c}">ver detalhes →</div>`:""}
+      </div>`).join("")}
+  </div>
+
+  ${st.pend>0?`
+  <div class="alert" style="background:#fffbeb;border-color:#fbbf24">
+    <span style="font-size:1.4rem">🚨</span>
+    <div style="flex:1">
+      <div style="font-weight:700;color:#92400e;font-size:.83rem">${st.pend} Equipamentos Pendentes de Recolha</div>
+      <div style="color:var(--muted);font-size:12px;margin-top:2px">${st.term} colaboradores Terminated · ${st.nf} não encontrados · taxa recuperação atual: ${st.recRate}%</div>
+    </div>
+    <button class="btn" style="background:#f59e0b;color:#fff" onclick="setTab('recovery')">Gerir Recuperações →</button>
+  </div>`:""}
+
+  <!-- Recovery Progress -->
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.25rem">
+    <div style="font-weight:700;font-size:.83rem;margin-bottom:.85rem">📈 Progresso de Recuperação — Terminated</div>
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:.85rem">
+      ${[
+        {l:"Recuperados",v:st.rec,pct:recPct,c:"#10b981"},
+        {l:"Pendentes",v:st.pend,pct:pendPct,c:"#f59e0b"},
+        {l:"Não encontrados",v:st.nf,pct:nfPct,c:"#ef4444"},
+      ].map(x=>`<div style="flex:1;min-width:120px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:11px;color:var(--muted);font-weight:500">${x.l}</span>
+          <span style="font-size:11px;font-weight:700;color:${x.c}">${x.v} (${x.pct}%)</span>
+        </div>
+        <div class="prog-wrap"><div class="prog-bar" style="width:${x.pct}%;background:${x.c}"></div></div>
+      </div>`).join("")}
+    </div>
+    <div style="font-size:11px;color:var(--muted)">Total Terminated: <b style="color:var(--text)">${st.term}</b> colaboradores</div>
+  </div>
+
+  <div class="sl">Assets por Localização WAH</div>
+  <div class="loc-grid">${locCards||'<div style="color:var(--muted);font-size:13px">Sem dados</div>'}</div>
+
+  <div class="sl">Top Tipos de Equipamento</div>
+  <div class="type-grid">${typeCards||'<div style="color:var(--muted);font-size:13px">Sem dados</div>'}</div>`;
+}
+
+// ── RECOVERY TAB ───────────────────────────────────────────────────────
+function rRecovery(st){
+  const prio=S.data
+    .filter(d=>d.wahStatus==="Terminated")
+    .map(d=>({...d,days:daysSince(d.exitDate)}))
+    .sort((a,b)=>{
+      // Ordem: Não encontrado > Pendente > outros; depois por dias
+      const order={Terminado:0,"Não encontrado":1,"Pendente de recolha":2,Recuperado:3};
+      const oa=order[a.retention]??2,ob=order[b.retention]??2;
+      if(oa!==ob) return oa-ob;
+      return(b.days||0)-(a.days||0);
+    });
+
+  const pendRows=prio.filter(d=>d.retention==="Pendente de recolha");
+  const nfRows=prio.filter(d=>d.retention==="Não encontrado");
+  const recRows=prio.filter(d=>d.retention==="Recuperado");
+
+  function recTable(list,title,icon,color){
+    if(!list.length) return"";
+    const rows=list.map(a=>`<tr onclick="sel('${a.id}')">
+      <td class="mono bold" style="color:var(--cyan)">${a.id}</td>
+      <td>${tpill(a.type)}</td>
+      <td style="font-weight:600">${a.person||"—"}</td>
+      <td>${lpill(a.location)}</td>
+      <td>${ft(a.exitDate)}</td>
+      <td>${urgencyBadge(a.days)}</td>
+      <td>${bdg(a.retention,"ret")}</td>
+    </tr>`).join("");
+    return`<div class="tw" style="border-top:3px solid ${color}">
+      <div class="th"><span class="th-t">${icon} ${title}</span><span class="th-s">${list.length} equipamentos</span></div>
+      <div class="ts"><table>
+        <thead><tr><th>Asset ID</th><th>Tipo</th><th>Pessoa</th><th>Localização</th><th>Data Saída</th><th>Dias</th><th>Estado</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    </div>`;
+  }
+
+  // Urgency summary cards
+  const over90=prio.filter(d=>d.days>90&&d.retention!=="Recuperado").length;
+  const over30=prio.filter(d=>d.days>30&&d.days<=90&&d.retention!=="Recuperado").length;
+
+  return`
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(145px,1fr))">
+    ${[
+      {l:"Pendentes",v:st.pend,c:"var(--amber-d)",icon:"⏳",stripe:"#f59e0b"},
+      {l:"Não encontrados",v:st.nf,c:"var(--red-d)",icon:"❌",stripe:"#ef4444"},
+      {l:"Recuperados",v:st.rec,c:"var(--green-d)",icon:"✔️",stripe:"#10b981"},
+      {l:"> 90 dias em aberto",v:over90,c:"var(--red-d)",icon:"🔴",stripe:"#ef4444"},
+      {l:"30–90 dias",v:over30,c:"var(--amber-d)",icon:"🟡",stripe:"#f59e0b"},
+      {l:"Taxa Recuperação",v:st.recRate+"%",c:st.recRate>70?"var(--green-d)":"var(--red-d)",icon:"📈",stripe:st.recRate>70?"#10b981":"#ef4444"},
+    ].map(k=>`<div class="kpi" style="border-top:3px solid ${k.stripe}">
+      <div class="kpi-icon">${k.icon}</div>
+      <div class="kpi-v" style="color:${k.c}">${k.v}</div>
+      <div class="kpi-l">${k.l}</div>
+    </div>`).join("")}
+  </div>
+
+  ${over90>0?`<div class="alert" style="background:#fee2e2;border-color:#fca5a5">
+    <span style="font-size:1.3rem">🔴</span>
+    <div style="flex:1"><div style="font-weight:700;color:var(--red-d);font-size:.82rem">${over90} equipamentos há mais de 90 dias sem recuperação — ação imediata necessária</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:1px">Verifica a localização e contacta os ex-colaboradores ou IT</div></div>
+  </div>`:""}
+
+  ${recTable(pendRows,"Pendentes de Recolha","⏳","#f59e0b")}
+  ${recTable(nfRows,"Não Encontrados — Prioridade Alta","🔴","#ef4444")}
+  ${recTable(recRows,"Recuperados","✔️","#10b981")}
+  ${!prio.length?'<div style="text-align:center;padding:2rem;color:var(--muted);font-size:13px">Nenhum Terminated encontrado.</div>':""}`;
+}
+
+// ── ASSETS ─────────────────────────────────────────────────────────────
+function rAssets(){
+  const f=filtered();
+  const rows=f.map(a=>`<tr onclick="sel('${a.id}')">
+    <td class="mono bold" style="color:var(--cyan)">${a.id}</td>
+    <td>${tpill(a.type)}</td>
+    <td class="mono" style="color:var(--muted)">${a.serial}</td>
+    <td style="font-weight:${a.wahStatus==="Terminated"?"600":"400"};color:${a.wahStatus==="Terminated"?"var(--red-d)":"var(--text)"}">${a.person||"—"}</td>
+    <td>${lpill(a.location)}</td>
+    <td style="color:var(--muted)">${a.local||"—"}</td>
+    <td>${bdg(a.wahStatus)}</td>
+    <td>${a.retention?bdg(a.retention,"ret"):'<span style="color:var(--dim);font-size:11px">—</span>'}</td>
+    <td style="color:${a.lifeCycle==="End of Life"?"var(--orange)":"var(--muted)"};font-size:12px">${a.lifeCycle||"—"}</td>
+  </tr>`).join("");
+
+  const types=[...new Set(S.data.map(d=>d.type).filter(Boolean))];
+  const locs=[...new Set(S.data.map(d=>d.location).filter(Boolean))];
+  const rets=[...new Set(S.data.map(d=>d.retention).filter(Boolean))];
+
+  return`
+  <div class="fb">
+    <input type="text" placeholder="🔍  Asset ID, Serial, Pessoa, Local..." value="${S.search}" oninput="set({search:this.value})"/>
+    <select onchange="set({typeF:this.value})">
+      <option value="all"${S.typeF==="all"?" selected":""}>Todos os tipos</option>
+      ${types.map(t=>`<option${S.typeF===t?" selected":""}>${t}</option>`).join("")}
+    </select>
+    <select onchange="set({locF:this.value})">
+      <option value="all"${S.locF==="all"?" selected":""}>Localização</option>
+      ${locs.map(l=>`<option${S.locF===l?" selected":""}>${l}</option>`).join("")}
+    </select>
+    <select onchange="set({wahF:this.value})">
+      <option value="all"${S.wahF==="all"?" selected":""}>WAH Status</option>
+      <option${S.wahF==="Active"?" selected":""}>Active</option>
+      <option${S.wahF==="Terminated"?" selected":""}>Terminated</option>
+    </select>
+    <select onchange="set({retF:this.value})">
+      <option value="all"${S.retF==="all"?" selected":""}>Retention</option>
+      ${rets.map(r=>`<option${S.retF===r?" selected":""}>${r}</option>`).join("")}
+    </select>
+    <button class="btn bg" onclick="set({typeF:'all',locF:'all',wahF:'all',retF:'all',search:''})">↺</button>
+    <span class="cl">${f.length.toLocaleString()} assets</span>
+  </div>
+  <div class="tw"><div class="ts"><table>
+    <thead><tr><th>Asset ID</th><th>Tipo</th><th>Serial</th><th>Pessoa</th><th>Localização</th><th>Local</th><th>WAH</th><th>Retention</th><th>Life Cycle</th></tr></thead>
+    <tbody>${rows||'<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:1.5rem">Nenhum resultado.</td></tr>'}</tbody>
+  </table></div></div>`;
+}
+
+// ── AI ─────────────────────────────────────────────────────────────────
+function rAI(){
+  const st=stats();
+  const bubbles=S.aiMsgs.map(m=>{
+    const html=m.t.split("\n").map(l=>l.split(/\*\*(.*?)\*\*/g).map((p,i)=>
+      i%2===1?`<strong>${p}</strong>`:p).join("")).join("<br>");
+    return`<div class="bubble ${m.r==="ai"?"bai":"bme"}">${html}</div>`;
+  }).join("");
+  const load=S.aiLoad?`<div class="bubble bai"><span style="animation:pulse 1s infinite;color:var(--muted)">A processar...</span></div>`:"";
+  const qs=["Prioridades de recuperação?","Há mais de 90 dias?","Quais WAHA por recuperar?","Resumo por tipo","Não encontrados — o que fazer?"];
+  return`<div class="chat">
+    <div class="chat-hdr">
+      <div class="ai-ico">🤖</div>
+      <div><div style="font-weight:700;font-size:.83rem">Asset Hub AI</div>
+      <div style="font-size:11px;color:var(--green-d)">● ${FILE_NAME} · ${st.term} Terminated · ${st.pend} pendentes</div></div>
+    </div>
+    <div class="msgs" id="cm">${bubbles}${load}</div>
+    <div class="quick">${qs.map(q=>`<button class="btn bg" style="font-size:11px;padding:3px 8px" onclick="setQ('${q}')">${q}</button>`).join("")}</div>
+    <div class="ci">
+      <input type="text" id="ai" placeholder="Ex: Quais os equipamentos há mais de 90 dias por recuperar?" value="${S.aiIn}"
+        onkeydown="if(event.key==='Enter')sendAI()" oninput="S.aiIn=this.value"/>
+      <button class="btn bp" onclick="sendAI()" ${S.aiLoad?"disabled":""}>Enviar →</button>
+    </div>
+  </div>`;
+}
+
+// ── MODAL ──────────────────────────────────────────────────────────────
+function rModal(a){
+  const days=daysSince(a.exitDate);
+  const tm=TYPE_M[a.type]||{i:"📦",c:"#6b7280"};
+  const rows=[
+    ["Tipo",tpill(a.type)],["Serial",`<span class="mono">${a.serial}</span>`],
+    ["Pessoa",`<b>${a.person||"—"}</b>`],["Departamento",a.dept||"—"],
+    ["Local",a.local||"—"],["Localização",lpill(a.location)],
+    ["BMS",a.bms||"—"],["Aquisição",ft(a.acq)],
+    ["Data Saída",ft(a.exitDate)],
+    ["Dias desde saída",days!==null?urgencyBadge(days):"—"],
+    ["Life Cycle",a.lifeCycle||"—"],
+    ["WAH Status",bdg(a.wahStatus)],
+    ["Retention",a.retention?bdg(a.retention,"ret"):"—"],
+  ].map(([k,v])=>`<div class="mr"><span class="mk">${k}</span><span class="mv">${v}</span></div>`).join("");
+  return`<div class="ov" onclick="sel(null)"><div class="mb" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.1rem">
+      <div>
+        <div style="font-size:1.5rem;margin-bottom:4px">${tm.i}</div>
+        <div style="font-weight:800;font-size:1rem">${a.id}</div>
+        <div class="mono" style="font-size:11px;color:var(--muted);margin-top:2px">${a.type} · ${a.serial}</div>
+      </div>
+      ${bdg(a.wahStatus)}
+    </div>
+    ${rows}
+    <button class="btn bg" style="width:100%;margin-top:1.1rem" onclick="sel(null)">Fechar</button>
+  </div></div>`;
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// HANDLERS
+// ══════════════════════════════════════════════════════════════════════
+window.setTab=t=>set({tab:t,search:"",typeF:"all",locF:"all",wahF:"all",retF:"all"});
+window.setLocF=v=>set({tab:"assets",locF:v});
+window.setTypeF=v=>set({tab:"assets",typeF:v});
+window.sel=id=>set({selected:id?S.data.find(a=>a.id===id)||null:null});
+window.setQ=q=>{S.aiIn=q;draw();const el=document.getElementById("ai");if(el){el.value=q;el.focus();}};
+window.syncNow=async()=>{set({loading:true});await syncData();};
+window.connectToken=async()=>{
+  const t=(document.getElementById("tokenInput")||{value:""}).value.trim();
+  if(!t){showToast("Cola o token primeiro",true);return;}
+  S.token=t;saveToken(t);set({screen:"dash",loading:true});
+  await syncData();
+};
+window.demoMode=()=>{S.data=MOCK;S.lastSync=new Date();set({screen:"dash"});showToast("Modo demo activo");};
+window.sendAI=async()=>{
+  const el=document.getElementById("ai");
+  const q=(el?el.value:S.aiIn).trim();
+  if(!q||S.aiLoad)return;
+  S.aiMsgs.push({r:"me",t:q});S.aiIn="";S.aiLoad=true;draw();
+  try{const r=await askAI(q);S.aiMsgs.push({r:"ai",t:r});}
+  catch{S.aiMsgs.push({r:"ai",t:"Erro de ligação."});}
+  S.aiLoad=false;draw();
+};
+
+// ══════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════
+loadToken();
+if(S.token){S.screen="dash";draw();syncNow();}
+else draw();
+if(AUTO_MIN>0) setInterval(()=>{if(S.screen==="dash"&&!S.loading&&S.token)syncNow();},AUTO_MIN*60*1000);
+</script>
+</body>
+</html>
