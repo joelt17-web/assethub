@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f0f2f5;--white:#ffffff;--panel:#ffffff;
+  --bg:#f0f2f5;--white:#fff;--panel:#fff;
   --border:#e5e7eb;--border2:#d1d5db;
   --text:#111827;--muted:#6b7280;--dim:#9ca3af;
   --cyan:#0ea5e9;--cyan-d:#0284c7;--cyan-l:#e0f2fe;
@@ -21,402 +21,410 @@
 }
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
 ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes toastIn{from{transform:translateX(120%)}to{transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .fade{animation:fadeUp .3s ease}
 
-/* ── HEADER ── */
 header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.logo{display:flex;align-items:center;gap:9px}
-.logo-icon{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:.8rem}
-.logo-text{font-weight:800;font-size:.9rem;color:var(--text)}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-icon{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:.75rem}
+.logo-text{font-weight:800;font-size:.88rem}
 .logo-text span{color:var(--cyan)}
-.logo-sub{font-size:11px;color:var(--muted);margin-left:4px}
+.logo-sub{font-size:10px;color:var(--muted);margin-left:3px}
 nav{display:flex;gap:2px}
-.nb{padding:5px 12px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;background:transparent;color:var(--muted);transition:all .15s}
+.nb{padding:5px 11px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;background:transparent;color:var(--muted);transition:all .15s}
 .nb.on{background:var(--cyan-l);color:var(--cyan-d);font-weight:700}
-.hdr-r{display:flex;align-items:center;gap:.6rem}
-.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;margin-right:4px;box-shadow:0 0 0 2px var(--green-l)}
-.sync-txt{font-size:11px;color:var(--muted)}
+.hdr-r{display:flex;align-items:center;gap:.5rem}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 0 2px var(--green-l)}
+.stxt{font-size:11px;color:var(--muted)}
 
-/* ── BUTTONS ── */
-.btn{padding:.4rem .9rem;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;transition:all .15s}
+.btn{padding:.38rem .85rem;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;transition:all .15s}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.bp{background:var(--cyan);color:#fff}
-.bp:hover{background:var(--cyan-d)}
+.bp{background:var(--cyan);color:#fff}.bp:hover{background:var(--cyan-d)}
 .bs{background:var(--green-l);color:var(--green-d);border:1px solid #a7f3d0}
 .bg{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
-.br{background:var(--red-l);color:var(--red-d);border:1px solid #fca5a5}
 
-/* ── MAIN ── */
-main{flex:1;padding:1.25rem 1.5rem;max-width:1440px;margin:0 auto;width:100%}
-.pg-title{font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-.02em}
+main{flex:1;padding:1.2rem 1.5rem;max-width:1440px;margin:0 auto;width:100%}
+.pg-title{font-size:1.1rem;font-weight:800;letter-spacing:-.02em}
 .pg-sub{color:var(--muted);font-size:12px;margin-top:2px}
 
-/* ── KPI CARDS ── */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.75rem;margin-bottom:1.25rem}
-.kpi{background:var(--white);border-radius:12px;padding:1rem 1.1rem;border:1px solid var(--border);transition:all .15s;position:relative;overflow:hidden}
-.kpi.click{cursor:pointer}.kpi.click:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.kpi-stripe{position:absolute;top:0;left:0;width:4px;height:100%;border-radius:12px 0 0 12px}
-.kpi-icon{font-size:1.4rem;margin-bottom:.5rem}
-.kpi-v{font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1}
-.kpi-l{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500}
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.75rem;margin-bottom:1.2rem}
+.kpi{background:var(--white);border-radius:12px;padding:1rem 1.1rem;border:1px solid var(--border);border-left:4px solid;transition:all .15s;position:relative;overflow:hidden}
+.kpi.click{cursor:pointer}.kpi.click:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.kpi-ico{font-size:1.3rem;margin-bottom:.4rem}
+.kpi-v{font-size:24px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.kpi-l{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500;line-height:1.3}
 .kpi-s{font-size:11px;margin-top:3px;font-weight:600}
-.kpi-trend{position:absolute;top:.85rem;right:.85rem;font-size:10px;font-weight:700;padding:2px 6px;border-radius:20px}
 
-/* ── ALERT ── */
-.alert{border-radius:10px;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;margin-bottom:1.25rem;border:1px solid}
+/* Alert */
+.alert{border-radius:10px;padding:.8rem 1.1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1.2rem;border:1px solid}
 
-/* ── SECTION ── */
-.sl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:.65rem;display:flex;align-items:center;gap:.4rem}
+/* Section label */
+.sl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
 .sl::after{content:"";flex:1;height:1px;background:var(--border)}
 
-/* ── CARDS ── */
-.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.7rem;margin-bottom:1.25rem}
-.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.7rem;margin-bottom:1.25rem}
-.card{background:var(--white);border-radius:10px;padding:.85rem 1rem;cursor:pointer;transition:all .15s;border:1px solid var(--border)}
-.card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.card-icon{font-size:1.2rem;margin-bottom:4px}
-.card-name{font-weight:700;font-size:.78rem;margin-bottom:2px}
-.card-n{font-size:18px;font-weight:900;color:var(--text);margin:3px 0;letter-spacing:-.02em}
+/* Cards */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.65rem;margin-bottom:1.2rem}
+.card{background:var(--white);border-radius:10px;padding:.8rem .95rem;border:1px solid var(--border);transition:all .15s;cursor:pointer}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.07)}
+.card-icon{font-size:1.1rem;margin-bottom:3px}
+.card-name{font-weight:700;font-size:.75rem;margin-bottom:2px}
+.card-n{font-size:17px;font-weight:900;color:var(--text);margin:3px 0;letter-spacing:-.02em}
 .card-s{font-size:11px;color:var(--muted)}
 
-/* ── TABLE ── */
-.tw{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
-.th{padding:.75rem 1.1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;background:#fafafa}
-.th-t{font-weight:700;font-size:.82rem}
+/* Table */
+.tw{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.2rem}
+.th{padding:.7rem 1.1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;background:#fafafa}
+.th-t{font-weight:700;font-size:.8rem}
 .th-s{font-size:11px;color:var(--muted)}
 .ts{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
 thead tr{background:#f9fafb}
-th{padding:8px 12px;text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid rgba(229,231,235,.6);font-size:13px;white-space:nowrap}
+th{padding:7px 11px;text-align:left;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;font-weight:600}
+td{padding:9px 11px;border-bottom:1px solid rgba(229,231,235,.5);font-size:13px;white-space:nowrap}
 tbody tr{cursor:pointer;transition:background .1s}
 tbody tr:hover td{background:#f9fafb}
 .mono{font-family:monospace;font-size:12px}
-.bold{font-weight:700}
 
-/* ── FILTERS ── */
-.fb{display:flex;gap:7px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
-input[type=text],select{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:.42rem .8rem;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border .15s}
+/* Filters */
+.fb{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+input[type=text],select{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:.4rem .75rem;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border .15s}
 input[type=text]:focus,select:focus{border-color:var(--cyan)}
 input[type=text]{flex:1;min-width:180px}
-select option{background:var(--white)}
 .cl{font-size:11px;color:var(--muted);white-space:nowrap}
 
-/* ── BADGE ── */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+/* Badge */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
 
-/* ── PROGRESS BAR ── */
-.prog-wrap{background:var(--border);border-radius:4px;height:6px;overflow:hidden;margin-top:4px}
-.prog-bar{height:6px;border-radius:4px;transition:width .4s}
+/* Progress */
+.prog-wrap{background:var(--border);border-radius:4px;height:5px;overflow:hidden;margin-top:3px}
+.prog-bar{height:5px;border-radius:4px}
 
-/* ── RECOVERY PANEL ── */
-.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem;margin-bottom:1.25rem}
-.rec-card{background:var(--white);border-radius:10px;padding:1rem;border:1px solid var(--border);border-left:4px solid}
-.rec-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem}
-.rec-asset{font-weight:700;font-size:.85rem}
-.rec-person{font-size:12px;color:var(--muted);margin-top:2px}
-.rec-meta{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+/* Setup */
+.setup{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;text-align:center;padding:2rem}
+.setup-icon{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin:0 auto;box-shadow:0 8px 20px rgba(14,165,233,.28)}
+.setup-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;max-width:520px;width:100%;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.step-n{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--cyan);color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center;flex-shrink:0;margin-right:6px}
+.step-row{display:flex;align-items:flex-start;gap:0;margin-bottom:.7rem;font-size:13px;line-height:1.5}
+.url-box{background:#f9fafb;border:1px solid var(--border);border-radius:7px;padding:.5rem .75rem;font-family:monospace;font-size:12px;color:var(--cyan-d);word-break:break-all;margin:.4rem 0 .75rem;cursor:text;user-select:all}
 
-/* ── CHAT ── */
-.chat{display:flex;flex-direction:column;height:calc(100vh - 190px);background:var(--white);border-radius:12px;border:1px solid var(--border);overflow:hidden}
-.chat-hdr{padding:.8rem 1.1rem;border-bottom:1px solid var(--border);background:#fafafa;display:flex;align-items:center;gap:9px}
-.ai-ico{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:.85rem}
-.msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.65rem}
-.bubble{max-width:78%;padding:.65rem .9rem;font-size:13px;line-height:1.65;border-radius:12px}
-.bai{align-self:flex-start;background:#f3f4f6;color:var(--text);border-radius:4px 12px 12px 12px}
-.bme{align-self:flex-end;background:var(--cyan);color:#fff;border-radius:12px 12px 4px 12px}
-.quick{padding:0 1rem .45rem;display:flex;gap:5px;flex-wrap:wrap}
-.ci{padding:.65rem 1rem .85rem;border-top:1px solid var(--border);display:flex;gap:7px}
-.ci input{flex:1}
+.toast{position:fixed;bottom:1.3rem;right:1.3rem;background:var(--white);border-radius:10px;padding:.6rem 1rem;font-size:13px;font-weight:600;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--border)}
 
-/* ── MODAL ── */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:500;padding:1rem}
-.mb{background:var(--white);border-radius:14px;padding:1.5rem;width:100%;max-width:440px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15);animation:fadeUp .2s ease}
-.mr{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border)}
+/* Modal */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.38);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:500;padding:1rem}
+.mb{background:var(--white);border-radius:14px;padding:1.4rem;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 50px rgba(0,0,0,.14);animation:fadeUp .2s ease}
+.mr{display:flex;justify-content:space-between;align-items:center;padding:.42rem 0;border-bottom:1px solid var(--border)}
 .mk{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
 .mv{font-size:13px;font-weight:600}
-
-/* ── SETUP ── */
-.setup{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;text-align:center;padding:2rem}
-.setup-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto;box-shadow:0 8px 24px rgba(14,165,233,.3)}
-.setup-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;max-width:500px;width:100%;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.setup-box label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:5px;font-weight:600}
-.setup-box input{width:100%;margin-bottom:.85rem}
-.code-block{background:#1e293b;border-radius:8px;padding:.75rem 1rem;font-family:monospace;font-size:11px;color:#7dd3fc;word-break:break-all;user-select:all;cursor:text;margin-bottom:.75rem}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:1.4rem;right:1.4rem;background:var(--white);border-radius:10px;padding:.65rem 1rem;font-size:13px;font-weight:600;z-index:999;animation:toastIn .3s ease;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--border)}
-
-@media(max-width:600px){header{padding:0 1rem}main{padding:1rem}}
 </style>
 </head>
 <body>
 <div id="root"></div>
 <script>
-// ══════════════════════════════════════════════════════════════════════
-// CONFIG
-// ══════════════════════════════════════════════════════════════════════
-const FILE_DRIVE = "b!V9dAwceI-0OPmealGEMzR4B50HWXtIRMn8Syoo8PV8VIwbClGp58SqQ_G8yZqIIq";
-const FILE_ITEM  = "01XOZAM3JAVRB74B7DTJHI6MKNNN5W2FTY";
-const FILE_NAME  = "Dashboards - KPI.xlsx";
-const RAW_SHEET  = "RAW DATA";
-const BL_SHEET   = "BLACK LIST";
-const AUTO_MIN   = 10;
+// ═══════════════════════════════════════════════════════════════════════
+//  CONFIGURAÇÃO — substitui os URLs abaixo com os teus Google Sheets
+//  Instruções no ecrã de setup quando abres pela primeira vez
+// ═══════════════════════════════════════════════════════════════════════
+const CFG = {
+  // URL do CSV público do Google Sheets (sheet RAW DATA)
+  // Formato: https://docs.google.com/spreadsheets/d/SEU_ID/gviz/tq?tqx=out:csv&sheet=RAW+DATA
+  rawDataUrl: localStorage.getItem("ah_raw") || "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=214853524&single=true&output=csv",
 
-// ══════════════════════════════════════════════════════════════════════
-// MOCK DATA — estrutura real do ficheiro (DASHBOARDS sheet + RAW DATA)
-// Substitui-se pelos dados reais quando token disponível
-// ══════════════════════════════════════════════════════════════════════
-const MOCK = [
-  {id:"TP.CPT.001",type:"Portátil",serial:"SN001",person:"Ana Costa",dept:"IT",location:"EDIFICIOS",local:"Lisboa HQ",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-01",acq:"2022-03-15",exitDate:""},
-  {id:"TP.CPT.002",type:"Monitor",serial:"SN002",person:"Bruno Silva",dept:"Vendas",location:"EDIFICIOS",local:"Porto",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-02",acq:"2022-05-20",exitDate:""},
-  {id:"TP.CPT.003",type:"Portátil",serial:"SN003",person:"Carlos Mota",dept:"",location:"ARMAZÉM",local:"Armazém Lx",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-01",acq:"2021-01-10",exitDate:"2024-06-30"},
-  {id:"TP.CPT.004",type:"Desktop",serial:"SN004",person:"Diana Ferreira",dept:"",location:"WAHA",local:"WAHA",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-03",acq:"2022-08-01",exitDate:"2024-09-15"},
-  {id:"TP.CPT.005",type:"Portátil",serial:"SN005",person:"Eduardo Santos",dept:"IT",location:"APARTAMENTOS",local:"Google Campus",wahStatus:"Active",retention:"#Google",lifeCycle:"Active",bms:"BMS-04",acq:"2023-01-15",exitDate:""},
-  {id:"TP.CPT.006",type:"Tablets",serial:"SN006",person:"Filipa Rodrigues",dept:"",location:"WAHA",local:"WAHA",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-03",acq:"2023-03-20",exitDate:"2024-11-01"},
-  {id:"TP.CPT.007",type:"Portátil",serial:"SN007",person:"Gonçalo Pinto",dept:"Finanças",location:"STAGING",local:"Staging",wahStatus:"Active",retention:"",lifeCycle:"End of Life",bms:"BMS-05",acq:"2022-11-05",exitDate:""},
-  {id:"TP.CPT.008",type:"Desktop",serial:"SN008",person:"Helena Nunes",dept:"",location:"ARMAZÉM",local:"Armazém",wahStatus:"Terminated",retention:"Recuperado",lifeCycle:"End of Life",bms:"BMS-01",acq:"2020-06-15",exitDate:"2024-10-15"},
-  {id:"TP.CPT.009",type:"Monitor",serial:"SN009",person:"Inês Teixeira",dept:"Marketing",location:"EDIFICIOS",local:"Lisboa HQ",wahStatus:"Active",retention:"#Booking",lifeCycle:"Active",bms:"BMS-06",acq:"2023-06-01",exitDate:""},
-  {id:"TP.CPT.010",type:"Portátil",serial:"SN010",person:"João Oliveira",dept:"",location:"WAREHOUSE",local:"Warehouse",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-07",acq:"2023-09-10",exitDate:"2024-08-30"},
-  {id:"TP.CPT.011",type:"MiniPC",serial:"SN011",person:"Karla Mendes",dept:"RH",location:"EDIFICIOS",local:"Lisboa HQ",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-01",acq:"2023-05-10",exitDate:""},
-  {id:"TP.CPT.012",type:"Thin Client",serial:"SN012",person:"Luís Faria",dept:"",location:"ARMAZÉM",local:"Armazém",wahStatus:"Terminated",retention:"Não encontrado",lifeCycle:"Active",bms:"BMS-01",acq:"2020-08-15",exitDate:"2024-12-01"},
-  {id:"TP.CPT.013",type:"Portátil",serial:"SN013",person:"Maria João",dept:"Ops",location:"AVT",local:"AVT",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-07",acq:"2023-02-14",exitDate:""},
-  {id:"TP.CPT.014",type:"Routers",serial:"SN014",person:"Nuno Carvalho",dept:"",location:"WAHA",local:"WAHA",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-03",acq:"2021-07-30",exitDate:"2024-07-20"},
-  {id:"TP.CPT.015",type:"Monitor",serial:"SN015",person:"Olga Pereira",dept:"IT",location:"EDIFICIOS",local:"Porto",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-02",acq:"2023-11-01",exitDate:""},
-  {id:"TP.CPT.016",type:"Secretária",serial:"SN016",person:"Paulo Ramos",dept:"",location:"STAGING",local:"Staging",wahStatus:"Terminated",retention:"Pendente de recolha",lifeCycle:"Active",bms:"BMS-05",acq:"2022-01-18",exitDate:"2024-05-10"},
-  {id:"TP.CPT.017",type:"Portátil",serial:"SN017",person:"Rita Costa",dept:"Design",location:"WAHA",local:"WAHA",wahStatus:"Active",retention:"",lifeCycle:"Active",bms:"BMS-03",acq:"2022-06-10",exitDate:""},
-  {id:"TP.CPT.018",type:"Desktop",serial:"SN018",person:"Sérgio Lopes",dept:"",location:"AVT",local:"AVT",wahStatus:"Terminated",retention:"Não encontrado",lifeCycle:"End of Life",bms:"BMS-07",acq:"2022-09-15",exitDate:"2024-09-01"},
-];
+  // URL do CSV público do Google Sheets (sheet BMS — tem Contract_EndDate)
+  bmsUrl: localStorage.getItem("ah_bms") || "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=2070565508&single=true&output=csv",
 
-const TYPE_M={
-  "Portátil":{i:"💻",c:"#0ea5e9",bg:"#e0f2fe"},
-  "Desktop":{i:"🖥️",c:"#7c3aed",bg:"#ede9fe"},
-  "Monitor":{i:"📺",c:"#ec4899",bg:"#fce7f3"},
-  "Tablets":{i:"📱",c:"#8b5cf6",bg:"#ede9fe"},
-  "MiniPC":{i:"🖱️",c:"#06b6d4",bg:"#cffafe"},
-  "Thin Client":{i:"📦",c:"#64748b",bg:"#f1f5f9"},
-  "Routers":{i:"📡",c:"#f97316",bg:"#ffedd5"},
-  "Secretária":{i:"🪑",c:"#84cc16",bg:"#f7fee7"},
-  "Cadeira":{i:"💺",c:"#a3a3a3",bg:"#f5f5f5"},
-};
-const LOC_M={
-  "EDIFICIOS":{i:"🏢",c:"#0ea5e9"},
-  "ARMAZÉM":{i:"📦",c:"#f59e0b"},
-  "AVT":{i:"🏭",c:"#7c3aed"},
-  "WAHA":{i:"🏠",c:"#10b981"},
-  "STAGING":{i:"🔧",c:"#f97316"},
-  "WAREHOUSE":{i:"🏗️",c:"#3b82f6"},
-  "APARTAMENTOS":{i:"🛋️",c:"#ec4899"},
-};
-const RET_COLOR={
-  "Pendente de recolha":["#fef3c7","#d97706","#fbbf24"],
-  "Recuperado":["#d1fae5","#059669","#10b981"],
-  "Não encontrado":["#fee2e2","#dc2626","#ef4444"],
-  "#Google":["#dbeafe","#1d4ed8","#3b82f6"],
-  "#Booking":["#fef3c7","#92400e","#f59e0b"],
-  "":["#d1fae5","#059669","#10b981"],
+  relatorioUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=102770128&single=true&output=csv",
+  // Moeda e valor médio por equipamento (ajusta conforme o teu contexto)
+  avgAssetValue: 800, // € médio por asset para calcular valor retido
 };
 
-// ══════════════════════════════════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════════════════════════════════
-const S={
-  screen:"setup",tab:"overview",
-  data:[],lastSync:null,loading:false,token:"",
-  search:"",typeF:"all",locF:"all",wahF:"all",retF:"all",
-  selected:null,toast:null,
-  aiMsgs:[{r:"ai",t:"Olá! Sou o **Asset Hub AI**.\nTenho acesso ao **Dashboards - KPI.xlsx**.\nPergunta-me sobre equipamentos Terminated, pendentes de recolha, localizações ou prioridades de recuperação."}],
-  aiIn:"",aiLoad:false,
+// ═══════════════════════════════════════════════════════════════════════
+//  COLUNAS — mapeadas para a estrutura real do teu ficheiro
+// ═══════════════════════════════════════════════════════════════════════
+// RAW DATA: ASSET ID | ASSET TYPE | Description | SERIAL NUMBER |
+//           Processador | Memória RAM (gb) | Local | BMS | LOCATION TYPE |
+//           Aquisitation date | Life Cicle | WAH STATUS | RETENTION STATUS
+// BMS: tem Contract_EndDate
+
+const LOC_M = {
+  "WAHA":          {i:"🏠",c:"#10b981"},
+  "EDIFICIOS":     {i:"🏢",c:"#0ea5e9"},
+  "ARMAZÉM":       {i:"📦",c:"#f59e0b"},
+  "AVT":           {i:"🏭",c:"#7c3aed"},
+  "STAGING":       {i:"🔧",c:"#f97316"},
+  "WAREHOUSE":     {i:"🏗️",c:"#3b82f6"},
+  "APARTAMENTOS":  {i:"🛋️",c:"#ec4899"},
+};
+const TYPE_M = {
+  "Monitor":      {i:"📺",c:"#ec4899"},
+  "Portátil":     {i:"💻",c:"#0ea5e9"},
+  "Desktop":      {i:"🖥️",c:"#7c3aed"},
+  "MiniPC":       {i:"🖱️",c:"#06b6d4"},
+  "Thin Client":  {i:"📦",c:"#64748b"},
+  "Tablets":      {i:"📱",c:"#8b5cf6"},
+  "Routers":      {i:"📡",c:"#f97316"},
+  "Secretária":   {i:"🪑",c:"#84cc16"},
 };
 
-function loadToken(){try{const t=localStorage.getItem("ah_tok");if(t)S.token=t;}catch{}}
-function saveToken(t){try{localStorage.setItem("ah_tok",t);}catch{}}
+// ═══════════════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════════════
+const S = {
+  screen: "dash",
+  tab: "overview",
+  raw: [], bms: [],
+  lastSync: null, loading: false,
+  search: "", locF: "all", typeF: "all", wahF: "all",
+  selected: null, toast: null,
+};
 
-// ══════════════════════════════════════════════════════════════════════
-// GRAPH API
-// ══════════════════════════════════════════════════════════════════════
-async function fetchSheet(sheet){
-  const url=`https://graph.microsoft.com/v1.0/drives/${FILE_DRIVE}/items/${FILE_ITEM}/workbook/worksheets/${encodeURIComponent(sheet)}/usedRange`;
-  const r=await fetch(url,{headers:{Authorization:`Bearer ${S.token}`}});
-  if(r.status===401){showToast("Token expirado — renova",true);return null;}
-  if(!r.ok){showToast("Erro API: "+r.status,true);return null;}
-  return (await r.json()).values;
+// ═══════════════════════════════════════════════════════════════════════
+//  FETCH CSV (Google Sheets público — sem login)
+// ═══════════════════════════════════════════════════════════════════════
+async function fetchCSV(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error("Erro a ler CSV: " + r.status);
+  const text = await r.text();
+  return parseCSV(text);
 }
 
-function parseRaw(vals){
-  if(!vals||vals.length<2) return [];
-  const H=vals[0].map(h=>(h||"").toString().toUpperCase().trim());
-  const gi=k=>H.findIndex(h=>h.includes(k));
-  const iID=gi("ASSET ID"),iTY=gi("ASSET TY"),iSN=gi("SERIAL"),
-        iPER=gi("PERSON")||gi("COLABOR")||gi("ASSIGN"),
-        iDEP=gi("DEPT")||gi("DEPART"),
-        iLOC=gi("LOCATION"),iLOCAL=gi("LOCAL"),
-        iBM=gi("BMS"),iAQ=gi("ACQUIS"),iLF=gi("LIFE"),
-        iWH=gi("WAH"),iRT=gi("RETENT"),
-        iEX=gi("EXIT")||gi("TERMINA")||gi("DATA SA");
-  return vals.slice(1).filter(r=>r[iID]).map(r=>({
-    id:s(r[iID]),type:s(r[iTY]),serial:s(r[iSN]),
-    person:s(r[iPER]),dept:s(r[iDEP]),
-    location:s(r[iLOC]).toUpperCase(),local:s(r[iLOCAL]),
-    bms:s(r[iBM]),acq:s(r[iAQ]),lifeCycle:s(r[iLF]),
-    wahStatus:s(r[iWH]),retention:s(r[iRT]),
-    exitDate:s(r[iEX]),
-  }));
-}
-const s=v=>(v||"").toString().trim();
-
-async function syncData(){
-  set({loading:true});
-  const vals=await fetchSheet(RAW_SHEET);
-  if(vals){
-    const data=parseRaw(vals);
-    set({data,lastSync:new Date(),loading:false});
-    showToast(data.length+" assets carregados ✓");
-  } else set({loading:false});
+function parseCSV(text) {
+  const lines = text.split("\n").filter(l => l.trim());
+  if (lines.length < 2) return [];
+  const headers = splitCSVLine(lines[0]).map(h => h.trim().replace(/^"|"$/g,""));
+  return lines.slice(1).map(line => {
+    const vals = splitCSVLine(line).map(v => v.trim().replace(/^"|"$/g,"").replace(/\\n/g," "));
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = vals[i] || "");
+    return obj;
+  }).filter(r => Object.values(r).some(v => v));
 }
 
-// ══════════════════════════════════════════════════════════════════════
-// STATS
-// ══════════════════════════════════════════════════════════════════════
-function stats(){
-  const d=S.data;
-  const term=d.filter(x=>x.wahStatus==="Terminated");
-  const pend=d.filter(x=>x.retention==="Pendente de recolha");
-  const rec=d.filter(x=>x.retention==="Recuperado");
-  const nf=d.filter(x=>x.retention==="Não encontrado");
-  const eol=d.filter(x=>x.lifeCycle==="End of Life");
-  // Recovery rate
-  const totalEx=term.length;
-  const recRate=totalEx>0?Math.round(rec.length/totalEx*100):0;
-  return{total:d.length,active:d.filter(x=>x.wahStatus==="Active").length,
-    term:term.length,pend:pend.length,rec:rec.length,nf:nf.length,eol:eol.length,
-    google:d.filter(x=>x.retention==="#Google").length,
-    booking:d.filter(x=>x.retention==="#Booking").length,
-    locs:[...new Set(d.map(x=>x.location).filter(Boolean))].length,
-    recRate,termList:term,pendList:pend,
+function splitCSVLine(line) {
+  const result = []; let cur = ""; let inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { result.push(cur); cur = ""; }
+    else cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  SYNC
+// ═══════════════════════════════════════════════════════════════════════
+async function syncData() {
+  if (!CFG.rawDataUrl) return;
+  set({loading: true});
+  try {
+    const raw = await fetchCSV(CFG.rawDataUrl);
+    let bms = [];
+    if (CFG.bmsUrl) {
+      try { bms = await fetchCSV(CFG.bmsUrl); } catch {}
+    }
+    set({raw, bms, lastSync: new Date(), loading: false});
+    showToast(raw.length.toLocaleString() + " assets carregados ✓");
+  } catch(e) {
+    set({loading: false});
+    showToast("Erro: " + e.message, true);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  STATS — KPIs exactos pedidos
+// ═══════════════════════════════════════════════════════════════════════
+function stats() {
+  const d = S.raw;
+  if (!d.length) return null;
+
+  // Assets per Location
+  const byLoc = {};
+  d.forEach(r => {
+    const loc = r["LOCATION TYPE"] || "N/A";
+    byLoc[loc] = (byLoc[loc] || 0) + 1;
+  });
+
+  // Assets per WAH STATUS
+  const byWah = {};
+  d.forEach(r => {
+    const w = r["WAH STATUS"] || "N/A";
+    byWah[w] = (byWah[w] || 0) + 1;
+  });
+
+  // Assets per WAH Terminated
+  const terminated = d.filter(r => r["WAH STATUS"] === "Terminated");
+  const byWahTerm = {};
+  terminated.forEach(r => {
+    const loc = r["LOCATION TYPE"] || "N/A";
+    byWahTerm[loc] = (byWahTerm[loc] || 0) + 1;
+  });
+
+  // Users Terminated with Assets (unique BMS/pessoa)
+  const termUsers = [...new Set(terminated.map(r => r["BMS"] || r["Local"]).filter(Boolean))];
+
+  // Users Terminated in Recovery Process (RETENTION STATUS != #N/A e != Terminated e != "")
+  const inRecovery = terminated.filter(r => {
+    const ret = r["RETENTION STATUS"] || "";
+    return ret && ret !== "#N/A" && ret.toLowerCase() !== "terminated" && ret.toLowerCase() !== "active";
+  });
+  const recoveryUsers = [...new Set(inRecovery.map(r => r["BMS"] || r["Local"]).filter(Boolean))];
+
+  // Value retained per month — join com BMS para Contract_EndDate
+  const bmsMap = {};
+  S.bms.forEach(b => {
+    const key = b["BMS"] || b["WAH ID"] || b["ID"] || "";
+    if (key) bmsMap[key] = b;
+  });
+
+  // Assets terminated com data de contrato
+  const valueByMonth = {};
+  let totalValue = 0;
+  terminated.forEach(r => {
+    const bmsId = r["BMS"] || "";
+    const bmsRow = bmsMap[bmsId];
+    const endDate = bmsRow?.["Contract_EndDate"] || "";
+    const value = CFG.avgAssetValue;
+    totalValue += value;
+    if (endDate) {
+      const d = new Date(endDate);
+      if (!isNaN(d)) {
+        const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
+        valueByMonth[key] = (valueByMonth[key] || 0) + value;
+      }
+    }
+  });
+
+  // By type
+  const byType = {};
+  d.forEach(r => {
+    const t = r["ASSET TYPE"] || "N/A";
+    byType[t] = (byType[t] || 0) + 1;
+  });
+
+  return {
+    total: d.length,
+    byLoc, byWah, byWahTerm,
+    terminated, termUsers, termUsersCount: termUsers.length,
+    inRecovery, recoveryUsersCount: recoveryUsers.length,
+    valueByMonth, totalValue,
+    byType,
   };
 }
 
-function filtered(){
-  return S.data.filter(d=>{
-    if(S.typeF!=="all"&&d.type!==S.typeF) return false;
-    if(S.locF!=="all"&&d.location!==S.locF) return false;
-    if(S.wahF!=="all"&&d.wahStatus!==S.wahF) return false;
-    if(S.retF!=="all"&&d.retention!==S.retF) return false;
-    const q=S.search.toLowerCase();
-    return!q||[d.id,d.type,d.serial,d.person,d.local,d.location,d.wahStatus,d.retention].some(x=>(x||"").toLowerCase().includes(q));
+function filtered() {
+  return S.raw.filter(r => {
+    if (S.locF !== "all" && r["LOCATION TYPE"] !== S.locF) return false;
+    if (S.typeF !== "all" && r["ASSET TYPE"] !== S.typeF) return false;
+    if (S.wahF !== "all" && r["WAH STATUS"] !== S.wahF) return false;
+    const q = S.search.toLowerCase();
+    return !q || ["ASSET ID","ASSET TYPE","SERIAL NUMBER","Local","LOCATION TYPE","WAH STATUS","RETENTION STATUS","BMS"]
+      .some(k => (r[k]||"").toLowerCase().includes(q));
   });
 }
 
-// ══════════════════════════════════════════════════════════════════════
-// AI
-// ══════════════════════════════════════════════════════════════════════
-async function askAI(q){
-  const st=stats();
-  const sample=S.data.filter(x=>x.wahStatus==="Terminated").slice(0,40)
-    .map(a=>`${a.id}|${a.type}|${a.person}|${a.location}|${a.retention||"OK"}|saiu:${a.exitDate||"?"}`)
-    .join("\n");
-  const r=await fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      model:"claude-sonnet-4-20250514",max_tokens:900,
-      system:`És o Asset Hub AI da Teleperformance S.Facilities. Especialista em recuperação de equipamentos TI.
-Stats atuais: Total=${st.total}, Ativos=${st.active}, Terminated=${st.term}, Pendentes=${st.pend}, Recuperados=${st.rec}, Não encontrados=${st.nf}, Taxa recuperação=${st.recRate}%.
-Localizações: EDIFICIOS, ARMAZÉM, AVT, WAHA, STAGING, WAREHOUSE, APARTAMENTOS.
-Terminated com equipamentos:\n${sample}
-Responde em português europeu. Foca em ajudar a priorizar e planear recuperações.`,
-      messages:[{role:"user",content:q}]
-    })
-  });
-  const d=await r.json();
-  return d.content?.[0]?.text||"Erro.";
+// ═══════════════════════════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════════════════════════
+function set(p, r=true) { Object.assign(S, p); if(r) draw(); }
+function showToast(msg, err=false) { S.toast={msg,err}; draw(); setTimeout(()=>{S.toast=null;draw();},3000); }
+function ts() { return S.lastSync ? S.lastSync.toLocaleTimeString("pt-PT") : "—"; }
+function euro(v) { return "€" + Number(v).toLocaleString("pt-PT"); }
+function fmt(d) { if(!d||d==="#N/A") return "—"; try{ return new Date(d).toLocaleDateString("pt-PT"); }catch{return d;} }
+
+function bdg(v, cfg) {
+  const map = {
+    "Active":      ["#d1fae5","#059669"],
+    "Terminated":  ["#fee2e2","#dc2626"],
+    "#N/A":        ["#f3f4f6","#9ca3af"],
+    "Pendente":    ["#fef3c7","#d97706"],
+    "Recuperado":  ["#d1fae5","#059669"],
+  };
+  const [bg,c] = map[v] || cfg || ["#f3f4f6","#6b7280"];
+  return `<span class="badge" style="background:${bg};color:${c}">${v||"—"}</span>`;
 }
 
-// ══════════════════════════════════════════════════════════════════════
-// HELPERS
-// ══════════════════════════════════════════════════════════════════════
-function set(p,r=true){Object.assign(S,p);if(r)draw();}
-function showToast(msg,err=false){S.toast={msg,err};draw();setTimeout(()=>{S.toast=null;draw();},3000);}
-function ft(d){if(!d)return"—";try{return new Date(d).toLocaleDateString("pt-PT")}catch{return d}}
-function ts(){return S.lastSync?S.lastSync.toLocaleTimeString("pt-PT"):"—"}
-function daysSince(d){if(!d)return null;const ms=Date.now()-new Date(d).getTime();return Math.floor(ms/86400000);}
-
-function bdg(v,type="wah"){
-  if(type==="wah"){
-    const cfg={Active:["#d1fae5","#059669"],Terminated:["#fee2e2","#dc2626"],Inactive:["#fef3c7","#d97706"]};
-    const [bg,c]=cfg[v]||["#f3f4f6","#6b7280"];
-    return`<span class="badge" style="background:${bg};color:${c}">${v||"—"}</span>`;
-  }
-  const [bg,c]=(RET_COLOR[v]||["#f3f4f6","#6b7280","#9ca3af"]).slice(0,2);
-  return`<span class="badge" style="background:${bg};color:${c}">${v||"—"}</span>`;
+function locPill(l) {
+  const m = LOC_M[l] || {i:"📍",c:"#6b7280"};
+  return `<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${l}</span>`;
+}
+function typePill(t) {
+  const m = TYPE_M[t] || {i:"📦",c:"#6b7280"};
+  return `<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${t}</span>`;
 }
 
-function urgencyBadge(days){
-  if(days===null) return"";
-  if(days>90) return`<span class="badge" style="background:#fee2e2;color:#dc2626">⚠️ ${days}d</span>`;
-  if(days>30) return`<span class="badge" style="background:#fef3c7;color:#d97706">⏳ ${days}d</span>`;
-  return`<span class="badge" style="background:#d1fae5;color:#059669">✓ ${days}d</span>`;
-}
-
-function tpill(t){const m=TYPE_M[t]||{i:"📦",c:"#6b7280",bg:"#f3f4f6"};return`<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${t}</span>`;}
-function lpill(l){const m=LOC_M[l]||{i:"📍",c:"#6b7280"};return`<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${l}</span>`;}
-
-// ══════════════════════════════════════════════════════════════════════
-// RENDER
-// ══════════════════════════════════════════════════════════════════════
-function draw(){
-  document.getElementById("root").innerHTML=
-    S.screen==="setup"?rSetup():rDash();
-  const c=document.getElementById("cm");if(c)c.scrollTop=c.scrollHeight;
+// ═══════════════════════════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════════════════════════
+function draw() {
+  document.getElementById("root").innerHTML =
+    S.screen === "setup" ? rSetup() : rDash();
+  const c = document.getElementById("cm"); if(c) c.scrollTop = c.scrollHeight;
 }
 
 // ── SETUP ─────────────────────────────────────────────────────────────
-function rSetup(){
-  return`
+function rSetup() {
+  return `
 <div style="display:flex;flex-direction:column;min-height:100vh;background:var(--bg)">
 <div class="setup fade">
   <div class="setup-icon">📡</div>
   <div>
-    <div style="font-size:1.5rem;font-weight:900;letter-spacing:-.03em">Asset<span style="color:var(--cyan)">Hub</span></div>
-    <div style="color:var(--muted);font-size:.85rem;margin-top:4px">S.Facilities · Recuperação de Equipamentos · ${FILE_NAME}</div>
+    <div style="font-size:1.4rem;font-weight:900;letter-spacing:-.03em">Asset<span style="color:var(--cyan)">Hub</span></div>
+    <div style="color:var(--muted);font-size:.82rem;margin-top:3px">S.Facilities · Recuperação de Equipamentos</div>
   </div>
+
   <div class="setup-box">
-    <div style="font-weight:700;margin-bottom:.85rem;font-size:.88rem">🔑 Ligar ao SharePoint</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:.85rem;line-height:1.7">
-      <b style="color:var(--text)">Método mais fácil:</b> vai ao
-      <a href="https://developer.microsoft.com/en-us/graph/graph-explorer" target="_blank" style="color:var(--cyan)">Graph Explorer</a>,
-      faz login com a tua conta Teleperformance, e copia o <b>Access Token</b> que aparece no topo.
+    <div style="font-weight:700;font-size:.88rem;margin-bottom:1rem">📋 Configuração — 3 passos simples</div>
+
+    <div class="step-row"><span class="step-n">1</span>
+      <div>Abre o teu <b>Dashboards - KPI.xlsx</b> no SharePoint → <b>Ficheiro → Guardar uma cópia → Google Sheets</b><br>
+      <span style="color:var(--muted);font-size:12px">Ou faz File → Download → .xlsx e depois faz upload para o Google Drive</span></div>
     </div>
-    <label>Access Token Microsoft Graph</label>
-    <input type="text" id="tokenInput" placeholder="eyJ0eXAiOiJKV1Q..." style="font-family:monospace;font-size:11px;margin-bottom:.5rem"/>
-    <div style="font-size:10px;color:var(--dim);margin-bottom:.85rem">Guardado localmente. Validade ~1h. Renova quando expirar com o botão 🔑.</div>
-    <div style="display:flex;gap:7px">
-      <button class="btn bp" style="flex:1" onclick="connectToken()">Ligar →</button>
-      <button class="btn bg" onclick="demoMode()">Modo demo</button>
+
+    <div class="step-row"><span class="step-n">2</span>
+      <div>No Google Sheets: <b>Ficheiro → Partilhar → Publicar na Web</b><br>
+      Para a sheet <b>RAW DATA</b> → escolhe <b>CSV</b> → copia o link<br>
+      Repete para a sheet <b>BMS</b></div>
+    </div>
+
+    <div class="step-row"><span class="step-n">3</span>
+      <div>Cola os links abaixo e clica <b>Guardar e carregar</b></div>
+    </div>
+
+    <div style="margin-top:.5rem">
+      <label style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:4px">Link CSV — Sheet RAW DATA</label>
+      <input type="text" id="rawUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&gid=..." style="margin-bottom:.75rem" value="${CFG.rawDataUrl}"/>
+
+      <label style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:4px">Link CSV — Sheet BMS (para datas de rescisão)</label>
+      <input type="text" id="bmsUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&gid=..." style="margin-bottom:1rem" value="${CFG.bmsUrl}"/>
+
+      <div style="display:flex;gap:7px">
+        <button class="btn bp" style="flex:1" onclick="saveConfig()">Guardar e carregar →</button>
+        <button class="btn bg" onclick="loadDemo()">Ver demo</button>
+      </div>
     </div>
   </div>
-  <div style="font-size:11px;color:var(--dim);max-width:420px;line-height:1.6;text-align:center">
-    O token é usado apenas para ler o ficheiro via Microsoft Graph API.<br>Nunca é enviado para servidores externos.
+
+  <div style="font-size:11px;color:var(--dim);max-width:440px;line-height:1.6;text-align:center">
+    💡 O Google Sheets publica os dados como CSV público — qualquer pessoa com o link do dashboard vê os dados sem precisar de login. Os links ficam guardados no teu browser.
   </div>
 </div>
 </div>`;
 }
 
 // ── DASHBOARD ─────────────────────────────────────────────────────────
-function rDash(){
-  const TABS=[["overview","📊 Overview"],["recovery","🚨 Recuperação"],["assets","📦 Assets"],["ai","🤖 AI"]];
-  const st=stats();
-  const subs={
-    overview:`${st.total.toLocaleString()} assets · ${st.term} Terminated · taxa recuperação ${st.recRate}% · ${ts()}`,
-    recovery:`${st.pend} pendentes · ${st.nf} não encontrados · ${st.rec} recuperados`,
-    assets:`${filtered().length} de ${st.total.toLocaleString()} assets`,
-    ai:"Assistente especializado em recuperação de equipamentos",
+function rDash() {
+  const st = stats();
+  const TABS = [["overview","📊 Overview"],["terminated","🚨 Terminated"],["assets","📦 Assets"]];
+  const subs = {
+    overview: st ? `${st.total.toLocaleString()} assets · ${st.termUsersCount} utilizadores Terminated · ${ts()}` : "A carregar...",
+    terminated: st ? `${st.termUsersCount} utilizadores · ${st.terminated.length} equipamentos · ${st.recoveryUsersCount} em recuperação` : "",
+    assets: `${filtered().length.toLocaleString()} de ${S.raw.length.toLocaleString()} assets`,
   };
-  return`
+  return `
 <header>
   <div class="logo">
     <div class="logo-icon">📡</div>
@@ -425,328 +433,387 @@ function rDash(){
   </div>
   <nav>${TABS.map(([t,l])=>`<button class="nb${S.tab===t?" on":""}" onclick="setTab('${t}')">${l}</button>`).join("")}</nav>
   <div class="hdr-r">
-    <span class="sync-dot"></span><span class="sync-txt">${ts()}</span>
+    ${S.lastSync?`<span class="sdot"></span><span class="stxt">${ts()}</span>`:""}
     <button class="btn bs" onclick="syncNow()" ${S.loading?"disabled":""}>
       <span style="${S.loading?"display:inline-block;animation:spin .8s linear infinite":""}">↺</span> Sync
     </button>
-    <button class="btn bg" onclick="set({screen:'setup'})" title="Token">🔑</button>
+    <button class="btn bg" onclick="set({screen:'setup'})" title="Configurar">⚙️</button>
   </div>
 </header>
 <main>
-  <div style="margin-bottom:1.1rem" class="fade">
+  <div style="margin-bottom:1rem" class="fade">
     <div class="pg-title">${TABS.find(t=>t[0]===S.tab)?.[1]}</div>
     <div class="pg-sub">${subs[S.tab]}</div>
   </div>
-  <div class="fade">
-    ${S.tab==="overview"?rOverview(st):S.tab==="recovery"?rRecovery(st):S.tab==="assets"?rAssets():rAI()}
-  </div>
+  ${!st && S.raw.length===0 ? `<div style="text-align:center;padding:3rem;color:var(--muted)">
+    <div style="font-size:2rem;margin-bottom:.5rem">📭</div>
+    <div>Sem dados. <a href="#" onclick="set({screen:'setup'})" style="color:var(--cyan)">Configura os links do Google Sheets</a>.</div>
+  </div>` : `<div class="fade">
+    ${S.tab==="overview"?rOverview(st):S.tab==="terminated"?rTerminated(st):rAssets()}
+  </div>`}
 </main>
 ${S.selected?rModal(S.selected):""}
 ${S.toast?`<div class="toast" style="border-color:${S.toast.err?"var(--red)":"var(--green)"}">${S.toast.err?"❌":"✅"} ${S.toast.msg}</div>`:""}`;
 }
 
 // ── OVERVIEW ───────────────────────────────────────────────────────────
-function rOverview(st){
-  const kpis=[
-    {l:"Total Assets",v:st.total.toLocaleString(),c:"var(--cyan)",icon:"📦",stripe:"#0ea5e9"},
-    {l:"Ativos",v:st.active.toLocaleString(),c:"var(--green-d)",icon:"✅",stripe:"#10b981"},
-    {l:"Terminated",v:st.term,c:"var(--red-d)",icon:"🚪",stripe:"#ef4444",click:"setTab('recovery')"},
-    {l:"Pendentes",v:st.pend,c:"var(--amber-d)",icon:"⏳",stripe:"#f59e0b",click:"setTab('recovery')",trend:"URGENTE"},
-    {l:"Recuperados",v:st.rec,c:"var(--green-d)",icon:"✔️",stripe:"#10b981"},
-    {l:"Não encontrados",v:st.nf,c:"var(--red-d)",icon:"❌",stripe:"#ef4444",click:"setTab('recovery')"},
-    {l:"End of Life",v:st.eol,c:"var(--orange)",icon:"⚠️",stripe:"#f97316"},
-    {l:"Taxa Recuperação",v:st.recRate+"%",c:st.recRate>70?"var(--green-d)":st.recRate>40?"var(--amber-d)":"var(--red-d)",icon:"📈",stripe:st.recRate>70?"#10b981":st.recRate>40?"#f59e0b":"#ef4444"},
-  ];
+function rOverview(st) {
+  if (!st) return "";
 
-  // Recovery progress bar
-  const recPct=st.term>0?Math.round(st.rec/st.term*100):0;
-  const pendPct=st.term>0?Math.round(st.pend/st.term*100):0;
-  const nfPct=st.term>0?Math.round(st.nf/st.term*100):0;
+  const wahActive = st.byWah["Active"] || 0;
+  const wahTerm   = st.byWah["Terminated"] || 0;
 
-  // By location
-  const locCards=Object.entries(LOC_M).map(([loc,m])=>{
-    const list=S.data.filter(d=>d.location===loc);if(!list.length)return"";
-    const term=list.filter(d=>d.wahStatus==="Terminated").length;
-    const pend=list.filter(d=>d.retention==="Pendente de recolha").length;
-    return`<div class="card" onclick="setLocF('${loc}')">
-      <div class="card-icon">${m.i}</div>
-      <div class="card-name" style="color:${m.c}">${loc}</div>
-      <div class="card-n">${list.length.toLocaleString()}</div>
-      <div class="card-s">${list.length-term} ativos${term?` · <b style="color:var(--red-d)">${term} term.</b>`:""}${pend?` · <b style="color:var(--amber-d)">${pend} pend.</b>`:""}</div>
-    </div>`;
-  }).join("");
+  // Value by month (últimos 6 meses com dados)
+  const monthEntries = Object.entries(st.valueByMonth)
+    .sort((a,b) => b[0].localeCompare(a[0])).slice(0,6).reverse();
+  const maxVal = Math.max(...monthEntries.map(e=>e[1]),1);
 
-  // By type (top equipment types)
-  const typeData=Object.keys(TYPE_M).map(type=>{
-    const list=S.data.filter(d=>d.type===type);
-    const term=list.filter(d=>d.wahStatus==="Terminated").length;
-    return{type,m:TYPE_M[type],total:list.length,term};
-  }).filter(x=>x.total>0).sort((a,b)=>b.total-a.total).slice(0,8);
+  // Locations
+  const locCards = Object.entries(st.byLoc)
+    .filter(([l])=>l!=="N/A"&&l!=="#N/A")
+    .sort((a,b)=>b[1]-a[1])
+    .map(([loc,total])=>{
+      const m = LOC_M[loc]||{i:"📍",c:"#6b7280"};
+      const term = st.terminated.filter(r=>r["LOCATION TYPE"]===loc).length;
+      return `<div class="card" style="border-left:3px solid ${m.c}" onclick="setLocFilter('${loc}')">
+        <div class="card-icon">${m.i}</div>
+        <div class="card-name" style="color:${m.c}">${loc}</div>
+        <div class="card-n">${total.toLocaleString()}</div>
+        <div class="card-s">${term?`<b style="color:var(--red-d)">${term} terminated</b>`:"Todos ativos"}</div>
+      </div>`;
+    }).join("");
 
-  const typeCards=typeData.map(({type,m,total,term})=>
-    `<div class="card" onclick="setTypeF('${type}')">
-      <div class="card-icon">${m.i}</div>
-      <div class="card-name" style="color:${m.c}">${type}</div>
-      <div class="card-n">${total.toLocaleString()}</div>
-      <div class="card-s">${total-term} ativos · <span style="color:${term?"var(--red-d)":"var(--green-d)"}"><b>${term}</b> term.</span></div>
-    </div>`).join("");
+  // Types
+  const typeCards = Object.entries(st.byType)
+    .filter(([t])=>t!=="N/A"&&t!=="#N/A")
+    .sort((a,b)=>b[1]-a[1]).slice(0,8)
+    .map(([type,total])=>{
+      const m = TYPE_M[type]||{i:"📦",c:"#6b7280"};
+      const term = st.terminated.filter(r=>r["ASSET TYPE"]===type).length;
+      return `<div class="card" style="border-left:3px solid ${m.c}" onclick="setTypeFilter('${type}')">
+        <div class="card-icon">${m.i}</div>
+        <div class="card-name" style="color:${m.c}">${type}</div>
+        <div class="card-n">${total.toLocaleString()}</div>
+        <div class="card-s">${term?`<span style="color:var(--red-d)">${term} term.</span>`:"0 term."}</div>
+      </div>`;
+    }).join("");
 
-  return`
+  return `
+  <!-- KPIs principais -->
   <div class="kpi-grid">
-    ${kpis.map(k=>`
-      <div class="kpi${k.click?" click":""}" ${k.click?`onclick="${k.click}"`:""}
-        onmouseover="if('${k.click||""}')this.style.boxShadow='0 4px 12px rgba(0,0,0,.08)'"
-        onmouseout="this.style.boxShadow=''">
-        <div class="kpi-stripe" style="background:${k.stripe}"></div>
-        ${k.trend?`<div class="kpi-trend" style="background:#fee2e2;color:#dc2626">${k.trend}</div>`:""}
-        <div class="kpi-icon">${k.icon}</div>
-        <div class="kpi-v" style="color:${k.c}">${k.v}</div>
-        <div class="kpi-l">${k.l}</div>
-        ${k.click?`<div class="kpi-s" style="color:${k.c}">ver detalhes →</div>`:""}
-      </div>`).join("")}
+    <div class="kpi" style="border-left-color:var(--cyan)">
+      <div class="kpi-ico">📦</div>
+      <div class="kpi-v" style="color:var(--cyan-d)">${st.total.toLocaleString()}</div>
+      <div class="kpi-l">Assets per Location<br><span style="font-size:10px">(total inventário)</span></div>
+    </div>
+    <div class="kpi" style="border-left-color:var(--blue)">
+      <div class="kpi-ico">📍</div>
+      <div class="kpi-v" style="color:var(--blue)">${Object.keys(st.byLoc).filter(k=>k!=="N/A"&&k!=="#N/A").length}</div>
+      <div class="kpi-l">Localizações WAH<br><span style="font-size:10px">com assets activos</span></div>
+    </div>
+    <div class="kpi" style="border-left-color:var(--green)">
+      <div class="kpi-ico">✅</div>
+      <div class="kpi-v" style="color:var(--green-d)">${wahActive.toLocaleString()}</div>
+      <div class="kpi-l">Assets per WAH<br><span style="font-size:10px">status Active</span></div>
+    </div>
+    <div class="kpi click" style="border-left-color:var(--red)" onclick="setTab('terminated')">
+      <div class="kpi-ico">🚪</div>
+      <div class="kpi-v" style="color:var(--red-d)">${wahTerm.toLocaleString()}</div>
+      <div class="kpi-l">Assets per WAH<br><span style="font-size:10px">Terminated</span></div>
+      <div class="kpi-s" style="color:var(--red-d)">ver lista →</div>
+    </div>
+    <div class="kpi click" style="border-left-color:var(--red)" onclick="setTab('terminated')">
+      <div class="kpi-ico">👤</div>
+      <div class="kpi-v" style="color:var(--red-d)">${st.termUsersCount}</div>
+      <div class="kpi-l">Users Terminated<br><span style="font-size:10px">com equipamentos</span></div>
+      <div class="kpi-s" style="color:var(--red-d)">ver lista →</div>
+    </div>
+    <div class="kpi click" style="border-left-color:var(--amber)" onclick="setTab('terminated')">
+      <div class="kpi-ico">🔄</div>
+      <div class="kpi-v" style="color:var(--amber-d)">${st.recoveryUsersCount}</div>
+      <div class="kpi-l">Users Terminated<br><span style="font-size:10px">em processo de recuperação</span></div>
+      <div class="kpi-s" style="color:var(--amber-d)">ver detalhes →</div>
+    </div>
+    <div class="kpi" style="border-left-color:var(--orange)">
+      <div class="kpi-ico">💰</div>
+      <div class="kpi-v" style="color:var(--orange);font-size:18px">${euro(st.totalValue)}</div>
+      <div class="kpi-l">Value retained<br><span style="font-size:10px">total equipamentos Terminated</span></div>
+    </div>
+    <div class="kpi" style="border-left-color:var(--violet)">
+      <div class="kpi-ico">📈</div>
+      <div class="kpi-v" style="color:var(--violet);font-size:18px">${euro(Math.round(st.totalValue/Math.max(monthEntries.length,1)))}</div>
+      <div class="kpi-l">Value retained<br><span style="font-size:10px">média por mês</span></div>
+    </div>
   </div>
 
-  ${st.pend>0?`
-  <div class="alert" style="background:#fffbeb;border-color:#fbbf24">
-    <span style="font-size:1.4rem">🚨</span>
+  ${wahTerm > 0 ? `<div class="alert" style="background:#fffbeb;border-color:#fbbf24">
+    <span style="font-size:1.3rem">🚨</span>
     <div style="flex:1">
-      <div style="font-weight:700;color:#92400e;font-size:.83rem">${st.pend} Equipamentos Pendentes de Recolha</div>
-      <div style="color:var(--muted);font-size:12px;margin-top:2px">${st.term} colaboradores Terminated · ${st.nf} não encontrados · taxa recuperação atual: ${st.recRate}%</div>
+      <div style="font-weight:700;color:#92400e;font-size:.82rem">${wahTerm} equipamentos de colaboradores Terminated por recuperar</div>
+      <div style="color:var(--muted);font-size:12px;margin-top:1px">${st.termUsersCount} utilizadores · ${st.recoveryUsersCount} em processo · valor retido: ${euro(st.totalValue)}</div>
     </div>
-    <button class="btn" style="background:#f59e0b;color:#fff" onclick="setTab('recovery')">Gerir Recuperações →</button>
-  </div>`:""}
+    <button class="btn" style="background:#f59e0b;color:#fff;flex-shrink:0" onclick="setTab('terminated')">Gerir →</button>
+  </div>` : ""}
 
-  <!-- Recovery Progress -->
-  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.25rem">
-    <div style="font-weight:700;font-size:.83rem;margin-bottom:.85rem">📈 Progresso de Recuperação — Terminated</div>
-    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:.85rem">
-      ${[
-        {l:"Recuperados",v:st.rec,pct:recPct,c:"#10b981"},
-        {l:"Pendentes",v:st.pend,pct:pendPct,c:"#f59e0b"},
-        {l:"Não encontrados",v:st.nf,pct:nfPct,c:"#ef4444"},
-      ].map(x=>`<div style="flex:1;min-width:120px">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-size:11px;color:var(--muted);font-weight:500">${x.l}</span>
-          <span style="font-size:11px;font-weight:700;color:${x.c}">${x.v} (${x.pct}%)</span>
-        </div>
-        <div class="prog-wrap"><div class="prog-bar" style="width:${x.pct}%;background:${x.c}"></div></div>
-      </div>`).join("")}
+  <!-- Value por mês -->
+  ${monthEntries.length > 0 ? `
+  <div class="sl">Value Retained per Month</div>
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.2rem">
+    <div style="display:flex;align-items:flex-end;gap:8px;height:80px;margin-bottom:.5rem">
+      ${monthEntries.map(([month,val])=>{
+        const pct = Math.round(val/maxVal*100);
+        const label = month.split("-").reverse().join("/");
+        return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+          <div style="font-size:10px;color:var(--muted);font-weight:600">${euro(val)}</div>
+          <div style="width:100%;background:var(--violet);border-radius:4px 4px 0 0;height:${Math.max(pct*.6,4)}px;opacity:.85"></div>
+          <div style="font-size:10px;color:var(--muted)">${label}</div>
+        </div>`;
+      }).join("")}
     </div>
-    <div style="font-size:11px;color:var(--muted)">Total Terminated: <b style="color:var(--text)">${st.term}</b> colaboradores</div>
-  </div>
+    <div style="font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:.5rem;margin-top:.25rem">
+      Total acumulado: <b style="color:var(--text)">${euro(st.totalValue)}</b> · baseado em valor médio por asset de <b>${euro(CFG.avgAssetValue)}</b>
+      <a href="#" onclick="set({screen:'setup'})" style="color:var(--cyan);margin-left:.5rem">ajustar valor →</a>
+    </div>
+  </div>` : ""}
 
-  <div class="sl">Assets por Localização WAH</div>
-  <div class="loc-grid">${locCards||'<div style="color:var(--muted);font-size:13px">Sem dados</div>'}</div>
+  <div class="sl">Assets per Location (WAH)</div>
+  <div class="card-grid">${locCards||'<div style="color:var(--muted);font-size:13px">Sem dados de localização</div>'}</div>
 
-  <div class="sl">Top Tipos de Equipamento</div>
-  <div class="type-grid">${typeCards||'<div style="color:var(--muted);font-size:13px">Sem dados</div>'}</div>`;
+  <div class="sl">Assets por Tipo</div>
+  <div class="card-grid">${typeCards||'<div style="color:var(--muted);font-size:13px">Sem dados</div>'}</div>`;
 }
 
-// ── RECOVERY TAB ───────────────────────────────────────────────────────
-function rRecovery(st){
-  const prio=S.data
-    .filter(d=>d.wahStatus==="Terminated")
-    .map(d=>({...d,days:daysSince(d.exitDate)}))
-    .sort((a,b)=>{
-      // Ordem: Não encontrado > Pendente > outros; depois por dias
-      const order={Terminado:0,"Não encontrado":1,"Pendente de recolha":2,Recuperado:3};
-      const oa=order[a.retention]??2,ob=order[b.retention]??2;
-      if(oa!==ob) return oa-ob;
-      return(b.days||0)-(a.days||0);
-    });
+// ── TERMINATED TAB ─────────────────────────────────────────────────────
+function rTerminated(st) {
+  if (!st) return "";
 
-  const pendRows=prio.filter(d=>d.retention==="Pendente de recolha");
-  const nfRows=prio.filter(d=>d.retention==="Não encontrado");
-  const recRows=prio.filter(d=>d.retention==="Recuperado");
+  // Agrupar por utilizador (BMS ou Local)
+  const userMap = {};
+  st.terminated.forEach(r => {
+    const uid = r["BMS"] || r["Local"] || r["ASSET ID"];
+    if (!userMap[uid]) userMap[uid] = {uid, bms:r["BMS"], local:r["Local"], assets:[], retention: r["RETENTION STATUS"]};
+    userMap[uid].assets.push(r);
+    // atualiza retention se tiver info
+    if (r["RETENTION STATUS"] && r["RETENTION STATUS"] !== "#N/A") {
+      userMap[uid].retention = r["RETENTION STATUS"];
+    }
+  });
 
-  function recTable(list,title,icon,color){
-    if(!list.length) return"";
-    const rows=list.map(a=>`<tr onclick="sel('${a.id}')">
-      <td class="mono bold" style="color:var(--cyan)">${a.id}</td>
-      <td>${tpill(a.type)}</td>
-      <td style="font-weight:600">${a.person||"—"}</td>
-      <td>${lpill(a.location)}</td>
-      <td>${ft(a.exitDate)}</td>
-      <td>${urgencyBadge(a.days)}</td>
-      <td>${bdg(a.retention,"ret")}</td>
-    </tr>`).join("");
-    return`<div class="tw" style="border-top:3px solid ${color}">
-      <div class="th"><span class="th-t">${icon} ${title}</span><span class="th-s">${list.length} equipamentos</span></div>
-      <div class="ts"><table>
-        <thead><tr><th>Asset ID</th><th>Tipo</th><th>Pessoa</th><th>Localização</th><th>Data Saída</th><th>Dias</th><th>Estado</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table></div>
-    </div>`;
-  }
+  const users = Object.values(userMap).sort((a,b) => b.assets.length - a.assets.length);
 
-  // Urgency summary cards
-  const over90=prio.filter(d=>d.days>90&&d.retention!=="Recuperado").length;
-  const over30=prio.filter(d=>d.days>30&&d.days<=90&&d.retention!=="Recuperado").length;
+  // Tabela de utilizadores terminated com equipamentos
+  const userRows = users.map(u => {
+    const ret = u.retention || "#N/A";
+    const retBg = ret === "#N/A" ? ["#fef3c7","#d97706"] :
+                  ret.toLowerCase().includes("recup") ? ["#d1fae5","#059669"] :
+                  ["#fee2e2","#dc2626"];
+    return `<tr onclick="selUser('${u.uid.replace(/'/g,"\\'")}')">
+      <td class="mono" style="color:var(--cyan-d);font-weight:600">${u.bms||"—"}</td>
+      <td>${u.local||"—"}</td>
+      <td><b style="color:var(--text)">${u.assets.length}</b></td>
+      <td>${[...new Set(u.assets.map(a=>a["ASSET TYPE"]))].filter(Boolean).join(", ")||"—"}</td>
+      <td>${[...new Set(u.assets.map(a=>a["LOCATION TYPE"]))].filter(Boolean).map(l=>locPill(l)).join(" ")||"—"}</td>
+      <td><span class="badge" style="background:${retBg[0]};color:${retBg[1]}">${ret}</span></td>
+    </tr>`;
+  }).join("");
 
-  return`
-  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(145px,1fr))">
+  // Assets terminated individuais
+  const assetRows = st.terminated.map(r => {
+    const ret = r["RETENTION STATUS"]||"#N/A";
+    const retCol = ret.toLowerCase().includes("recup")?["#d1fae5","#059669"]:ret==="#N/A"?["#fef3c7","#d97706"]:["#fee2e2","#dc2626"];
+    return `<tr onclick="sel('${r["ASSET ID"].replace(/'/g,"\\'")}')">
+      <td class="mono" style="color:var(--cyan-d);font-weight:600">${r["ASSET ID"]}</td>
+      <td>${typePill(r["ASSET TYPE"])}</td>
+      <td class="mono" style="color:var(--muted)">${r["SERIAL NUMBER"]||"—"}</td>
+      <td style="color:var(--muted)">${r["BMS"]||"—"}</td>
+      <td>${r["Local"]||"—"}</td>
+      <td>${locPill(r["LOCATION TYPE"])}</td>
+      <td><span class="badge" style="background:${retCol[0]};color:${retCol[1]}">${ret}</span></td>
+    </tr>`;
+  }).join("");
+
+  return `
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
     ${[
-      {l:"Pendentes",v:st.pend,c:"var(--amber-d)",icon:"⏳",stripe:"#f59e0b"},
-      {l:"Não encontrados",v:st.nf,c:"var(--red-d)",icon:"❌",stripe:"#ef4444"},
-      {l:"Recuperados",v:st.rec,c:"var(--green-d)",icon:"✔️",stripe:"#10b981"},
-      {l:"> 90 dias em aberto",v:over90,c:"var(--red-d)",icon:"🔴",stripe:"#ef4444"},
-      {l:"30–90 dias",v:over30,c:"var(--amber-d)",icon:"🟡",stripe:"#f59e0b"},
-      {l:"Taxa Recuperação",v:st.recRate+"%",c:st.recRate>70?"var(--green-d)":"var(--red-d)",icon:"📈",stripe:st.recRate>70?"#10b981":"#ef4444"},
-    ].map(k=>`<div class="kpi" style="border-top:3px solid ${k.stripe}">
-      <div class="kpi-icon">${k.icon}</div>
-      <div class="kpi-v" style="color:${k.c}">${k.v}</div>
+      {l:"Utilizadores Terminated",v:st.termUsersCount,c:"var(--red-d)",i:"👤",bc:"var(--red)"},
+      {l:"Equipamentos por recuperar",v:st.terminated.length,c:"var(--red-d)",i:"📦",bc:"var(--red)"},
+      {l:"Em recuperação",v:st.recoveryUsersCount,c:"var(--amber-d)",i:"🔄",bc:"var(--amber)"},
+      {l:"Valor retido total",v:euro(st.totalValue),c:"var(--orange)",i:"💰",bc:"var(--orange)"},
+    ].map(k=>`<div class="kpi" style="border-left-color:${k.bc}">
+      <div class="kpi-ico">${k.i}</div>
+      <div class="kpi-v" style="color:${k.c};font-size:${typeof k.v==='string'&&k.v.includes('€')?"18px":"24px"}">${k.v}</div>
       <div class="kpi-l">${k.l}</div>
     </div>`).join("")}
   </div>
 
-  ${over90>0?`<div class="alert" style="background:#fee2e2;border-color:#fca5a5">
-    <span style="font-size:1.3rem">🔴</span>
-    <div style="flex:1"><div style="font-weight:700;color:var(--red-d);font-size:.82rem">${over90} equipamentos há mais de 90 dias sem recuperação — ação imediata necessária</div>
-    <div style="font-size:12px;color:var(--muted);margin-top:1px">Verifica a localização e contacta os ex-colaboradores ou IT</div></div>
-  </div>`:""}
+  <!-- Lista de utilizadores -->
+  <div class="tw" style="border-top:3px solid var(--red)">
+    <div class="th">
+      <span class="th-t">👤 Users Terminated com Equipamentos</span>
+      <span class="th-s">${users.length} utilizadores · ${st.terminated.length} assets</span>
+    </div>
+    <div class="ts"><table>
+      <thead><tr><th>BMS ID</th><th>Local</th><th>Nº Assets</th><th>Tipos</th><th>Localização</th><th>Retention</th></tr></thead>
+      <tbody>${userRows||'<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:1.5rem">Sem dados Terminated.</td></tr>'}</tbody>
+    </table></div>
+  </div>
 
-  ${recTable(pendRows,"Pendentes de Recolha","⏳","#f59e0b")}
-  ${recTable(nfRows,"Não Encontrados — Prioridade Alta","🔴","#ef4444")}
-  ${recTable(recRows,"Recuperados","✔️","#10b981")}
-  ${!prio.length?'<div style="text-align:center;padding:2rem;color:var(--muted);font-size:13px">Nenhum Terminated encontrado.</div>':""}`;
+  <!-- Lista de assets individuais -->
+  <div class="tw" style="border-top:3px solid var(--amber)">
+    <div class="th">
+      <span class="th-t">📦 Equipamentos Terminated — Detalhe</span>
+      <span class="th-s">${st.terminated.length} assets</span>
+    </div>
+    <div class="ts"><table>
+      <thead><tr><th>Asset ID</th><th>Tipo</th><th>Serial</th><th>BMS</th><th>Local</th><th>Localização</th><th>Retention</th></tr></thead>
+      <tbody>${assetRows||'<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:1.5rem">Sem assets Terminated.</td></tr>'}</tbody>
+    </table></div>
+  </div>`;
 }
 
-// ── ASSETS ─────────────────────────────────────────────────────────────
-function rAssets(){
-  const f=filtered();
-  const rows=f.map(a=>`<tr onclick="sel('${a.id}')">
-    <td class="mono bold" style="color:var(--cyan)">${a.id}</td>
-    <td>${tpill(a.type)}</td>
-    <td class="mono" style="color:var(--muted)">${a.serial}</td>
-    <td style="font-weight:${a.wahStatus==="Terminated"?"600":"400"};color:${a.wahStatus==="Terminated"?"var(--red-d)":"var(--text)"}">${a.person||"—"}</td>
-    <td>${lpill(a.location)}</td>
-    <td style="color:var(--muted)">${a.local||"—"}</td>
-    <td>${bdg(a.wahStatus)}</td>
-    <td>${a.retention?bdg(a.retention,"ret"):'<span style="color:var(--dim);font-size:11px">—</span>'}</td>
-    <td style="color:${a.lifeCycle==="End of Life"?"var(--orange)":"var(--muted)"};font-size:12px">${a.lifeCycle||"—"}</td>
+// ── ASSETS TAB ─────────────────────────────────────────────────────────
+function rAssets() {
+  const f = filtered();
+  const locs = [...new Set(S.raw.map(r=>r["LOCATION TYPE"]).filter(v=>v&&v!=="#N/A"))];
+  const types = [...new Set(S.raw.map(r=>r["ASSET TYPE"]).filter(v=>v&&v!=="#N/A"))];
+  const rows = f.map(r => `<tr onclick="sel('${r["ASSET ID"].replace(/'/g,"\\'")}')">
+    <td class="mono" style="color:var(--cyan-d);font-weight:600">${r["ASSET ID"]}</td>
+    <td>${typePill(r["ASSET TYPE"])}</td>
+    <td class="mono" style="color:var(--muted)">${r["SERIAL NUMBER"]||"—"}</td>
+    <td style="color:var(--muted)">${r["Local"]||"—"}</td>
+    <td>${locPill(r["LOCATION TYPE"])}</td>
+    <td>${bdg(r["WAH STATUS"])}</td>
+    <td><span class="badge" style="background:${r["RETENTION STATUS"]==="#N/A"?"#f3f4f6":"#fef3c7"};color:${r["RETENTION STATUS"]==="#N/A"?"#9ca3af":"#d97706"}">${r["RETENTION STATUS"]||"—"}</span></td>
+    <td style="color:var(--muted);font-size:11px">${r["Life Cicle"]||"—"}</td>
   </tr>`).join("");
 
-  const types=[...new Set(S.data.map(d=>d.type).filter(Boolean))];
-  const locs=[...new Set(S.data.map(d=>d.location).filter(Boolean))];
-  const rets=[...new Set(S.data.map(d=>d.retention).filter(Boolean))];
-
-  return`
+  return `
   <div class="fb">
-    <input type="text" placeholder="🔍  Asset ID, Serial, Pessoa, Local..." value="${S.search}" oninput="set({search:this.value})"/>
+    <input type="text" placeholder="🔍  Asset ID, Serial, Local, BMS..." value="${S.search}" oninput="set({search:this.value})"/>
+    <select onchange="set({locF:this.value})">
+      <option value="all"${S.locF==="all"?" selected":""}>Todas as localizações</option>
+      ${locs.map(l=>`<option${S.locF===l?" selected":""}>${l}</option>`).join("")}
+    </select>
     <select onchange="set({typeF:this.value})">
       <option value="all"${S.typeF==="all"?" selected":""}>Todos os tipos</option>
       ${types.map(t=>`<option${S.typeF===t?" selected":""}>${t}</option>`).join("")}
-    </select>
-    <select onchange="set({locF:this.value})">
-      <option value="all"${S.locF==="all"?" selected":""}>Localização</option>
-      ${locs.map(l=>`<option${S.locF===l?" selected":""}>${l}</option>`).join("")}
     </select>
     <select onchange="set({wahF:this.value})">
       <option value="all"${S.wahF==="all"?" selected":""}>WAH Status</option>
       <option${S.wahF==="Active"?" selected":""}>Active</option>
       <option${S.wahF==="Terminated"?" selected":""}>Terminated</option>
     </select>
-    <select onchange="set({retF:this.value})">
-      <option value="all"${S.retF==="all"?" selected":""}>Retention</option>
-      ${rets.map(r=>`<option${S.retF===r?" selected":""}>${r}</option>`).join("")}
-    </select>
-    <button class="btn bg" onclick="set({typeF:'all',locF:'all',wahF:'all',retF:'all',search:''})">↺</button>
+    <button class="btn bg" onclick="set({locF:'all',typeF:'all',wahF:'all',search:''})">↺</button>
     <span class="cl">${f.length.toLocaleString()} assets</span>
   </div>
   <div class="tw"><div class="ts"><table>
-    <thead><tr><th>Asset ID</th><th>Tipo</th><th>Serial</th><th>Pessoa</th><th>Localização</th><th>Local</th><th>WAH</th><th>Retention</th><th>Life Cycle</th></tr></thead>
-    <tbody>${rows||'<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:1.5rem">Nenhum resultado.</td></tr>'}</tbody>
+    <thead><tr><th>Asset ID</th><th>Tipo</th><th>Serial</th><th>Local</th><th>Localização</th><th>WAH Status</th><th>Retention</th><th>Life Cycle</th></tr></thead>
+    <tbody>${rows||'<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:1.5rem">Nenhum resultado.</td></tr>'}</tbody>
   </table></div></div>`;
 }
 
-// ── AI ─────────────────────────────────────────────────────────────────
-function rAI(){
-  const st=stats();
-  const bubbles=S.aiMsgs.map(m=>{
-    const html=m.t.split("\n").map(l=>l.split(/\*\*(.*?)\*\*/g).map((p,i)=>
-      i%2===1?`<strong>${p}</strong>`:p).join("")).join("<br>");
-    return`<div class="bubble ${m.r==="ai"?"bai":"bme"}">${html}</div>`;
-  }).join("");
-  const load=S.aiLoad?`<div class="bubble bai"><span style="animation:pulse 1s infinite;color:var(--muted)">A processar...</span></div>`:"";
-  const qs=["Prioridades de recuperação?","Há mais de 90 dias?","Quais WAHA por recuperar?","Resumo por tipo","Não encontrados — o que fazer?"];
-  return`<div class="chat">
-    <div class="chat-hdr">
-      <div class="ai-ico">🤖</div>
-      <div><div style="font-weight:700;font-size:.83rem">Asset Hub AI</div>
-      <div style="font-size:11px;color:var(--green-d)">● ${FILE_NAME} · ${st.term} Terminated · ${st.pend} pendentes</div></div>
-    </div>
-    <div class="msgs" id="cm">${bubbles}${load}</div>
-    <div class="quick">${qs.map(q=>`<button class="btn bg" style="font-size:11px;padding:3px 8px" onclick="setQ('${q}')">${q}</button>`).join("")}</div>
-    <div class="ci">
-      <input type="text" id="ai" placeholder="Ex: Quais os equipamentos há mais de 90 dias por recuperar?" value="${S.aiIn}"
-        onkeydown="if(event.key==='Enter')sendAI()" oninput="S.aiIn=this.value"/>
-      <button class="btn bp" onclick="sendAI()" ${S.aiLoad?"disabled":""}>Enviar →</button>
-    </div>
-  </div>`;
-}
-
 // ── MODAL ──────────────────────────────────────────────────────────────
-function rModal(a){
-  const days=daysSince(a.exitDate);
-  const tm=TYPE_M[a.type]||{i:"📦",c:"#6b7280"};
-  const rows=[
-    ["Tipo",tpill(a.type)],["Serial",`<span class="mono">${a.serial}</span>`],
-    ["Pessoa",`<b>${a.person||"—"}</b>`],["Departamento",a.dept||"—"],
-    ["Local",a.local||"—"],["Localização",lpill(a.location)],
-    ["BMS",a.bms||"—"],["Aquisição",ft(a.acq)],
-    ["Data Saída",ft(a.exitDate)],
-    ["Dias desde saída",days!==null?urgencyBadge(days):"—"],
-    ["Life Cycle",a.lifeCycle||"—"],
-    ["WAH Status",bdg(a.wahStatus)],
-    ["Retention",a.retention?bdg(a.retention,"ret"):"—"],
-  ].map(([k,v])=>`<div class="mr"><span class="mk">${k}</span><span class="mv">${v}</span></div>`).join("");
-  return`<div class="ov" onclick="sel(null)"><div class="mb" onclick="event.stopPropagation()">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.1rem">
-      <div>
-        <div style="font-size:1.5rem;margin-bottom:4px">${tm.i}</div>
-        <div style="font-weight:800;font-size:1rem">${a.id}</div>
-        <div class="mono" style="font-size:11px;color:var(--muted);margin-top:2px">${a.type} · ${a.serial}</div>
+function rModal(a) {
+  const isUser = a._isUser;
+  if (isUser) {
+    const rows = a.assets.map(r=>`
+      <div style="background:#f9fafb;border-radius:8px;padding:.6rem .85rem;margin-bottom:.4rem;font-size:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="mono" style="color:var(--cyan-d);font-weight:700">${r["ASSET ID"]}</span>
+          ${typePill(r["ASSET TYPE"])}
+        </div>
+        <div style="color:var(--muted);margin-top:2px">S/N: ${r["SERIAL NUMBER"]||"—"} · ${r["LOCATION TYPE"]||"—"}</div>
+      </div>`).join("");
+    return `<div class="ov" onclick="sel(null)"><div class="mb" onclick="event.stopPropagation()">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
+        <div><div style="font-size:1.3rem;margin-bottom:3px">👤</div>
+        <div style="font-weight:800;font-size:.95rem">${a.uid}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:1px">${a.local||""} · ${a.assets.length} equipamentos</div></div>
+        <span class="badge" style="background:#fee2e2;color:#dc2626">Terminated</span>
       </div>
-      ${bdg(a.wahStatus)}
+      <div style="font-weight:600;font-size:.8rem;margin-bottom:.5rem;color:var(--muted)">EQUIPAMENTOS</div>
+      ${rows}
+      <button class="btn bg" style="width:100%;margin-top:1rem" onclick="sel(null)">Fechar</button>
+    </div></div>`;
+  }
+  const fields = [
+    ["Asset ID", a["ASSET ID"]],["Tipo", typePill(a["ASSET TYPE"])],
+    ["Descrição", a["Description"]||"—"],["Serial", `<span class="mono">${a["SERIAL NUMBER"]||"—"}</span>`],
+    ["Processador", a["Processador"]||"—"],["RAM", (a["Memória RAM (gb)"]||"—")+" GB"],
+    ["Local", a["Local"]||"—"],["BMS", a["BMS"]||"—"],
+    ["Localização", locPill(a["LOCATION TYPE"])],
+    ["Aquisição", fmt(a["Aquisitation date"])],["Life Cycle", a["Life Cicle"]||"—"],
+    ["WAH Status", bdg(a["WAH STATUS"])],["Retention", a["RETENTION STATUS"]||"—"],
+  ];
+  return `<div class="ov" onclick="sel(null)"><div class="mb" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
+      <div><div style="font-size:1.4rem;margin-bottom:3px">${TYPE_M[a["ASSET TYPE"]]?.i||"📦"}</div>
+      <div style="font-weight:800;font-size:.95rem">${a["ASSET ID"]}</div>
+      <div class="mono" style="font-size:11px;color:var(--muted);margin-top:1px">${a["ASSET TYPE"]} · ${a["SERIAL NUMBER"]||"—"}</div></div>
+      ${bdg(a["WAH STATUS"])}
     </div>
-    ${rows}
-    <button class="btn bg" style="width:100%;margin-top:1.1rem" onclick="sel(null)">Fechar</button>
+    ${fields.map(([k,v])=>`<div class="mr"><span class="mk">${k}</span><span class="mv">${v}</span></div>`).join("")}
+    <button class="btn bg" style="width:100%;margin-top:1rem" onclick="sel(null)">Fechar</button>
   </div></div>`;
 }
 
-// ══════════════════════════════════════════════════════════════════════
-// HANDLERS
-// ══════════════════════════════════════════════════════════════════════
-window.setTab=t=>set({tab:t,search:"",typeF:"all",locF:"all",wahF:"all",retF:"all"});
-window.setLocF=v=>set({tab:"assets",locF:v});
-window.setTypeF=v=>set({tab:"assets",typeF:v});
-window.sel=id=>set({selected:id?S.data.find(a=>a.id===id)||null:null});
-window.setQ=q=>{S.aiIn=q;draw();const el=document.getElementById("ai");if(el){el.value=q;el.focus();}};
-window.syncNow=async()=>{set({loading:true});await syncData();};
-window.connectToken=async()=>{
-  const t=(document.getElementById("tokenInput")||{value:""}).value.trim();
-  if(!t){showToast("Cola o token primeiro",true);return;}
-  S.token=t;saveToken(t);set({screen:"dash",loading:true});
-  await syncData();
+// ═══════════════════════════════════════════════════════════════════════
+//  HANDLERS
+// ═══════════════════════════════════════════════════════════════════════
+window.setTab = t => set({tab:t,search:"",locF:"all",typeF:"all",wahF:"all"});
+window.setLocFilter = l => set({tab:"assets",locF:l});
+window.setTypeFilter = t => set({tab:"assets",typeF:t});
+window.sel = id => {
+  if (!id) { set({selected:null}); return; }
+  const a = S.raw.find(r=>r["ASSET ID"]===id)||null;
+  set({selected:a});
 };
-window.demoMode=()=>{S.data=MOCK;S.lastSync=new Date();set({screen:"dash"});showToast("Modo demo activo");};
-window.sendAI=async()=>{
-  const el=document.getElementById("ai");
-  const q=(el?el.value:S.aiIn).trim();
-  if(!q||S.aiLoad)return;
-  S.aiMsgs.push({r:"me",t:q});S.aiIn="";S.aiLoad=true;draw();
-  try{const r=await askAI(q);S.aiMsgs.push({r:"ai",t:r});}
-  catch{S.aiMsgs.push({r:"ai",t:"Erro de ligação."});}
-  S.aiLoad=false;draw();
+window.selUser = uid => {
+  const st = stats();
+  if (!st) return;
+  const userMap = {};
+  st.terminated.forEach(r => {
+    const u = r["BMS"]||r["Local"]||r["ASSET ID"];
+    if (!userMap[u]) userMap[u]={uid:u,bms:r["BMS"],local:r["Local"],assets:[],_isUser:true};
+    userMap[u].assets.push(r);
+  });
+  set({selected: userMap[uid]||null});
+};
+window.syncNow = async () => { await syncData(); };
+window.saveConfig = () => {
+  const raw = (document.getElementById("rawUrl")||{value:""}).value.trim();
+  const bms = (document.getElementById("bmsUrl")||{value:""}).value.trim();
+  if (!raw) { showToast("Cola o link do CSV da sheet RAW DATA", true); return; }
+  CFG.rawDataUrl = raw; CFG.bmsUrl = bms;
+  localStorage.setItem("ah_raw", raw);
+  localStorage.setItem("ah_bms", bms);
+  set({screen:"dash"});
+  syncData();
+};
+window.loadDemo = () => {
+  // Gera dados demo com estrutura real do ficheiro
+  const demo = [
+    {"ASSET ID":"LANG.MOT.001","ASSET TYPE":"Monitor","Description":"Monitor HP 22\"","SERIAL NUMBER":"SN001","Processador":"","Memória RAM (gb)":"","Local":"Lisboa HQ","BMS":"BMS.001","LOCATION TYPE":"EDIFICIOS","Aquisitation date":"2022-03-15","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
+    {"ASSET ID":"LANG.LAP.002","ASSET TYPE":"Portátil","Description":"Dell Latitude 5520","SERIAL NUMBER":"SN002","Processador":"Intel i5","Memória RAM (gb)":"8","Local":"WAHA","BMS":"WAH.ACT.001","LOCATION TYPE":"WAHA","Aquisitation date":"2023-01-10","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
+    {"ASSET ID":"LANG.LAP.003","ASSET TYPE":"Portátil","Description":"HP EliteBook","SERIAL NUMBER":"SN003","Processador":"Intel i7","Memória RAM (gb)":"16","Local":"WAHA","BMS":"WAH.CDT.002","LOCATION TYPE":"WAHA","Aquisitation date":"2022-05-20","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Pendente de recolha"},
+    {"ASSET ID":"LANG.MOT.004","ASSET TYPE":"Monitor","Description":"Monitor Dell 24\"","SERIAL NUMBER":"SN004","Processador":"","Memória RAM (gb)":"","Local":"Armazém","BMS":"WAH.CDT.003","LOCATION TYPE":"ARMAZÉM","Aquisitation date":"2021-11-15","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"#N/A"},
+    {"ASSET ID":"LANG.DSK.005","ASSET TYPE":"Desktop","Description":"Dell OptiPlex","SERIAL NUMBER":"SN005","Processador":"Intel i5","Memória RAM (gb)":"8","Local":"AVT","BMS":"BMS.005","LOCATION TYPE":"AVT","Aquisitation date":"2020-08-01","Life Cicle":"End of Life","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
+    {"ASSET ID":"LANG.LAP.006","ASSET TYPE":"Portátil","Description":"Lenovo ThinkPad","SERIAL NUMBER":"SN006","Processador":"AMD Ryzen","Memória RAM (gb)":"16","Local":"WAHA","BMS":"WAH.CDT.004","LOCATION TYPE":"WAHA","Aquisitation date":"2023-03-20","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Recuperado"},
+    {"ASSET ID":"LANG.TAB.007","ASSET TYPE":"Tablets","Description":"iPad Pro","SERIAL NUMBER":"SN007","Processador":"M2","Memória RAM (gb)":"8","Local":"Edificios","BMS":"BMS.007","LOCATION TYPE":"EDIFICIOS","Aquisitation date":"2023-06-01","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
+    {"ASSET ID":"LANG.MPC.008","ASSET TYPE":"MiniPC","Description":"Intel NUC","SERIAL NUMBER":"SN008","Processador":"Intel i3","Memória RAM (gb)":"4","Local":"Staging","BMS":"BMS.008","LOCATION TYPE":"STAGING","Aquisitation date":"2021-02-14","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Pendente de recolha"},
+    {"ASSET ID":"LANG.MOT.009","ASSET TYPE":"Monitor","Description":"LG 27\"","SERIAL NUMBER":"SN009","Processador":"","Memória RAM (gb)":"","Local":"Warehouse","BMS":"BMS.009","LOCATION TYPE":"WAREHOUSE","Aquisitation date":"2022-09-10","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
+    {"ASSET ID":"LANG.LAP.010","ASSET TYPE":"Portátil","Description":"MacBook Air","SERIAL NUMBER":"SN010","Processador":"Apple M2","Memória RAM (gb)":"8","Local":"Apartamentos","BMS":"BMS.010","LOCATION TYPE":"APARTAMENTOS","Aquisitation date":"2023-11-01","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Pendente de recolha"},
+  ];
+  S.raw = demo; S.lastSync = new Date();
+  set({screen:"dash"});
+  showToast("Modo demo activo — dados de exemplo");
 };
 
-// ══════════════════════════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════════════════════════
-loadToken();
-if(S.token){S.screen="dash";draw();syncNow();}
-else draw();
-if(AUTO_MIN>0) setInterval(()=>{if(S.screen==="dash"&&!S.loading&&S.token)syncNow();},AUTO_MIN*60*1000);
+// ═══════════════════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════════════════
+draw();
+if (CFG.rawDataUrl) syncData();
 </script>
 </body>
 </html>
