@@ -8,703 +8,525 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f0f2f5;--white:#fff;--panel:#fff;
-  --border:#e5e7eb;--border2:#d1d5db;
-  --text:#111827;--muted:#6b7280;--dim:#9ca3af;
+  --bg:#f0f2f5;--white:#fff;--border:#e5e7eb;--text:#111827;--muted:#6b7280;--dim:#9ca3af;
   --cyan:#0ea5e9;--cyan-d:#0284c7;--cyan-l:#e0f2fe;
-  --violet:#7c3aed;--violet-l:#ede9fe;
-  --red:#ef4444;--red-l:#fee2e2;--red-d:#dc2626;
+  --violet:#7c3aed;--red:#ef4444;--red-l:#fee2e2;--red-d:#dc2626;
   --amber:#f59e0b;--amber-l:#fef3c7;--amber-d:#d97706;
   --green:#10b981;--green-l:#d1fae5;--green-d:#059669;
-  --blue:#3b82f6;--blue-l:#dbeafe;
-  --orange:#f97316;--orange-l:#ffedd5;
+  --blue:#3b82f6;--orange:#f97316;
 }
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
-::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .fade{animation:fadeUp .3s ease}
-
 header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .logo{display:flex;align-items:center;gap:8px}
-.logo-icon{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:.75rem}
-.logo-text{font-weight:800;font-size:.88rem}
-.logo-text span{color:var(--cyan)}
+.logo-icon{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.logo-text{font-weight:900;font-size:.9rem}.logo-text span{color:var(--cyan)}
 .logo-sub{font-size:10px;color:var(--muted);margin-left:3px}
 nav{display:flex;gap:2px}
-.nb{padding:5px 11px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;background:transparent;color:var(--muted);transition:all .15s}
-.nb.on{background:var(--cyan-l);color:var(--cyan-d);font-weight:700}
+.nb{padding:5px 12px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;background:transparent;color:var(--muted);border-bottom:2px solid transparent;transition:all .15s}
+.nb.on{background:var(--cyan-l);color:var(--cyan-d);border-bottom-color:var(--cyan)}
 .hdr-r{display:flex;align-items:center;gap:.5rem}
-.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 0 2px var(--green-l)}
-.stxt{font-size:11px;color:var(--muted)}
-
-.btn{padding:.38rem .85rem;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;transition:all .15s}
+.btn{padding:.4rem .9rem;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;transition:all .15s}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.bp{background:var(--cyan);color:#fff}.bp:hover{background:var(--cyan-d)}
-.bs{background:var(--green-l);color:var(--green-d);border:1px solid #a7f3d0}
-.bg{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
-
-main{flex:1;padding:1.2rem 1.5rem;max-width:1440px;margin:0 auto;width:100%}
-.pg-title{font-size:1.1rem;font-weight:800;letter-spacing:-.02em}
+.bp{background:var(--cyan);color:#fff}.bs{background:var(--green-l);color:var(--green-d);border:1px solid #a7f3d0}.bg{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+main{flex:1;padding:1.25rem 1.5rem;max-width:1440px;margin:0 auto;width:100%}
+.pg-title{font-size:1.15rem;font-weight:800;letter-spacing:-.02em}
 .pg-sub{color:var(--muted);font-size:12px;margin-top:2px}
-
-/* KPI */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.75rem;margin-bottom:1.2rem}
-.kpi{background:var(--white);border-radius:12px;padding:1rem 1.1rem;border:1px solid var(--border);border-left:4px solid;transition:all .15s;position:relative;overflow:hidden}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.75rem;margin-bottom:1.25rem}
+.kpi{background:var(--white);border-radius:12px;padding:1rem 1.1rem;border:1px solid var(--border);border-left:4px solid;position:relative;overflow:hidden;transition:all .15s}
 .kpi.click{cursor:pointer}.kpi.click:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08)}
-.kpi-ico{font-size:1.3rem;margin-bottom:.4rem}
-.kpi-v{font-size:24px;font-weight:900;letter-spacing:-.03em;line-height:1}
-.kpi-l{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500;line-height:1.3}
-.kpi-s{font-size:11px;margin-top:3px;font-weight:600}
-
-/* Alert */
-.alert{border-radius:10px;padding:.8rem 1.1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1.2rem;border:1px solid}
-
-/* Section label */
-.sl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+.kpi-ico{font-size:1.4rem;margin-bottom:.4rem}
+.kpi-v{font-size:26px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.kpi-l{font-size:11px;color:var(--muted);margin-top:5px;font-weight:500;line-height:1.4}
+.kpi-s{font-size:11px;margin-top:3px;font-weight:700}
+.alert{border-radius:10px;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;margin-bottom:1.25rem;border:1px solid}
+.sl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:.65rem;display:flex;align-items:center;gap:.4rem}
 .sl::after{content:"";flex:1;height:1px;background:var(--border)}
-
-/* Cards */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.65rem;margin-bottom:1.2rem}
-.card{background:var(--white);border-radius:10px;padding:.8rem .95rem;border:1px solid var(--border);transition:all .15s;cursor:pointer}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.7rem;margin-bottom:1.25rem}
+.card{background:var(--white);border-radius:10px;padding:.85rem 1rem;border:1px solid var(--border);border-left:3px solid;cursor:pointer;transition:all .15s}
 .card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.07)}
-.card-icon{font-size:1.1rem;margin-bottom:3px}
-.card-name{font-weight:700;font-size:.75rem;margin-bottom:2px}
-.card-n{font-size:17px;font-weight:900;color:var(--text);margin:3px 0;letter-spacing:-.02em}
-.card-s{font-size:11px;color:var(--muted)}
-
-/* Table */
-.tw{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.2rem}
-.th{padding:.7rem 1.1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;background:#fafafa}
-.th-t{font-weight:700;font-size:.8rem}
-.th-s{font-size:11px;color:var(--muted)}
+.card-icon{font-size:1.15rem;margin-bottom:3px}.card-name{font-weight:700;font-size:.76rem;margin-bottom:2px}
+.card-n{font-size:18px;font-weight:900;color:var(--text);margin:3px 0;letter-spacing:-.02em}.card-s{font-size:11px;color:var(--muted)}
+.tw{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
+.th{padding:.75rem 1.1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;background:#fafafa}
+.th-t{font-weight:700;font-size:.82rem}.th-s{font-size:11px;color:var(--muted)}
 .ts{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
 thead tr{background:#f9fafb}
-th{padding:7px 11px;text-align:left;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;font-weight:600}
-td{padding:9px 11px;border-bottom:1px solid rgba(229,231,235,.5);font-size:13px;white-space:nowrap}
+th{padding:8px 12px;text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid rgba(229,231,235,.5);font-size:13px;white-space:nowrap}
 tbody tr{cursor:pointer;transition:background .1s}
 tbody tr:hover td{background:#f9fafb}
 .mono{font-family:monospace;font-size:12px}
-
-/* Filters */
 .fb{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
-input[type=text],select{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:.4rem .75rem;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border .15s}
+input[type=text],select{background:var(--white);border:1px solid var(--border);border-radius:7px;padding:.42rem .8rem;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border .15s}
 input[type=text]:focus,select:focus{border-color:var(--cyan)}
 input[type=text]{flex:1;min-width:180px}
-.cl{font-size:11px;color:var(--muted);white-space:nowrap}
-
-/* Badge */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
-
-/* Progress */
-.prog-wrap{background:var(--border);border-radius:4px;height:5px;overflow:hidden;margin-top:3px}
-.prog-bar{height:5px;border-radius:4px}
-
-/* Setup */
-.setup{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;text-align:center;padding:2rem}
-.setup-icon{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin:0 auto;box-shadow:0 8px 20px rgba(14,165,233,.28)}
-.setup-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;max-width:520px;width:100%;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.step-n{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--cyan);color:#fff;font-size:11px;font-weight:700;align-items:center;justify-content:center;flex-shrink:0;margin-right:6px}
-.step-row{display:flex;align-items:flex-start;gap:0;margin-bottom:.7rem;font-size:13px;line-height:1.5}
-.url-box{background:#f9fafb;border:1px solid var(--border);border-radius:7px;padding:.5rem .75rem;font-family:monospace;font-size:12px;color:var(--cyan-d);word-break:break-all;margin:.4rem 0 .75rem;cursor:text;user-select:all}
-
-.toast{position:fixed;bottom:1.3rem;right:1.3rem;background:var(--white);border-radius:10px;padding:.6rem 1rem;font-size:13px;font-weight:600;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--border)}
-
-/* Modal */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.38);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:500;padding:1rem}
-.mb{background:var(--white);border-radius:14px;padding:1.4rem;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 50px rgba(0,0,0,.14);animation:fadeUp .2s ease}
-.mr{display:flex;justify-content:space-between;align-items:center;padding:.42rem 0;border-bottom:1px solid var(--border)}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.prog-wrap{background:var(--border);border-radius:4px;height:6px;overflow:hidden;margin-top:4px}
+.prog{height:6px;border-radius:4px;transition:width .5s}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:500;padding:1rem}
+.mb{background:var(--white);border-radius:14px;padding:1.5rem;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 50px rgba(0,0,0,.15);animation:fadeUp .2s ease}
+.mr{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--border)}
 .mk{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
 .mv{font-size:13px;font-weight:600}
+.toast{position:fixed;bottom:1.3rem;right:1.3rem;background:var(--white);border-radius:10px;padding:.65rem 1rem;font-size:13px;font-weight:600;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--border)}
+.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;z-index:300}
+.spinner{width:36px;height:36px;border-radius:50%;border:3px solid var(--border);border-top-color:var(--cyan);animation:spin .7s linear infinite}
 </style>
 </head>
 <body>
 <div id="root"></div>
 <script>
-// ═══════════════════════════════════════════════════════════════════════
-//  CONFIGURAÇÃO — substitui os URLs abaixo com os teus Google Sheets
-//  Instruções no ecrã de setup quando abres pela primeira vez
-// ═══════════════════════════════════════════════════════════════════════
-const CFG = {
-  // URL do CSV público do Google Sheets (sheet RAW DATA)
-  // Formato: https://docs.google.com/spreadsheets/d/SEU_ID/gviz/tq?tqx=out:csv&sheet=RAW+DATA
-  rawDataUrl: localStorage.getItem("ah_raw") || "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=214853524&single=true&output=csv",
+// ═══════════════ CONFIG — URLs dos teus Google Sheets ═══════════════
+const RAW_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=214853524&single=true&output=csv";
+const BMS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=2070565508&single=true&output=csv";
+const AVG_VAL = 800; // € valor médio por equipamento
 
-  // URL do CSV público do Google Sheets (sheet BMS — tem Contract_EndDate)
-  bmsUrl: localStorage.getItem("ah_bms") || "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=2070565508&single=true&output=csv",
+// ═══════════════ META ═══════════════
+const LOC_M={"WAHA":{i:"🏠",c:"#10b981"},"EDIFICIOS":{i:"🏢",c:"#0ea5e9"},"ARMAZÉM":{i:"📦",c:"#f59e0b"},"AVT":{i:"🏭",c:"#7c3aed"},"STAGING":{i:"🔧",c:"#f97316"},"WAREHOUSE":{i:"🏗️",c:"#3b82f6"},"APARTAMENTOS":{i:"🛋️",c:"#ec4899"}};
+const TYPE_M={"Monitor":{i:"📺",c:"#ec4899"},"Portátil":{i:"💻",c:"#0ea5e9"},"Desktop":{i:"🖥️",c:"#7c3aed"},"MiniPC":{i:"🖱️",c:"#06b6d4"},"Thin Client":{i:"📦",c:"#64748b"},"Tablets":{i:"📱",c:"#8b5cf6"},"Routers":{i:"📡",c:"#f97316"},"Secretária":{i:"🪑",c:"#84cc16"},"Docks":{i:"🔌",c:"#94a3b8"}};
 
-  relatorioUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTl6ug8Znm_BoudPKLVUNv9ptpxR9VFKgpInA_nQIT02_mzbPfCsPLKSQjTzDuV8w/pub?gid=102770128&single=true&output=csv",
-  // Moeda e valor médio por equipamento (ajusta conforme o teu contexto)
-  avgAssetValue: 800, // € médio por asset para calcular valor retido
-};
+// ═══════════════ STATE ═══════════════
+const S={tab:"overview",raw:[],bms:[],lastSync:null,loading:false,search:"",locF:"all",typeF:"all",wahF:"all",selected:null,toast:null};
 
-// ═══════════════════════════════════════════════════════════════════════
-//  COLUNAS — mapeadas para a estrutura real do teu ficheiro
-// ═══════════════════════════════════════════════════════════════════════
-// RAW DATA: ASSET ID | ASSET TYPE | Description | SERIAL NUMBER |
-//           Processador | Memória RAM (gb) | Local | BMS | LOCATION TYPE |
-//           Aquisitation date | Life Cicle | WAH STATUS | RETENTION STATUS
-// BMS: tem Contract_EndDate
-
-const LOC_M = {
-  "WAHA":          {i:"🏠",c:"#10b981"},
-  "EDIFICIOS":     {i:"🏢",c:"#0ea5e9"},
-  "ARMAZÉM":       {i:"📦",c:"#f59e0b"},
-  "AVT":           {i:"🏭",c:"#7c3aed"},
-  "STAGING":       {i:"🔧",c:"#f97316"},
-  "WAREHOUSE":     {i:"🏗️",c:"#3b82f6"},
-  "APARTAMENTOS":  {i:"🛋️",c:"#ec4899"},
-};
-const TYPE_M = {
-  "Monitor":      {i:"📺",c:"#ec4899"},
-  "Portátil":     {i:"💻",c:"#0ea5e9"},
-  "Desktop":      {i:"🖥️",c:"#7c3aed"},
-  "MiniPC":       {i:"🖱️",c:"#06b6d4"},
-  "Thin Client":  {i:"📦",c:"#64748b"},
-  "Tablets":      {i:"📱",c:"#8b5cf6"},
-  "Routers":      {i:"📡",c:"#f97316"},
-  "Secretária":   {i:"🪑",c:"#84cc16"},
-};
-
-// ═══════════════════════════════════════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════════════════════════════════════
-const S = {
-  screen: "dash",
-  tab: "overview",
-  raw: [], bms: [],
-  lastSync: null, loading: false,
-  search: "", locF: "all", typeF: "all", wahF: "all",
-  selected: null, toast: null,
-};
-
-// ═══════════════════════════════════════════════════════════════════════
-//  FETCH CSV (Google Sheets público — sem login)
-// ═══════════════════════════════════════════════════════════════════════
-async function fetchCSV(url) {
-  const r = await fetch(url);
-  if (!r.ok) throw new Error("Erro a ler CSV: " + r.status);
-  const text = await r.text();
-  return parseCSV(text);
+// ═══════════════ CSV FETCH — usa proxy CORS para evitar bloqueio ═══════════════
+async function fetchCSV(url){
+  // Tenta directo primeiro, se falhar usa proxy
+  const proxies=[
+    url, // directo
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  ];
+  for(const u of proxies){
+    try{
+      const r=await fetch(u,{cache:"no-cache"});
+      if(!r.ok) continue;
+      const txt=await r.text();
+      if(txt.length>100) return parseCSV(txt);
+    }catch(e){}
+  }
+  throw new Error("Não foi possível carregar os dados. Verifica se o Google Sheets está publicado.");
 }
 
-function parseCSV(text) {
-  const lines = text.split("\n").filter(l => l.trim());
-  if (lines.length < 2) return [];
-  const headers = splitCSVLine(lines[0]).map(h => h.trim().replace(/^"|"$/g,""));
-  return lines.slice(1).map(line => {
-    const vals = splitCSVLine(line).map(v => v.trim().replace(/^"|"$/g,"").replace(/\\n/g," "));
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = vals[i] || "");
+function parseCSV(txt){
+  const lines=txt.split("\n").map(l=>l.trim()).filter(l=>l);
+  if(lines.length<2) return[];
+  const headers=csvSplit(lines[0]).map(h=>h.replace(/^"|"$/g,"").trim());
+  return lines.slice(1).map(line=>{
+    const vals=csvSplit(line).map(v=>v.replace(/^"|"$/g,"").trim());
+    const obj={};
+    headers.forEach((h,i)=>obj[h]=vals[i]||"");
     return obj;
-  }).filter(r => Object.values(r).some(v => v));
+  }).filter(r=>Object.values(r).some(v=>v));
 }
 
-function splitCSVLine(line) {
-  const result = []; let cur = ""; let inQ = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') { inQ = !inQ; }
-    else if (c === ',' && !inQ) { result.push(cur); cur = ""; }
-    else cur += c;
+function csvSplit(line){
+  const res=[];let cur="";let inQ=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"'){inQ=!inQ;}
+    else if(c===','&&!inQ){res.push(cur);cur="";}
+    else cur+=c;
   }
-  result.push(cur);
-  return result;
+  res.push(cur);return res;
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-//  SYNC
-// ═══════════════════════════════════════════════════════════════════════
-async function syncData() {
-  if (!CFG.rawDataUrl) return;
-  set({loading: true});
-  try {
-    const raw = await fetchCSV(CFG.rawDataUrl);
-    let bms = [];
-    if (CFG.bmsUrl) {
-      try { bms = await fetchCSV(CFG.bmsUrl); } catch {}
+// ═══════════════ SYNC ═══════════════
+async function sync(){
+  S.loading=true;draw();
+  try{
+    const[raw,bms]=await Promise.all([
+      fetchCSV(RAW_URL),
+      fetchCSV(BMS_URL).catch(()=>[])
+    ]);
+    S.raw=raw;S.bms=bms;S.lastSync=new Date();
+    showToast(raw.length.toLocaleString()+" assets carregados ✓");
+  }catch(e){
+    showToast(e.message,true);
+  }
+  S.loading=false;draw();
+}
+
+// ═══════════════ COMPUTED STATS ═══════════════
+function compute(){
+  const d=S.raw;
+  if(!d.length) return null;
+
+  // BMS lookup por Contract_EndDate
+  const bmsMap={};
+  S.bms.forEach(b=>{
+    const k=b["BMS"]||b["WAH ID"]||b["ID"]||"";
+    if(k) bmsMap[k]=b;
+  });
+
+  const byLoc={},byWah={},byType={};
+  d.forEach(r=>{
+    const loc=(r["LOCATION TYPE"]||"").trim()||"N/A";
+    const wah=(r["WAH STATUS"]||"").trim()||"N/A";
+    const typ=(r["ASSET TYPE"]||"").trim()||"N/A";
+    byLoc[loc]=(byLoc[loc]||0)+1;
+    byWah[wah]=(byWah[wah]||0)+1;
+    byType[typ]=(byType[typ]||0)+1;
+  });
+
+  const terminated=d.filter(r=>(r["WAH STATUS"]||"").trim()==="Terminated");
+
+  // Users Terminated with Assets — agrupados por BMS
+  const userMap={};
+  terminated.forEach(r=>{
+    const uid=(r["BMS"]||r["Local"]||r["ASSET ID"]||"").trim();
+    if(!userMap[uid]) userMap[uid]={uid,local:r["Local"]||"",assets:[],retention:r["RETENTION STATUS"]||"",exitDate:""};
+    userMap[uid].assets.push(r);
+    // pega Contract_EndDate do BMS
+    if(!userMap[uid].exitDate){
+      const bRow=bmsMap[uid];
+      if(bRow&&bRow["Contract_EndDate"]) userMap[uid].exitDate=bRow["Contract_EndDate"];
     }
-    set({raw, bms, lastSync: new Date(), loading: false});
-    showToast(raw.length.toLocaleString() + " assets carregados ✓");
-  } catch(e) {
-    set({loading: false});
-    showToast("Erro: " + e.message, true);
-  }
-}
+    if((r["RETENTION STATUS"]||"")&&r["RETENTION STATUS"]!=="#N/A") userMap[uid].retention=r["RETENTION STATUS"];
+  });
+  const users=Object.values(userMap).sort((a,b)=>b.assets.length-a.assets.length);
 
-// ═══════════════════════════════════════════════════════════════════════
-//  STATS — KPIs exactos pedidos
-// ═══════════════════════════════════════════════════════════════════════
-function stats() {
-  const d = S.raw;
-  if (!d.length) return null;
-
-  // Assets per Location
-  const byLoc = {};
-  d.forEach(r => {
-    const loc = r["LOCATION TYPE"] || "N/A";
-    byLoc[loc] = (byLoc[loc] || 0) + 1;
+  // Users in Recovery Process = tem RETENTION STATUS diferente de #N/A e não vazio
+  const inRecovery=users.filter(u=>{
+    const ret=(u.retention||"").trim();
+    return ret&&ret!=="#N/A"&&ret.toLowerCase()!=="terminated"&&ret.toLowerCase()!=="active";
   });
 
-  // Assets per WAH STATUS
-  const byWah = {};
-  d.forEach(r => {
-    const w = r["WAH STATUS"] || "N/A";
-    byWah[w] = (byWah[w] || 0) + 1;
-  });
-
-  // Assets per WAH Terminated
-  const terminated = d.filter(r => r["WAH STATUS"] === "Terminated");
-  const byWahTerm = {};
-  terminated.forEach(r => {
-    const loc = r["LOCATION TYPE"] || "N/A";
-    byWahTerm[loc] = (byWahTerm[loc] || 0) + 1;
-  });
-
-  // Users Terminated with Assets (unique BMS/pessoa)
-  const termUsers = [...new Set(terminated.map(r => r["BMS"] || r["Local"]).filter(Boolean))];
-
-  // Users Terminated in Recovery Process (RETENTION STATUS != #N/A e != Terminated e != "")
-  const inRecovery = terminated.filter(r => {
-    const ret = r["RETENTION STATUS"] || "";
-    return ret && ret !== "#N/A" && ret.toLowerCase() !== "terminated" && ret.toLowerCase() !== "active";
-  });
-  const recoveryUsers = [...new Set(inRecovery.map(r => r["BMS"] || r["Local"]).filter(Boolean))];
-
-  // Value retained per month — join com BMS para Contract_EndDate
-  const bmsMap = {};
-  S.bms.forEach(b => {
-    const key = b["BMS"] || b["WAH ID"] || b["ID"] || "";
-    if (key) bmsMap[key] = b;
-  });
-
-  // Assets terminated com data de contrato
-  const valueByMonth = {};
-  let totalValue = 0;
-  terminated.forEach(r => {
-    const bmsId = r["BMS"] || "";
-    const bmsRow = bmsMap[bmsId];
-    const endDate = bmsRow?.["Contract_EndDate"] || "";
-    const value = CFG.avgAssetValue;
-    totalValue += value;
-    if (endDate) {
-      const d = new Date(endDate);
-      if (!isNaN(d)) {
-        const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
-        valueByMonth[key] = (valueByMonth[key] || 0) + value;
-      }
+  // Value per month
+  const byMonth={};let totalVal=0;
+  terminated.forEach(r=>{
+    const bRow=bmsMap[(r["BMS"]||"").trim()];
+    const ed=bRow&&bRow["Contract_EndDate"]?bRow["Contract_EndDate"]:"";
+    totalVal+=AVG_VAL;
+    if(ed){
+      try{
+        const dt=new Date(ed);
+        if(!isNaN(dt)){
+          const k=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}`;
+          byMonth[k]=(byMonth[k]||0)+AVG_VAL;
+        }
+      }catch{}
     }
   });
 
-  // By type
-  const byType = {};
-  d.forEach(r => {
-    const t = r["ASSET TYPE"] || "N/A";
-    byType[t] = (byType[t] || 0) + 1;
-  });
+  const wahActive=byWah["Active"]||0;
+  const wahTerm=byWah["Terminated"]||0;
+  const recRate=users.length?Math.round(inRecovery.length/users.length*100):0;
 
-  return {
-    total: d.length,
-    byLoc, byWah, byWahTerm,
-    terminated, termUsers, termUsersCount: termUsers.length,
-    inRecovery, recoveryUsersCount: recoveryUsers.length,
-    valueByMonth, totalValue,
-    byType,
-  };
+  return{total:d.length,byLoc,byWah,byType,byMonth,totalVal,wahActive,wahTerm,
+    terminated,users,usersCount:users.length,inRecovery,inRecoveryCount:inRecovery.length,recRate,bmsMap};
 }
 
-function filtered() {
-  return S.raw.filter(r => {
-    if (S.locF !== "all" && r["LOCATION TYPE"] !== S.locF) return false;
-    if (S.typeF !== "all" && r["ASSET TYPE"] !== S.typeF) return false;
-    if (S.wahF !== "all" && r["WAH STATUS"] !== S.wahF) return false;
-    const q = S.search.toLowerCase();
-    return !q || ["ASSET ID","ASSET TYPE","SERIAL NUMBER","Local","LOCATION TYPE","WAH STATUS","RETENTION STATUS","BMS"]
-      .some(k => (r[k]||"").toLowerCase().includes(q));
+function getFiltered(){
+  return S.raw.filter(r=>{
+    if(S.locF!=="all"&&(r["LOCATION TYPE"]||"").trim()!==S.locF) return false;
+    if(S.typeF!=="all"&&(r["ASSET TYPE"]||"").trim()!==S.typeF) return false;
+    if(S.wahF!=="all"&&(r["WAH STATUS"]||"").trim()!==S.wahF) return false;
+    const q=S.search.toLowerCase();
+    return !q||["ASSET ID","ASSET TYPE","SERIAL NUMBER","Local","LOCATION TYPE","WAH STATUS","RETENTION STATUS","BMS"].some(k=>(r[k]||"").toLowerCase().includes(q));
   });
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-//  HELPERS
-// ═══════════════════════════════════════════════════════════════════════
-function set(p, r=true) { Object.assign(S, p); if(r) draw(); }
-function showToast(msg, err=false) { S.toast={msg,err}; draw(); setTimeout(()=>{S.toast=null;draw();},3000); }
-function ts() { return S.lastSync ? S.lastSync.toLocaleTimeString("pt-PT") : "—"; }
-function euro(v) { return "€" + Number(v).toLocaleString("pt-PT"); }
-function fmt(d) { if(!d||d==="#N/A") return "—"; try{ return new Date(d).toLocaleDateString("pt-PT"); }catch{return d;} }
+// ═══════════════ HELPERS ═══════════════
+function set(p,r=true){Object.assign(S,p);if(r)draw();}
+function showToast(msg,err=false){S.toast={msg,err};draw();setTimeout(()=>{S.toast=null;draw();},3500);}
+function ts(){return S.lastSync?S.lastSync.toLocaleTimeString("pt-PT"):"—";}
+function euro(v){return"€"+Math.round(v).toLocaleString("pt-PT");}
+function fmt(d){if(!d||d==="#N/A"||d==="0")return"—";try{const dt=new Date(d);return isNaN(dt)?"—":dt.toLocaleDateString("pt-PT");}catch{return d;}}
+function daysSince(d){if(!d||d==="#N/A")return null;try{const ms=Date.now()-new Date(d).getTime();return Math.floor(ms/86400000);}catch{return null;}}
 
-function bdg(v, cfg) {
-  const map = {
-    "Active":      ["#d1fae5","#059669"],
-    "Terminated":  ["#fee2e2","#dc2626"],
-    "#N/A":        ["#f3f4f6","#9ca3af"],
-    "Pendente":    ["#fef3c7","#d97706"],
-    "Recuperado":  ["#d1fae5","#059669"],
+function wbdg(v){
+  const m={"Active":["#d1fae5","#059669"],"Terminated":["#fee2e2","#dc2626"]};
+  const[bg,c]=m[v]||["#f3f4f6","#9ca3af"];
+  return`<span class="badge" style="background:${bg};color:${c}">${v||"—"}</span>`;
+}
+function rbdg(v){
+  const s=(v||"").trim();
+  if(!s||s==="#N/A") return`<span class="badge" style="background:#f3f4f6;color:#9ca3af">#N/A</span>`;
+  if(s.toLowerCase().includes("recup")) return`<span class="badge" style="background:#d1fae5;color:#059669">${s}</span>`;
+  if(s.toLowerCase().includes("pend")) return`<span class="badge" style="background:#fef3c7;color:#d97706">${s}</span>`;
+  return`<span class="badge" style="background:#fee2e2;color:#dc2626">${s}</span>`;
+}
+function urgBdg(days){
+  if(days===null) return"";
+  if(days>90) return`<span class="badge" style="background:#fee2e2;color:#dc2626">🔴 ${days}d</span>`;
+  if(days>30) return`<span class="badge" style="background:#fef3c7;color:#d97706">🟡 ${days}d</span>`;
+  return`<span class="badge" style="background:#d1fae5;color:#059669">🟢 ${days}d</span>`;
+}
+function lpill(l){const m=LOC_M[l]||{i:"📍",c:"#6b7280"};return`<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${l||"—"}</span>`;}
+function tpill(t){const m=TYPE_M[t]||{i:"📦",c:"#6b7280"};return`<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${t||"—"}</span>`;}
+
+// ═══════════════ RENDER ═══════════════
+function draw(){
+  document.getElementById("root").innerHTML=rDash();
+  const c=document.getElementById("cm");if(c)c.scrollTop=c.scrollHeight;
+}
+
+function rDash(){
+  const st=compute();
+  const TABS=[["overview","📊 Overview"],["terminated","🚨 Terminated"],["assets","📦 Assets"]];
+  const subs={
+    overview:st?`${st.total.toLocaleString()} assets · ${st.usersCount} users Terminated · atualizado ${ts()}`:"A carregar...",
+    terminated:st?`${st.usersCount} users · ${st.terminated.length} equipamentos · ${st.inRecoveryCount} em recuperação`:"",
+    assets:`${getFiltered().length.toLocaleString()} de ${S.raw.length.toLocaleString()} assets`,
   };
-  const [bg,c] = map[v] || cfg || ["#f3f4f6","#6b7280"];
-  return `<span class="badge" style="background:${bg};color:${c}">${v||"—"}</span>`;
-}
-
-function locPill(l) {
-  const m = LOC_M[l] || {i:"📍",c:"#6b7280"};
-  return `<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${l}</span>`;
-}
-function typePill(t) {
-  const m = TYPE_M[t] || {i:"📦",c:"#6b7280"};
-  return `<span style="color:${m.c};font-weight:600;font-size:12px">${m.i} ${t}</span>`;
-}
-
-// ═══════════════════════════════════════════════════════════════════════
-//  RENDER
-// ═══════════════════════════════════════════════════════════════════════
-function draw() {
-  document.getElementById("root").innerHTML =
-    S.screen === "setup" ? rSetup() : rDash();
-  const c = document.getElementById("cm"); if(c) c.scrollTop = c.scrollHeight;
-}
-
-// ── SETUP ─────────────────────────────────────────────────────────────
-function rSetup() {
-  return `
-<div style="display:flex;flex-direction:column;min-height:100vh;background:var(--bg)">
-<div class="setup fade">
-  <div class="setup-icon">📡</div>
-  <div>
-    <div style="font-size:1.4rem;font-weight:900;letter-spacing:-.03em">Asset<span style="color:var(--cyan)">Hub</span></div>
-    <div style="color:var(--muted);font-size:.82rem;margin-top:3px">S.Facilities · Recuperação de Equipamentos</div>
-  </div>
-
-  <div class="setup-box">
-    <div style="font-weight:700;font-size:.88rem;margin-bottom:1rem">📋 Configuração — 3 passos simples</div>
-
-    <div class="step-row"><span class="step-n">1</span>
-      <div>Abre o teu <b>Dashboards - KPI.xlsx</b> no SharePoint → <b>Ficheiro → Guardar uma cópia → Google Sheets</b><br>
-      <span style="color:var(--muted);font-size:12px">Ou faz File → Download → .xlsx e depois faz upload para o Google Drive</span></div>
-    </div>
-
-    <div class="step-row"><span class="step-n">2</span>
-      <div>No Google Sheets: <b>Ficheiro → Partilhar → Publicar na Web</b><br>
-      Para a sheet <b>RAW DATA</b> → escolhe <b>CSV</b> → copia o link<br>
-      Repete para a sheet <b>BMS</b></div>
-    </div>
-
-    <div class="step-row"><span class="step-n">3</span>
-      <div>Cola os links abaixo e clica <b>Guardar e carregar</b></div>
-    </div>
-
-    <div style="margin-top:.5rem">
-      <label style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:4px">Link CSV — Sheet RAW DATA</label>
-      <input type="text" id="rawUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&gid=..." style="margin-bottom:.75rem" value="${CFG.rawDataUrl}"/>
-
-      <label style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:4px">Link CSV — Sheet BMS (para datas de rescisão)</label>
-      <input type="text" id="bmsUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&gid=..." style="margin-bottom:1rem" value="${CFG.bmsUrl}"/>
-
-      <div style="display:flex;gap:7px">
-        <button class="btn bp" style="flex:1" onclick="saveConfig()">Guardar e carregar →</button>
-        <button class="btn bg" onclick="loadDemo()">Ver demo</button>
-      </div>
-    </div>
-  </div>
-
-  <div style="font-size:11px;color:var(--dim);max-width:440px;line-height:1.6;text-align:center">
-    💡 O Google Sheets publica os dados como CSV público — qualquer pessoa com o link do dashboard vê os dados sem precisar de login. Os links ficam guardados no teu browser.
-  </div>
-</div>
-</div>`;
-}
-
-// ── DASHBOARD ─────────────────────────────────────────────────────────
-function rDash() {
-  const st = stats();
-  const TABS = [["overview","📊 Overview"],["terminated","🚨 Terminated"],["assets","📦 Assets"]];
-  const subs = {
-    overview: st ? `${st.total.toLocaleString()} assets · ${st.termUsersCount} utilizadores Terminated · ${ts()}` : "A carregar...",
-    terminated: st ? `${st.termUsersCount} utilizadores · ${st.terminated.length} equipamentos · ${st.recoveryUsersCount} em recuperação` : "",
-    assets: `${filtered().length.toLocaleString()} de ${S.raw.length.toLocaleString()} assets`,
-  };
-  return `
+  return`
 <header>
   <div class="logo">
     <div class="logo-icon">📡</div>
     <div class="logo-text">Asset<span>Hub</span></div>
     <span class="logo-sub">S.Facilities</span>
   </div>
-  <nav>${TABS.map(([t,l])=>`<button class="nb${S.tab===t?" on":""}" onclick="setTab('${t}')">${l}</button>`).join("")}</nav>
+  <nav>${TABS.map(([t,l])=>`<button class="nb${S.tab===t?" on":""}" onclick="G.tab('${t}')">${l}</button>`).join("")}</nav>
   <div class="hdr-r">
-    ${S.lastSync?`<span class="sdot"></span><span class="stxt">${ts()}</span>`:""}
-    <button class="btn bs" onclick="syncNow()" ${S.loading?"disabled":""}>
+    ${S.lastSync?`<span style="width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;box-shadow:0 0 0 2px #d1fae5"></span><span style="font-size:11px;color:var(--muted)">${ts()}</span>`:""}
+    <button class="btn bs" onclick="G.sync()" ${S.loading?"disabled":""}>
       <span style="${S.loading?"display:inline-block;animation:spin .8s linear infinite":""}">↺</span> Sync
     </button>
-    <button class="btn bg" onclick="set({screen:'setup'})" title="Configurar">⚙️</button>
   </div>
 </header>
 <main>
-  <div style="margin-bottom:1rem" class="fade">
-    <div class="pg-title">${TABS.find(t=>t[0]===S.tab)?.[1]}</div>
-    <div class="pg-sub">${subs[S.tab]}</div>
+  <div style="margin-bottom:1.1rem" class="fade">
+    <div class="pg-title">${TABS.find(t=>t[0]===S.tab)?.[1]||""}</div>
+    <div class="pg-sub">${subs[S.tab]||""}</div>
   </div>
-  ${!st && S.raw.length===0 ? `<div style="text-align:center;padding:3rem;color:var(--muted)">
-    <div style="font-size:2rem;margin-bottom:.5rem">📭</div>
-    <div>Sem dados. <a href="#" onclick="set({screen:'setup'})" style="color:var(--cyan)">Configura os links do Google Sheets</a>.</div>
-  </div>` : `<div class="fade">
-    ${S.tab==="overview"?rOverview(st):S.tab==="terminated"?rTerminated(st):rAssets()}
-  </div>`}
+  <div class="fade">
+    ${S.raw.length===0&&!S.loading?rEmpty():S.tab==="overview"?rOverview(st):S.tab==="terminated"?rTerminated(st):rAssets()}
+  </div>
 </main>
+${S.loading?`<div class="loading-overlay"><div class="spinner"></div><div style="font-size:13px;color:var(--muted)">A carregar dados...</div></div>`:""}
 ${S.selected?rModal(S.selected):""}
 ${S.toast?`<div class="toast" style="border-color:${S.toast.err?"var(--red)":"var(--green)"}">${S.toast.err?"❌":"✅"} ${S.toast.msg}</div>`:""}`;
 }
 
-// ── OVERVIEW ───────────────────────────────────────────────────────────
-function rOverview(st) {
-  if (!st) return "";
+function rEmpty(){
+  return`<div style="text-align:center;padding:4rem 2rem;color:var(--muted)">
+    <div style="font-size:3rem;margin-bottom:1rem">📭</div>
+    <div style="font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.5rem">Sem dados carregados</div>
+    <div style="font-size:13px;margin-bottom:1.5rem">Clica em Sync para carregar os dados do Google Sheets</div>
+    <button class="btn bp" onclick="G.sync()">↺ Carregar Dados</button>
+  </div>`;
+}
 
-  const wahActive = st.byWah["Active"] || 0;
-  const wahTerm   = st.byWah["Terminated"] || 0;
+// ═══ OVERVIEW ═══
+function rOverview(st){
+  if(!st) return rEmpty();
 
-  // Value by month (últimos 6 meses com dados)
-  const monthEntries = Object.entries(st.valueByMonth)
-    .sort((a,b) => b[0].localeCompare(a[0])).slice(0,6).reverse();
-  const maxVal = Math.max(...monthEntries.map(e=>e[1]),1);
+  // KPI cards — exactamente os pedidos
+  const kpis=[
+    {l:"Assets per Location",sub:"total inventário",v:st.total.toLocaleString(),c:"#0ea5e9",bc:"#0ea5e9",i:"📦"},
+    {l:"Assets per WAH Active",sub:"colaboradores activos",v:st.wahActive.toLocaleString(),c:"#059669",bc:"#10b981",i:"✅"},
+    {l:"Assets per WAH Terminated",sub:"equipamentos de saídas",v:st.wahTerm.toLocaleString(),c:"#dc2626",bc:"#ef4444",i:"🚪",click:"terminated"},
+    {l:"Users Terminated with Assets",sub:"utilizadores com equipamentos",v:st.usersCount,c:"#dc2626",bc:"#ef4444",i:"👤",click:"terminated"},
+    {l:"Users Terminated in Recovery",sub:"em processo de devolução",v:st.inRecoveryCount,c:"#d97706",bc:"#f59e0b",i:"🔄",click:"terminated"},
+    {l:"Value Retained — Total",sub:"valor estimado retido",v:euro(st.totalVal),c:"#f97316",bc:"#f97316",i:"💰",small:true},
+    {l:"Value Retained — Média/Mês",sub:"baseado em "+euro(AVG_VAL)+" por asset",v:euro(Math.round(st.totalVal/Math.max(Object.keys(st.byMonth).length,1))),c:"#7c3aed",bc:"#7c3aed",i:"📈",small:true},
+  ];
 
-  // Locations
-  const locCards = Object.entries(st.byLoc)
-    .filter(([l])=>l!=="N/A"&&l!=="#N/A")
-    .sort((a,b)=>b[1]-a[1])
-    .map(([loc,total])=>{
-      const m = LOC_M[loc]||{i:"📍",c:"#6b7280"};
-      const term = st.terminated.filter(r=>r["LOCATION TYPE"]===loc).length;
-      return `<div class="card" style="border-left:3px solid ${m.c}" onclick="setLocFilter('${loc}')">
-        <div class="card-icon">${m.i}</div>
-        <div class="card-name" style="color:${m.c}">${loc}</div>
-        <div class="card-n">${total.toLocaleString()}</div>
-        <div class="card-s">${term?`<b style="color:var(--red-d)">${term} terminated</b>`:"Todos ativos"}</div>
-      </div>`;
-    }).join("");
+  // Progresso recuperação
+  const total=st.usersCount||1;
+  const recPct=Math.round(st.inRecoveryCount/total*100);
+  const pendPct=Math.round((st.users.filter(u=>!(u.retention||"").trim()||(u.retention||"")==="#N/A").length)/total*100);
 
-  // Types
-  const typeCards = Object.entries(st.byType)
-    .filter(([t])=>t!=="N/A"&&t!=="#N/A")
-    .sort((a,b)=>b[1]-a[1]).slice(0,8)
-    .map(([type,total])=>{
-      const m = TYPE_M[type]||{i:"📦",c:"#6b7280"};
-      const term = st.terminated.filter(r=>r["ASSET TYPE"]===type).length;
-      return `<div class="card" style="border-left:3px solid ${m.c}" onclick="setTypeFilter('${type}')">
-        <div class="card-icon">${m.i}</div>
-        <div class="card-name" style="color:${m.c}">${type}</div>
-        <div class="card-n">${total.toLocaleString()}</div>
-        <div class="card-s">${term?`<span style="color:var(--red-d)">${term} term.</span>`:"0 term."}</div>
-      </div>`;
-    }).join("");
+  // Por localização
+  const locCards=Object.entries(st.byLoc).filter(([l])=>l!=="N/A"&&l!=="#N/A").sort((a,b)=>b[1]-a[1]).map(([loc,n])=>{
+    const m=LOC_M[loc]||{i:"📍",c:"#6b7280"};
+    const term=st.terminated.filter(r=>(r["LOCATION TYPE"]||"").trim()===loc).length;
+    return`<div class="card" style="border-left-color:${m.c}" onclick="G.locF('${loc}')">
+      <div class="card-icon">${m.i}</div><div class="card-name" style="color:${m.c}">${loc}</div>
+      <div class="card-n">${n.toLocaleString()}</div>
+      <div class="card-s">${term?`<b style="color:#dc2626">${term} terminated</b>`:"todos ativos"}</div>
+    </div>`;
+  }).join("");
 
-  return `
-  <!-- KPIs principais -->
+  // Por tipo
+  const typeCards=Object.entries(st.byType).filter(([t])=>t!=="N/A"&&t!=="#N/A").sort((a,b)=>b[1]-a[1]).slice(0,8).map(([type,n])=>{
+    const m=TYPE_M[type]||{i:"📦",c:"#6b7280"};
+    const term=st.terminated.filter(r=>(r["ASSET TYPE"]||"").trim()===type).length;
+    return`<div class="card" style="border-left-color:${m.c}" onclick="G.typeF('${type}')">
+      <div class="card-icon">${m.i}</div><div class="card-name" style="color:${m.c}">${type}</div>
+      <div class="card-n">${n.toLocaleString()}</div>
+      <div class="card-s">${term?`<span style="color:#dc2626">${term} term.</span>`:"0 term."}</div>
+    </div>`;
+  }).join("");
+
+  // Gráfico valor por mês
+  const months=Object.entries(st.byMonth).sort((a,b)=>a[0].localeCompare(b[0])).slice(-6);
+  const maxM=Math.max(...months.map(e=>e[1]),1);
+
+  return`
   <div class="kpi-grid">
-    <div class="kpi" style="border-left-color:var(--cyan)">
-      <div class="kpi-ico">📦</div>
-      <div class="kpi-v" style="color:var(--cyan-d)">${st.total.toLocaleString()}</div>
-      <div class="kpi-l">Assets per Location<br><span style="font-size:10px">(total inventário)</span></div>
-    </div>
-    <div class="kpi" style="border-left-color:var(--blue)">
-      <div class="kpi-ico">📍</div>
-      <div class="kpi-v" style="color:var(--blue)">${Object.keys(st.byLoc).filter(k=>k!=="N/A"&&k!=="#N/A").length}</div>
-      <div class="kpi-l">Localizações WAH<br><span style="font-size:10px">com assets activos</span></div>
-    </div>
-    <div class="kpi" style="border-left-color:var(--green)">
-      <div class="kpi-ico">✅</div>
-      <div class="kpi-v" style="color:var(--green-d)">${wahActive.toLocaleString()}</div>
-      <div class="kpi-l">Assets per WAH<br><span style="font-size:10px">status Active</span></div>
-    </div>
-    <div class="kpi click" style="border-left-color:var(--red)" onclick="setTab('terminated')">
-      <div class="kpi-ico">🚪</div>
-      <div class="kpi-v" style="color:var(--red-d)">${wahTerm.toLocaleString()}</div>
-      <div class="kpi-l">Assets per WAH<br><span style="font-size:10px">Terminated</span></div>
-      <div class="kpi-s" style="color:var(--red-d)">ver lista →</div>
-    </div>
-    <div class="kpi click" style="border-left-color:var(--red)" onclick="setTab('terminated')">
-      <div class="kpi-ico">👤</div>
-      <div class="kpi-v" style="color:var(--red-d)">${st.termUsersCount}</div>
-      <div class="kpi-l">Users Terminated<br><span style="font-size:10px">com equipamentos</span></div>
-      <div class="kpi-s" style="color:var(--red-d)">ver lista →</div>
-    </div>
-    <div class="kpi click" style="border-left-color:var(--amber)" onclick="setTab('terminated')">
-      <div class="kpi-ico">🔄</div>
-      <div class="kpi-v" style="color:var(--amber-d)">${st.recoveryUsersCount}</div>
-      <div class="kpi-l">Users Terminated<br><span style="font-size:10px">em processo de recuperação</span></div>
-      <div class="kpi-s" style="color:var(--amber-d)">ver detalhes →</div>
-    </div>
-    <div class="kpi" style="border-left-color:var(--orange)">
-      <div class="kpi-ico">💰</div>
-      <div class="kpi-v" style="color:var(--orange);font-size:18px">${euro(st.totalValue)}</div>
-      <div class="kpi-l">Value retained<br><span style="font-size:10px">total equipamentos Terminated</span></div>
-    </div>
-    <div class="kpi" style="border-left-color:var(--violet)">
-      <div class="kpi-ico">📈</div>
-      <div class="kpi-v" style="color:var(--violet);font-size:18px">${euro(Math.round(st.totalValue/Math.max(monthEntries.length,1)))}</div>
-      <div class="kpi-l">Value retained<br><span style="font-size:10px">média por mês</span></div>
-    </div>
+    ${kpis.map(k=>`<div class="kpi${k.click?" click":""}" style="border-left-color:${k.bc}" ${k.click?`onclick="G.tab('${k.click}')"`:""}
+      onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+      <div class="kpi-ico">${k.i}</div>
+      <div class="kpi-v" style="color:${k.c};font-size:${k.small?"18px":"26px"}">${k.v}</div>
+      <div class="kpi-l">${k.l}<br><span style="font-size:10px;opacity:.7">${k.sub}</span></div>
+      ${k.click?`<div class="kpi-s" style="color:${k.c}">ver lista →</div>`:""}
+    </div>`).join("")}
   </div>
 
-  ${wahTerm > 0 ? `<div class="alert" style="background:#fffbeb;border-color:#fbbf24">
-    <span style="font-size:1.3rem">🚨</span>
+  ${st.wahTerm>0?`<div class="alert" style="background:#fffbeb;border-color:#fbbf24">
+    <span style="font-size:1.4rem">🚨</span>
     <div style="flex:1">
-      <div style="font-weight:700;color:#92400e;font-size:.82rem">${wahTerm} equipamentos de colaboradores Terminated por recuperar</div>
-      <div style="color:var(--muted);font-size:12px;margin-top:1px">${st.termUsersCount} utilizadores · ${st.recoveryUsersCount} em processo · valor retido: ${euro(st.totalValue)}</div>
+      <div style="font-weight:700;color:#92400e;font-size:.83rem">${st.wahTerm} equipamentos por recuperar de ${st.usersCount} colaboradores Terminated</div>
+      <div style="color:var(--muted);font-size:12px;margin-top:2px">${st.inRecoveryCount} em processo de recuperação · valor estimado retido: ${euro(st.totalVal)}</div>
     </div>
-    <button class="btn" style="background:#f59e0b;color:#fff;flex-shrink:0" onclick="setTab('terminated')">Gerir →</button>
-  </div>` : ""}
+    <button class="btn" style="background:#f59e0b;color:#fff;flex-shrink:0" onclick="G.tab('terminated')">Gerir →</button>
+  </div>`:""}
 
-  <!-- Value por mês -->
-  ${monthEntries.length > 0 ? `
+  <!-- Progresso -->
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.25rem">
+    <div style="font-weight:700;font-size:.82rem;margin-bottom:.85rem">📊 Progresso de Recuperação</div>
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+      ${[{l:"Em Recuperação",v:st.inRecoveryCount,pct:recPct,c:"#10b981"},{l:"Sem Acção",v:st.users.filter(u=>!(u.retention||"").trim()||(u.retention||"")==="#N/A").length,pct:pendPct,c:"#f59e0b"}].map(x=>`
+      <div style="flex:1;min-width:140px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+          <span style="font-size:11px;color:var(--muted)">${x.l}</span>
+          <span style="font-size:11px;font-weight:700;color:${x.c}">${x.v} (${x.pct}%)</span>
+        </div>
+        <div class="prog-wrap"><div class="prog" style="width:${x.pct}%;background:${x.c}"></div></div>
+      </div>`).join("")}
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:.75rem">Total Terminated: <b>${st.usersCount}</b> utilizadores com <b>${st.terminated.length}</b> equipamentos</div>
+  </div>
+
+  ${months.length?`
   <div class="sl">Value Retained per Month</div>
-  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.2rem">
-    <div style="display:flex;align-items:flex-end;gap:8px;height:80px;margin-bottom:.5rem">
-      ${monthEntries.map(([month,val])=>{
-        const pct = Math.round(val/maxVal*100);
-        const label = month.split("-").reverse().join("/");
-        return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
-          <div style="font-size:10px;color:var(--muted);font-weight:600">${euro(val)}</div>
-          <div style="width:100%;background:var(--violet);border-radius:4px 4px 0 0;height:${Math.max(pct*.6,4)}px;opacity:.85"></div>
-          <div style="font-size:10px;color:var(--muted)">${label}</div>
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.25rem">
+    <div style="display:flex;align-items:flex-end;gap:10px;height:90px;margin-bottom:.5rem">
+      ${months.map(([m,v])=>{
+        const pct=Math.round(v/maxM*100);
+        const lbl=m.split("-").reverse().join("/");
+        return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+          <div style="font-size:10px;color:var(--muted);font-weight:600">${euro(v)}</div>
+          <div style="width:100%;background:#7c3aed;border-radius:4px 4px 0 0;height:${Math.max(pct*.7,5)}px;opacity:.8"></div>
+          <div style="font-size:10px;color:var(--muted)">${lbl}</div>
         </div>`;
       }).join("")}
     </div>
-    <div style="font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:.5rem;margin-top:.25rem">
-      Total acumulado: <b style="color:var(--text)">${euro(st.totalValue)}</b> · baseado em valor médio por asset de <b>${euro(CFG.avgAssetValue)}</b>
-      <a href="#" onclick="set({screen:'setup'})" style="color:var(--cyan);margin-left:.5rem">ajustar valor →</a>
+    <div style="font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:.5rem">
+      Total acumulado: <b style="color:var(--text)">${euro(st.totalVal)}</b> · valor médio por asset: <b>${euro(AVG_VAL)}</b>
     </div>
-  </div>` : ""}
+  </div>`:""}
 
   <div class="sl">Assets per Location (WAH)</div>
-  <div class="card-grid">${locCards||'<div style="color:var(--muted);font-size:13px">Sem dados de localização</div>'}</div>
-
+  <div class="card-grid">${locCards||'<p style="color:var(--muted);font-size:13px">Sem dados</p>'}</div>
   <div class="sl">Assets por Tipo</div>
-  <div class="card-grid">${typeCards||'<div style="color:var(--muted);font-size:13px">Sem dados</div>'}</div>`;
+  <div class="card-grid">${typeCards||'<p style="color:var(--muted);font-size:13px">Sem dados</p>'}</div>`;
 }
 
-// ── TERMINATED TAB ─────────────────────────────────────────────────────
-function rTerminated(st) {
-  if (!st) return "";
+// ═══ TERMINATED ═══
+function rTerminated(st){
+  if(!st) return rEmpty();
 
-  // Agrupar por utilizador (BMS ou Local)
-  const userMap = {};
-  st.terminated.forEach(r => {
-    const uid = r["BMS"] || r["Local"] || r["ASSET ID"];
-    if (!userMap[uid]) userMap[uid] = {uid, bms:r["BMS"], local:r["Local"], assets:[], retention: r["RETENTION STATUS"]};
-    userMap[uid].assets.push(r);
-    // atualiza retention se tiver info
-    if (r["RETENTION STATUS"] && r["RETENTION STATUS"] !== "#N/A") {
-      userMap[uid].retention = r["RETENTION STATUS"];
-    }
-  });
-
-  const users = Object.values(userMap).sort((a,b) => b.assets.length - a.assets.length);
-
-  // Tabela de utilizadores terminated com equipamentos
-  const userRows = users.map(u => {
-    const ret = u.retention || "#N/A";
-    const retBg = ret === "#N/A" ? ["#fef3c7","#d97706"] :
-                  ret.toLowerCase().includes("recup") ? ["#d1fae5","#059669"] :
-                  ["#fee2e2","#dc2626"];
-    return `<tr onclick="selUser('${u.uid.replace(/'/g,"\\'")}')">
-      <td class="mono" style="color:var(--cyan-d);font-weight:600">${u.bms||"—"}</td>
+  const userRows=st.users.map(u=>{
+    const days=daysSince(u.exitDate);
+    const types=[...new Set(u.assets.map(a=>(a["ASSET TYPE"]||"").trim()))].filter(Boolean);
+    const locs=[...new Set(u.assets.map(a=>(a["LOCATION TYPE"]||"").trim()))].filter(Boolean);
+    return`<tr onclick="G.selUser('${u.uid.replace(/'/g,"\\'")}')">
+      <td class="mono" style="color:#0284c7;font-weight:700">${u.uid||"—"}</td>
       <td>${u.local||"—"}</td>
-      <td><b style="color:var(--text)">${u.assets.length}</b></td>
-      <td>${[...new Set(u.assets.map(a=>a["ASSET TYPE"]))].filter(Boolean).join(", ")||"—"}</td>
-      <td>${[...new Set(u.assets.map(a=>a["LOCATION TYPE"]))].filter(Boolean).map(l=>locPill(l)).join(" ")||"—"}</td>
-      <td><span class="badge" style="background:${retBg[0]};color:${retBg[1]}">${ret}</span></td>
+      <td><b>${u.assets.length}</b></td>
+      <td style="font-size:12px">${types.join(", ")||"—"}</td>
+      <td>${locs.map(l=>lpill(l)).join(" ")||"—"}</td>
+      <td>${fmt(u.exitDate)}</td>
+      <td>${urgBdg(days)}</td>
+      <td>${rbdg(u.retention)}</td>
     </tr>`;
   }).join("");
 
-  // Assets terminated individuais
-  const assetRows = st.terminated.map(r => {
-    const ret = r["RETENTION STATUS"]||"#N/A";
-    const retCol = ret.toLowerCase().includes("recup")?["#d1fae5","#059669"]:ret==="#N/A"?["#fef3c7","#d97706"]:["#fee2e2","#dc2626"];
-    return `<tr onclick="sel('${r["ASSET ID"].replace(/'/g,"\\'")}')">
-      <td class="mono" style="color:var(--cyan-d);font-weight:600">${r["ASSET ID"]}</td>
-      <td>${typePill(r["ASSET TYPE"])}</td>
+  const assetRows=st.terminated.map(r=>{
+    const bRow=st.bmsMap[(r["BMS"]||"").trim()];
+    const ed=bRow&&bRow["Contract_EndDate"]?bRow["Contract_EndDate"]:"";
+    const days=daysSince(ed);
+    return`<tr onclick="G.sel('${(r["ASSET ID"]||"").replace(/'/g,"\\'")}')">
+      <td class="mono" style="color:#0284c7;font-weight:700">${r["ASSET ID"]||"—"}</td>
+      <td>${tpill(r["ASSET TYPE"])}</td>
       <td class="mono" style="color:var(--muted)">${r["SERIAL NUMBER"]||"—"}</td>
       <td style="color:var(--muted)">${r["BMS"]||"—"}</td>
       <td>${r["Local"]||"—"}</td>
-      <td>${locPill(r["LOCATION TYPE"])}</td>
-      <td><span class="badge" style="background:${retCol[0]};color:${retCol[1]}">${ret}</span></td>
+      <td>${lpill((r["LOCATION TYPE"]||"").trim())}</td>
+      <td>${fmt(ed)}</td>
+      <td>${urgBdg(days)}</td>
+      <td>${rbdg(r["RETENTION STATUS"])}</td>
     </tr>`;
   }).join("");
 
-  return `
-  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+  return`
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))">
     ${[
-      {l:"Utilizadores Terminated",v:st.termUsersCount,c:"var(--red-d)",i:"👤",bc:"var(--red)"},
-      {l:"Equipamentos por recuperar",v:st.terminated.length,c:"var(--red-d)",i:"📦",bc:"var(--red)"},
-      {l:"Em recuperação",v:st.recoveryUsersCount,c:"var(--amber-d)",i:"🔄",bc:"var(--amber)"},
-      {l:"Valor retido total",v:euro(st.totalValue),c:"var(--orange)",i:"💰",bc:"var(--orange)"},
+      {l:"Users Terminated with Assets",v:st.usersCount,c:"#dc2626",bc:"#ef4444",i:"👤"},
+      {l:"Total Equipamentos",v:st.terminated.length,c:"#dc2626",bc:"#ef4444",i:"📦"},
+      {l:"Users in Recovery Process",v:st.inRecoveryCount,c:"#d97706",bc:"#f59e0b",i:"🔄"},
+      {l:"Value Retained Total",v:euro(st.totalVal),c:"#f97316",bc:"#f97316",i:"💰",small:true},
     ].map(k=>`<div class="kpi" style="border-left-color:${k.bc}">
       <div class="kpi-ico">${k.i}</div>
-      <div class="kpi-v" style="color:${k.c};font-size:${typeof k.v==='string'&&k.v.includes('€')?"18px":"24px"}">${k.v}</div>
+      <div class="kpi-v" style="color:${k.c};font-size:${k.small?"18px":"26px"}">${k.v}</div>
       <div class="kpi-l">${k.l}</div>
     </div>`).join("")}
   </div>
 
-  <!-- Lista de utilizadores -->
-  <div class="tw" style="border-top:3px solid var(--red)">
+  <div class="tw" style="border-top:3px solid #ef4444">
     <div class="th">
-      <span class="th-t">👤 Users Terminated com Equipamentos</span>
-      <span class="th-s">${users.length} utilizadores · ${st.terminated.length} assets</span>
+      <span class="th-t">👤 Users Terminated com Equipamentos + Data de Rescisão</span>
+      <span class="th-s">${st.usersCount} utilizadores · ${st.terminated.length} assets</span>
     </div>
     <div class="ts"><table>
-      <thead><tr><th>BMS ID</th><th>Local</th><th>Nº Assets</th><th>Tipos</th><th>Localização</th><th>Retention</th></tr></thead>
-      <tbody>${userRows||'<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:1.5rem">Sem dados Terminated.</td></tr>'}</tbody>
+      <thead><tr><th>BMS ID</th><th>Local</th><th>Nº Assets</th><th>Tipos</th><th>Localização</th><th>Data Rescisão</th><th>Dias</th><th>Retention</th></tr></thead>
+      <tbody>${userRows||'<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:1.5rem">Sem dados Terminated.</td></tr>'}</tbody>
     </table></div>
   </div>
 
-  <!-- Lista de assets individuais -->
-  <div class="tw" style="border-top:3px solid var(--amber)">
+  <div class="tw" style="border-top:3px solid #f59e0b">
     <div class="th">
-      <span class="th-t">📦 Equipamentos Terminated — Detalhe</span>
+      <span class="th-t">📦 Equipamentos Terminated — Detalhe por Asset</span>
       <span class="th-s">${st.terminated.length} assets</span>
     </div>
     <div class="ts"><table>
-      <thead><tr><th>Asset ID</th><th>Tipo</th><th>Serial</th><th>BMS</th><th>Local</th><th>Localização</th><th>Retention</th></tr></thead>
-      <tbody>${assetRows||'<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:1.5rem">Sem assets Terminated.</td></tr>'}</tbody>
+      <thead><tr><th>Asset ID</th><th>Tipo</th><th>Serial</th><th>BMS</th><th>Local</th><th>Localização</th><th>Data Rescisão</th><th>Dias</th><th>Retention</th></tr></thead>
+      <tbody>${assetRows||'<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:1.5rem">Sem assets Terminated.</td></tr>'}</tbody>
     </table></div>
   </div>`;
 }
 
-// ── ASSETS TAB ─────────────────────────────────────────────────────────
-function rAssets() {
-  const f = filtered();
-  const locs = [...new Set(S.raw.map(r=>r["LOCATION TYPE"]).filter(v=>v&&v!=="#N/A"))];
-  const types = [...new Set(S.raw.map(r=>r["ASSET TYPE"]).filter(v=>v&&v!=="#N/A"))];
-  const rows = f.map(r => `<tr onclick="sel('${r["ASSET ID"].replace(/'/g,"\\'")}')">
-    <td class="mono" style="color:var(--cyan-d);font-weight:600">${r["ASSET ID"]}</td>
-    <td>${typePill(r["ASSET TYPE"])}</td>
+// ═══ ASSETS ═══
+function rAssets(){
+  const f=getFiltered();
+  const locs=[...new Set(S.raw.map(r=>(r["LOCATION TYPE"]||"").trim()).filter(v=>v&&v!=="N/A"&&v!=="#N/A"))];
+  const types=[...new Set(S.raw.map(r=>(r["ASSET TYPE"]||"").trim()).filter(v=>v&&v!=="N/A"&&v!=="#N/A"))];
+  const rows=f.map(r=>`<tr onclick="G.sel('${(r["ASSET ID"]||"").replace(/'/g,"\\'")}')">
+    <td class="mono" style="color:#0284c7;font-weight:700">${r["ASSET ID"]||"—"}</td>
+    <td>${tpill((r["ASSET TYPE"]||"").trim())}</td>
     <td class="mono" style="color:var(--muted)">${r["SERIAL NUMBER"]||"—"}</td>
     <td style="color:var(--muted)">${r["Local"]||"—"}</td>
-    <td>${locPill(r["LOCATION TYPE"])}</td>
-    <td>${bdg(r["WAH STATUS"])}</td>
-    <td><span class="badge" style="background:${r["RETENTION STATUS"]==="#N/A"?"#f3f4f6":"#fef3c7"};color:${r["RETENTION STATUS"]==="#N/A"?"#9ca3af":"#d97706"}">${r["RETENTION STATUS"]||"—"}</span></td>
+    <td>${lpill((r["LOCATION TYPE"]||"").trim())}</td>
+    <td>${wbdg((r["WAH STATUS"]||"").trim())}</td>
+    <td>${rbdg(r["RETENTION STATUS"])}</td>
     <td style="color:var(--muted);font-size:11px">${r["Life Cicle"]||"—"}</td>
   </tr>`).join("");
-
-  return `
+  return`
   <div class="fb">
-    <input type="text" placeholder="🔍  Asset ID, Serial, Local, BMS..." value="${S.search}" oninput="set({search:this.value})"/>
-    <select onchange="set({locF:this.value})">
+    <input type="text" placeholder="🔍  Asset ID, Serial, Local, BMS..." value="${S.search}" oninput="G.search(this.value)"/>
+    <select onchange="G.locF(this.value)">
       <option value="all"${S.locF==="all"?" selected":""}>Todas as localizações</option>
-      ${locs.map(l=>`<option${S.locF===l?" selected":""}>${l}</option>`).join("")}
+      ${locs.map(l=>`<option value="${l}"${S.locF===l?" selected":""}>${l}</option>`).join("")}
     </select>
-    <select onchange="set({typeF:this.value})">
+    <select onchange="G.typeF(this.value)">
       <option value="all"${S.typeF==="all"?" selected":""}>Todos os tipos</option>
-      ${types.map(t=>`<option${S.typeF===t?" selected":""}>${t}</option>`).join("")}
+      ${types.map(t=>`<option value="${t}"${S.typeF===t?" selected":""}>${t}</option>`).join("")}
     </select>
-    <select onchange="set({wahF:this.value})">
+    <select onchange="G.wahF(this.value)">
       <option value="all"${S.wahF==="all"?" selected":""}>WAH Status</option>
-      <option${S.wahF==="Active"?" selected":""}>Active</option>
-      <option${S.wahF==="Terminated"?" selected":""}>Terminated</option>
+      <option value="Active"${S.wahF==="Active"?" selected":""}>Active</option>
+      <option value="Terminated"${S.wahF==="Terminated"?" selected":""}>Terminated</option>
     </select>
-    <button class="btn bg" onclick="set({locF:'all',typeF:'all',wahF:'all',search:''})">↺</button>
-    <span class="cl">${f.length.toLocaleString()} assets</span>
+    <button class="btn bg" onclick="G.reset()">↺</button>
+    <span style="font-size:11px;color:var(--muted);white-space:nowrap">${f.length.toLocaleString()} assets</span>
   </div>
   <div class="tw"><div class="ts"><table>
     <thead><tr><th>Asset ID</th><th>Tipo</th><th>Serial</th><th>Local</th><th>Localização</th><th>WAH Status</th><th>Retention</th><th>Life Cycle</th></tr></thead>
@@ -712,108 +534,78 @@ function rAssets() {
   </table></div></div>`;
 }
 
-// ── MODAL ──────────────────────────────────────────────────────────────
-function rModal(a) {
-  const isUser = a._isUser;
-  if (isUser) {
-    const rows = a.assets.map(r=>`
-      <div style="background:#f9fafb;border-radius:8px;padding:.6rem .85rem;margin-bottom:.4rem;font-size:12px">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <span class="mono" style="color:var(--cyan-d);font-weight:700">${r["ASSET ID"]}</span>
-          ${typePill(r["ASSET TYPE"])}
-        </div>
-        <div style="color:var(--muted);margin-top:2px">S/N: ${r["SERIAL NUMBER"]||"—"} · ${r["LOCATION TYPE"]||"—"}</div>
-      </div>`).join("");
-    return `<div class="ov" onclick="sel(null)"><div class="mb" onclick="event.stopPropagation()">
+// ═══ MODAL ═══
+function rModal(a){
+  if(a._isUser){
+    const st=compute();
+    const rows=a.assets.map(r=>`<div style="background:#f9fafb;border-radius:8px;padding:.6rem .85rem;margin-bottom:.4rem">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="mono" style="color:#0284c7;font-weight:700;font-size:12px">${r["ASSET ID"]||"—"}</span>
+        ${tpill((r["ASSET TYPE"]||"").trim())}
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">S/N: ${r["SERIAL NUMBER"]||"—"} · ${(r["LOCATION TYPE"]||"").trim()||"—"}</div>
+    </div>`).join("");
+    return`<div class="ov" onclick="G.sel(null)"><div class="mb" onclick="event.stopPropagation()">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
-        <div><div style="font-size:1.3rem;margin-bottom:3px">👤</div>
-        <div style="font-weight:800;font-size:.95rem">${a.uid}</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:1px">${a.local||""} · ${a.assets.length} equipamentos</div></div>
+        <div><div style="font-size:1.4rem;margin-bottom:3px">👤</div>
+          <div style="font-weight:800;font-size:.95rem">${a.uid}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">${a.local||"—"} · ${a.assets.length} equipamentos · rescisão: ${fmt(a.exitDate)}</div>
+        </div>
         <span class="badge" style="background:#fee2e2;color:#dc2626">Terminated</span>
       </div>
-      <div style="font-weight:600;font-size:.8rem;margin-bottom:.5rem;color:var(--muted)">EQUIPAMENTOS</div>
+      <div style="font-weight:600;font-size:.78rem;color:var(--muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.06em">Equipamentos</div>
       ${rows}
-      <button class="btn bg" style="width:100%;margin-top:1rem" onclick="sel(null)">Fechar</button>
+      <button class="btn bg" style="width:100%;margin-top:1rem" onclick="G.sel(null)">Fechar</button>
     </div></div>`;
   }
-  const fields = [
-    ["Asset ID", a["ASSET ID"]],["Tipo", typePill(a["ASSET TYPE"])],
-    ["Descrição", a["Description"]||"—"],["Serial", `<span class="mono">${a["SERIAL NUMBER"]||"—"}</span>`],
-    ["Processador", a["Processador"]||"—"],["RAM", (a["Memória RAM (gb)"]||"—")+" GB"],
-    ["Local", a["Local"]||"—"],["BMS", a["BMS"]||"—"],
-    ["Localização", locPill(a["LOCATION TYPE"])],
-    ["Aquisição", fmt(a["Aquisitation date"])],["Life Cycle", a["Life Cicle"]||"—"],
-    ["WAH Status", bdg(a["WAH STATUS"])],["Retention", a["RETENTION STATUS"]||"—"],
+  const st=compute();
+  const bRow=st&&st.bmsMap[(a["BMS"]||"").trim()];
+  const ed=bRow&&bRow["Contract_EndDate"]?bRow["Contract_EndDate"]:"";
+  const fields=[
+    ["Asset ID",a["ASSET ID"]],["Tipo",tpill((a["ASSET TYPE"]||"").trim())],
+    ["Descrição",a["Description"]||"—"],["Serial",`<span class="mono">${a["SERIAL NUMBER"]||"—"}</span>`],
+    ["Processador",a["Processador"]||"—"],["RAM",(a["Memória RAM (gb)"]||"—")+" GB"],
+    ["Local",a["Local"]||"—"],["BMS",a["BMS"]||"—"],
+    ["Localização",lpill((a["LOCATION TYPE"]||"").trim())],
+    ["Aquisição",fmt(a["Aquisitation date"])],["Life Cycle",a["Life Cicle"]||"—"],
+    ["Data Rescisão",fmt(ed)||"—"],["WAH Status",wbdg((a["WAH STATUS"]||"").trim())],
+    ["Retention",rbdg(a["RETENTION STATUS"])],
   ];
-  return `<div class="ov" onclick="sel(null)"><div class="mb" onclick="event.stopPropagation()">
+  return`<div class="ov" onclick="G.sel(null)"><div class="mb" onclick="event.stopPropagation()">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
-      <div><div style="font-size:1.4rem;margin-bottom:3px">${TYPE_M[a["ASSET TYPE"]]?.i||"📦"}</div>
-      <div style="font-weight:800;font-size:.95rem">${a["ASSET ID"]}</div>
-      <div class="mono" style="font-size:11px;color:var(--muted);margin-top:1px">${a["ASSET TYPE"]} · ${a["SERIAL NUMBER"]||"—"}</div></div>
-      ${bdg(a["WAH STATUS"])}
+      <div><div style="font-size:1.5rem;margin-bottom:3px">${TYPE_M[(a["ASSET TYPE"]||"").trim()]?.i||"📦"}</div>
+        <div style="font-weight:800;font-size:.95rem">${a["ASSET ID"]||"—"}</div>
+        <div class="mono" style="font-size:11px;color:var(--muted);margin-top:2px">${a["ASSET TYPE"]||"—"} · ${a["SERIAL NUMBER"]||"—"}</div>
+      </div>${wbdg((a["WAH STATUS"]||"").trim())}
     </div>
     ${fields.map(([k,v])=>`<div class="mr"><span class="mk">${k}</span><span class="mv">${v}</span></div>`).join("")}
-    <button class="btn bg" style="width:100%;margin-top:1rem" onclick="sel(null)">Fechar</button>
+    <button class="btn bg" style="width:100%;margin-top:1rem" onclick="G.sel(null)">Fechar</button>
   </div></div>`;
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-//  HANDLERS
-// ═══════════════════════════════════════════════════════════════════════
-window.setTab = t => set({tab:t,search:"",locF:"all",typeF:"all",wahF:"all"});
-window.setLocFilter = l => set({tab:"assets",locF:l});
-window.setTypeFilter = t => set({tab:"assets",typeF:t});
-window.sel = id => {
-  if (!id) { set({selected:null}); return; }
-  const a = S.raw.find(r=>r["ASSET ID"]===id)||null;
-  set({selected:a});
-};
-window.selUser = uid => {
-  const st = stats();
-  if (!st) return;
-  const userMap = {};
-  st.terminated.forEach(r => {
-    const u = r["BMS"]||r["Local"]||r["ASSET ID"];
-    if (!userMap[u]) userMap[u]={uid:u,bms:r["BMS"],local:r["Local"],assets:[],_isUser:true};
-    userMap[u].assets.push(r);
-  });
-  set({selected: userMap[uid]||null});
-};
-window.syncNow = async () => { await syncData(); };
-window.saveConfig = () => {
-  const raw = (document.getElementById("rawUrl")||{value:""}).value.trim();
-  const bms = (document.getElementById("bmsUrl")||{value:""}).value.trim();
-  if (!raw) { showToast("Cola o link do CSV da sheet RAW DATA", true); return; }
-  CFG.rawDataUrl = raw; CFG.bmsUrl = bms;
-  localStorage.setItem("ah_raw", raw);
-  localStorage.setItem("ah_bms", bms);
-  set({screen:"dash"});
-  syncData();
-};
-window.loadDemo = () => {
-  // Gera dados demo com estrutura real do ficheiro
-  const demo = [
-    {"ASSET ID":"LANG.MOT.001","ASSET TYPE":"Monitor","Description":"Monitor HP 22\"","SERIAL NUMBER":"SN001","Processador":"","Memória RAM (gb)":"","Local":"Lisboa HQ","BMS":"BMS.001","LOCATION TYPE":"EDIFICIOS","Aquisitation date":"2022-03-15","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
-    {"ASSET ID":"LANG.LAP.002","ASSET TYPE":"Portátil","Description":"Dell Latitude 5520","SERIAL NUMBER":"SN002","Processador":"Intel i5","Memória RAM (gb)":"8","Local":"WAHA","BMS":"WAH.ACT.001","LOCATION TYPE":"WAHA","Aquisitation date":"2023-01-10","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
-    {"ASSET ID":"LANG.LAP.003","ASSET TYPE":"Portátil","Description":"HP EliteBook","SERIAL NUMBER":"SN003","Processador":"Intel i7","Memória RAM (gb)":"16","Local":"WAHA","BMS":"WAH.CDT.002","LOCATION TYPE":"WAHA","Aquisitation date":"2022-05-20","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Pendente de recolha"},
-    {"ASSET ID":"LANG.MOT.004","ASSET TYPE":"Monitor","Description":"Monitor Dell 24\"","SERIAL NUMBER":"SN004","Processador":"","Memória RAM (gb)":"","Local":"Armazém","BMS":"WAH.CDT.003","LOCATION TYPE":"ARMAZÉM","Aquisitation date":"2021-11-15","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"#N/A"},
-    {"ASSET ID":"LANG.DSK.005","ASSET TYPE":"Desktop","Description":"Dell OptiPlex","SERIAL NUMBER":"SN005","Processador":"Intel i5","Memória RAM (gb)":"8","Local":"AVT","BMS":"BMS.005","LOCATION TYPE":"AVT","Aquisitation date":"2020-08-01","Life Cicle":"End of Life","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
-    {"ASSET ID":"LANG.LAP.006","ASSET TYPE":"Portátil","Description":"Lenovo ThinkPad","SERIAL NUMBER":"SN006","Processador":"AMD Ryzen","Memória RAM (gb)":"16","Local":"WAHA","BMS":"WAH.CDT.004","LOCATION TYPE":"WAHA","Aquisitation date":"2023-03-20","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Recuperado"},
-    {"ASSET ID":"LANG.TAB.007","ASSET TYPE":"Tablets","Description":"iPad Pro","SERIAL NUMBER":"SN007","Processador":"M2","Memória RAM (gb)":"8","Local":"Edificios","BMS":"BMS.007","LOCATION TYPE":"EDIFICIOS","Aquisitation date":"2023-06-01","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
-    {"ASSET ID":"LANG.MPC.008","ASSET TYPE":"MiniPC","Description":"Intel NUC","SERIAL NUMBER":"SN008","Processador":"Intel i3","Memória RAM (gb)":"4","Local":"Staging","BMS":"BMS.008","LOCATION TYPE":"STAGING","Aquisitation date":"2021-02-14","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Pendente de recolha"},
-    {"ASSET ID":"LANG.MOT.009","ASSET TYPE":"Monitor","Description":"LG 27\"","SERIAL NUMBER":"SN009","Processador":"","Memória RAM (gb)":"","Local":"Warehouse","BMS":"BMS.009","LOCATION TYPE":"WAREHOUSE","Aquisitation date":"2022-09-10","Life Cicle":"Active","WAH STATUS":"Active","RETENTION STATUS":"#N/A"},
-    {"ASSET ID":"LANG.LAP.010","ASSET TYPE":"Portátil","Description":"MacBook Air","SERIAL NUMBER":"SN010","Processador":"Apple M2","Memória RAM (gb)":"8","Local":"Apartamentos","BMS":"BMS.010","LOCATION TYPE":"APARTAMENTOS","Aquisitation date":"2023-11-01","Life Cicle":"Active","WAH STATUS":"Terminated","RETENTION STATUS":"Pendente de recolha"},
-  ];
-  S.raw = demo; S.lastSync = new Date();
-  set({screen:"dash"});
-  showToast("Modo demo activo — dados de exemplo");
+// ═══════════════ GLOBAL HANDLERS ═══════════════
+const G={
+  tab:t=>{S.tab=t;S.search="";S.locF="all";S.typeF="all";S.wahF="all";draw();},
+  locF:v=>{S.tab="assets";S.locF=v;draw();},
+  typeF:v=>{S.tab="assets";S.typeF=v;draw();},
+  wahF:v=>{S.wahF=v;draw();},
+  search:v=>{S.search=v;draw();},
+  reset:()=>{S.search="";S.locF="all";S.typeF="all";S.wahF="all";draw();},
+  sel:id=>{
+    if(!id){S.selected=null;draw();return;}
+    S.selected=S.raw.find(r=>(r["ASSET ID"]||"").trim()===id)||null;draw();
+  },
+  selUser:uid=>{
+    const st=compute();if(!st)return;
+    const u=st.users.find(u=>u.uid===uid)||null;
+    S.selected=u;draw();
+  },
+  sync:()=>sync(),
 };
 
-// ═══════════════════════════════════════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════ INIT ═══════════════
 draw();
-if (CFG.rawDataUrl) syncData();
+sync();
 </script>
 </body>
 </html>
